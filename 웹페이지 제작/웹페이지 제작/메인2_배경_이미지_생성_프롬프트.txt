@@ -1,0 +1,96 @@
+================================================================================
+[정승운 포트폴리오 메인 2페이지 배경 (main2.png) AI 이미지 생성 프롬프트 가이드]
+================================================================================
+
+■ 이 이미지가 쓰이는 곳 (생성 전에 꼭 확인)
+  1) 메인 2페이지 "데이터 기반 기획과 내러티브의 융합" 전체 배경
+     - 화면 정중앙에 제목 + 핵심 역량 카드 3개 + 이동 버튼 4개가 올라감
+     - 위에 가장자리가 더 어두운 원형 딤이 한 겹 깔림
+  2) 이력 소개 1단계 배경 (투명도 55%)
+     - 왼쪽에 프로필 사진, 오른쪽에 인적사항 텍스트가 올라감
+
+  → 그래서 이미지 조건은:
+     · 가운데는 비교적 비어 있고 부드러운 빛만 있을 것 (텍스트/카드 가독성)
+     · 디테일은 좌우 가장자리와 아래쪽에 배치
+     · main 1.png 보다 "조금 더 밝고 열린" 느낌 (코드 주석에도 '밝은 배경'으로 설계됨)
+     · 색감은 main 1과 통일: 보이드 블랙 + 아이리스 바이올렛(#9281f7) 포인트
+     · 비율 16:9, 권장 해상도 1672x941 이상 (main 1.png와 동일 규격)
+     · 글자/로고/사람 얼굴 넣지 않기
+
+  메인 1(main 1.png)이 "게임 시스템 설계도 속 판타지 세계"였다면,
+  메인 2는 그 다음 장면 → "영화(내러티브)와 데이터(시스템)가 만나는 공간"으로 이어지게 구성했습니다.
+
+
+--------------------------------------------------------------------------------
+■ 옵션 1 (강력 추천): "필름과 데이터의 융합 (Narrative x System Fusion)"
+--------------------------------------------------------------------------------
+[컨셉 설명]
+왼쪽에서는 영화 필름 스트립과 영사기 빛줄기가, 오른쪽에서는 스프레드시트 그리드·
+노드 그래프·수치 그래프가 흘러나와 화면 중앙의 부드러운 바이올렛 빛 속에서 하나로
+녹아드는 장면. 영화영상학 전공 + 게임 시스템 기획이라는 정체성을 가장 직관적으로 표현.
+중앙이 자연스럽게 비어 있어 카드/텍스트 배치에 가장 유리합니다.
+
+[영문 프롬프트 (Midjourney / SDXL 복사용)]
+A cinematic wide background where storytelling and game system design merge, left side: flowing translucent film strips, a vintage film reel and a soft projector light beam, right side: glowing holographic spreadsheet grids, balancing curves, node graphs and data flow lines, both streams curving inward and dissolving into a soft luminous iris violet glow at the center, large clean empty space in the middle for text, deep void black to dark indigo gradient, lavender and soft white highlights, floating light particles, subtle depth of field, elegant premium tech aesthetic, slightly brighter and airy mood, no text, no people, 8k, cinematic lighting --ar 16:9 --v 6.0 --style raw --no text, letters, logo, watermark, face
+
+[DALL-E 3 / ChatGPT 이미지 복사용]
+A wide 16:9 cinematic background image. On the left edge, translucent film strips and a film reel with a gentle projector light beam; on the right edge, glowing holographic spreadsheet grids, line graphs and flowchart nodes. Both sides flow toward the center and dissolve into a soft, bright iris-violet glow. The center of the image is calm and mostly empty so text can be placed over it. Dark indigo and black background with lavender highlights and fine light particles. Elegant, modern, slightly brighter than a typical dark theme. No text, no letters, no people.
+
+
+--------------------------------------------------------------------------------
+■ 옵션 2: "새벽의 기획 스튜디오 (Creator's Studio at Dawn)"
+--------------------------------------------------------------------------------
+[컨셉 설명]
+main 1의 어두운 설계 공간에서 시간이 흘러, 창밖으로 보랏빛 새벽이 밝아오는 기획자의
+작업실. 책상 위 모니터 속 수치 테이블, 벽의 스토리보드와 슬레이트, 떠 있는 홀로그램이
+가장자리에 배치되고 중앙은 창문 빛으로 환하게 비어 있음. 따뜻하고 사람 냄새 나는 톤으로
+이력 페이지(프로필 사진) 배경으로도 잘 어울립니다.
+
+[영문 프롬프트 (Midjourney / SDXL 복사용)]
+A wide cinematic interior of a game designer's creative studio at dawn, large window in the center glowing with soft violet and pale lavender sunrise light, the center left bright and uncluttered, edges filled with details: monitors showing balancing spreadsheets and node graphs on the right, a storyboard wall, a film clapperboard and a vintage camera on the left, faint floating holographic wireframes, dust particles in light rays, calm hopeful atmosphere, dark indigo shadows with iris violet accents, shallow depth of field, photoreal cinematic render, no people, no readable text --ar 16:9 --v 6.0 --style raw --no text, letters, logo, watermark, person
+
+[DALL-E 3 / ChatGPT 이미지 복사용]
+A wide cinematic image of an empty game designer's studio at dawn. A large window in the center fills the middle of the frame with soft violet and lavender morning light, keeping the center bright and simple. On the left: a storyboard wall, a film clapperboard and an old movie camera. On the right: monitors with spreadsheets and flowchart diagrams, faint holographic wireframes. Dark indigo shadows, iris-violet accents, light rays with dust particles, calm and hopeful mood. No people, no readable text.
+
+
+--------------------------------------------------------------------------------
+■ 옵션 3: "빛나는 코어 루프 (Glowing Core Loop, 미니멀)"
+--------------------------------------------------------------------------------
+[컨셉 설명]
+화면 중앙 뒤쪽에 거대한 반투명 링(게임의 코어 루프를 상징)이 은은하게 빛나고, 그 주변을
+세 갈래 빛줄기(시스템 / 엔진 / 서사 = 핵심 역량 카드 3개)가 궤도처럼 돌아가는 추상 배경.
+구체적 사물이 없어 어떤 텍스트를 올려도 깔끔하고, 가장 세련된 느낌.
+
+[영문 프롬프트 (Midjourney / SDXL 복사용)]
+Minimal abstract 3D background, a huge translucent glowing ring floating softly behind the center, representing a game core loop, three thin orbiting light trails in iris violet, soft lavender and cool white circling around it, faint isometric grid floor fading into darkness, subtle volumetric haze, deep void black and dark indigo gradient, bright soft halo in the middle, lots of clean negative space, luxury tech branding aesthetic, 8k, photorealistic render --ar 16:9 --v 6.0 --style raw --no text, letters, logo, watermark
+
+[DALL-E 3 / ChatGPT 이미지 복사용]
+A minimal, abstract wide 16:9 background. Behind the center floats a large translucent glowing ring with a soft bright halo. Three thin light trails in violet, lavender and cool white orbit around it. A faint grid floor fades into darkness below. Deep black and dark indigo gradient, light haze, lots of clean empty space. Premium, modern tech style. No text.
+
+
+--------------------------------------------------------------------------------
+■ 공통 네거티브 프롬프트 (SDXL / Stable Diffusion 사용 시)
+--------------------------------------------------------------------------------
+text, letters, words, watermark, logo, signature, face, person, character, cluttered center,
+busy composition, overexposed, harsh neon, red tones, blurry, low resolution, jpeg artifacts
+
+
+--------------------------------------------------------------------------------
+■ 생성 팁
+--------------------------------------------------------------------------------
+- 결과물 중앙이 너무 복잡하면 프롬프트에 "empty center, minimal details in the middle"을
+  한 번 더 넣거나, Midjourney의 Vary(Region)로 중앙만 지워 다시 생성하세요.
+- 너무 어두우면 "brighter, soft glow, higher exposure"를 추가하세요.
+  (페이지 위에 어두운 딤이 한 겹 더 깔리기 때문에 원본은 살짝 밝은 게 좋습니다)
+- main 1.png와 톤을 맞추려면 Midjourney에서 main 1.png를 스타일 참조(--sref)로 넣으세요.
+
+
+--------------------------------------------------------------------------------
+■ 생성 후 웹페이지 적용 방법 (둘 중 편한 방법)
+--------------------------------------------------------------------------------
+방법 A) 파일명을 `main2.png` 로 바꿔서 `웹페이지 제작` 폴더에 넣기
+        → 메인 2페이지와 이력 1단계 배경에 자동으로 한 번에 적용됩니다.
+
+방법 B) 페이지에서 [편집 모드 ON] → 메인 2페이지 왼쪽 아래 [🖼 메인 2 배경 변경] 클릭 → 이미지 선택
+        (이력 1단계 배경은 이력 페이지에서 [🖼 이력 1단계 배경 변경]으로 따로 넣어야 합니다)
+================================================================================

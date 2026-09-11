@@ -1,0 +1,33 @@
+id="page-portfolio" class="page-section">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:32px; flex-wrap:wrap; gap:16px;">
+            <div>
+                <div class="profile-tag">DOCUMENT ARCHIVE & SPECS</div>
+                <h1 class="section-title" style="margin-bottom:6px;">포트폴리오 문서함</h1>
+                <p class="section-desc" style="margin-bottom:0;">실무 및 프로젝트에서 직접 작성한 게임 기획서, 밸런싱 수치 테이블 및 개발 문서 20건입니다.</p>
+            </div>
+            <div style="font-family:var(--font-mono); font-size:13px; color:var(--color-iris-violet); background:rgba(146,129,247,0.12); padding:6px 14px; border-radius:20px; border:1px solid rgba(146,129,247,0.25);">
+                📁 총 20건 문서 등록 완료
+            </div>
+        </div>
+
+        <div class="portfolio-projects" aria-label="주요 프로젝트">
+            <article class="portfolio-project-card" onclick="openProjectDetail('smartfarm')" tabindex="0" onkeydown="if(event.key==='Enter') openProjectDetail('smartfarm')">
+                <img src="슬기로운재배생활.png" alt="슬기로운 재배생활">
+                <div class="portfolio-project-card-body"><div class="portfolio-project-kicker">DVELOCKET · TEAM LEAD</div><h3>슬기로운 재배생활</h3><p>PC 타이쿤 게임의 전체 시스템 기획, 유니티 바이브 코딩, 테이블 작업과 밸런스 패치.</p></div>
+            </article>
+            <article class="portfolio-project-card" onclick="openProjectDetail('lastsanctuary')" tabindex="0" onkeydown="if(event.key==='Enter') openProjectDetail('lastsanctuary')">
+                <img src="lastsanctuary.png" alt="LAST SANCTUARY">
+                <div class="portfolio-project-card-body"><div class="portfolio-project-kicker">DVELOCKET · TEAM MEMBER</div><h3>LAST SANCTUARY</h3><p>PC 생존 게임의 시스템·퀘스트·캐릭터 기획과 유니티, 밸런스, 번역, 메인 PV 제작.</p></div>
+            </article>
+            <article class="portfolio-project-card" onclick="openProjectDetail('film')" tabindex="0" onkeydown="if(event.key==='Enter') openProjectDetail('film')">
+                <img src="main 1.png" alt="영화 제작활동">
+                <div class="portfolio-project-card-body"><div class="portfolio-project-kicker">FILM PRODUCTION</div><h3>영화 제작활동</h3><p>홍보·촬영·음향·미술·제작·PD 등 실제 이력서에 기재된 영화 제작 활동 모음.</p></div>
+            </article>
+        </div>
+
+        <div class="docs-category-grid" id="docsContainer">
+            <!-- JS 동적 로딩 -->
+        </div>
+    </section>
+
+    <!-- -----------------------------

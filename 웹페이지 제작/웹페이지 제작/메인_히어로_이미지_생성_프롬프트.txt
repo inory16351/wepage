@@ -1,0 +1,63 @@
+================================================================================
+[정승운 포트폴리오 메인 로비(히어로) 배너 AI 이미지 생성 프롬프트 가이드]
+================================================================================
+
+본 포트폴리오 웹사이트의 톤앤매너(Void Black 다크 모드, Iris Violet 포인트, 
+탄탄한 논리와 상상력이 결합된 게임 시스템 기획자 컨셉)에 최적화된 
+AI 이미지 생성 프롬프트 모음입니다.
+
+Midjourney v6, DALL-E 3, Stable Diffusion XL 등 원하는 툴에 
+아래 영문 프롬프트를 그대로 복사해서 사용하시면 됩니다.
+
+--------------------------------------------------------------------------------
+■ 옵션 1 (강력 추천): "시스템 기획과 논리의 장 (Logic & System Architecture)"
+--------------------------------------------------------------------------------
+[컨셉 설명]
+어두운 배경 속에서 영롱한 바이올렛과 블루 빛을 띠는 AI 행동 트리(Behavior Tree) 노드 그래프, 
+정교한 게임 시스템 설계도와 3D 그리드가 허공에 입체적으로 펼쳐지는 하이테크 크리에이터 비주얼.
+논리적이고 치밀한 기획자의 전문성을 가장 잘 보여줍니다.
+
+[영문 프롬프트 (Midjourney / SDXL 복사용)]
+A sleek cinematic wide banner of a modern game system designer's workspace in deep void black atmosphere, glowing isometric game logic node graph, floating translucent holographic wireframes of game level design, behavior tree diagrams, delicate violet and electric purple neon data streams, subtle golden light particles, minimal tech aesthetics, 8k resolution, cinematic lighting, Unreal Engine 5 render style, clean composition, high detail, centered focal point --ar 16:9 --v 6.0 --style raw
+
+[DALL-E 3 복사용]
+A high-resolution wide banner in a sleek dark aesthetic (pure black background). In the center, delicate glowing holographic blueprints of a video game system interface: floating behavior tree node networks, translucent 3D isometric game grids, and elegant violet and cool white data lines. Subtle atmospheric fog, cinematic soft lighting, premium tech creator vibes, ultra clean and modern.
+
+
+--------------------------------------------------------------------------------
+■ 옵션 2: "상상과 창조의 세계관 (World Building & Creative Fusion)"
+--------------------------------------------------------------------------------
+[컨셉 설명]
+슬기로운 재배생활의 아기자기한 픽셀/복셀 자연 경관과 LAST SANCTUARY의 웅장한 판타지 
+성채가 창작자의 홀로그램 설계도 위에서 유기적으로 피어오르는 초현실적 아트워크.
+
+[영문 프롬프트 (Midjourney / SDXL 복사용)]
+A breathtaking widescreen digital art piece showing the creation of a video game world, deep dark background with glowing iris violet and emerald accents, floating floating miniature islands with cozy farming village on one side and a dark fantasy gothic castle on the other, connected by glowing digital data wires and blueprint gridlines, conceptual game design art, ethereal cinematic lighting, octane render, 8k, sharp focus --ar 16:9 --v 6.0
+
+[DALL-E 3 복사용]
+A panoramic horizontal illustration in dark aesthetic where a game creator's imagination comes alive. A floating holographic blueprint table displaying tiny detailed game landscapes: a charming agricultural pixel farm gently blending into an epic dark fantasy realm, linked by glowing purple circuit lines and flowchart nodes against a pitch-black studio atmosphere.
+
+
+--------------------------------------------------------------------------------
+■ 옵션 3: "미니멀 & 세련된 추상 테크 (Minimal Abstract Grid & Core)"
+--------------------------------------------------------------------------------
+[컨셉 설명]
+특정 게임 오브젝트 대신 애플/테크 디자인 스타일의 흑연 그리드, 매끄러운 큐브 모듈,
+아이리스 바이올렛 빛을 은은하게 발산하는 코어 큐브. 텍스트 가독성을 최대로 살리는 미니멀 배너.
+
+[영문 프롬프트 (Midjourney / SDXL 복사용)]
+Minimalist 3D abstract wallpaper, deep void black carbon texture background, subtle dark graphite gridlines, floating geometric dark glass cubes with glowing neon violet internal core, soft purple ambient rim light, depth of field, sleek Apple-style high-end industrial tech aesthetic, 8k, photorealistic, clean empty negative space --ar 16:9 --v 6.0
+
+[DALL-E 3 복사용]
+Minimal dark mode abstract 3D horizontal wallpaper. Pitch-black matte studio background with subtle dark gray grid planes. A few sleek floating glass polygons with soft iris-violet internal luminescence, subtle refraction, modern luxury tech branding aesthetic, expansive and clean composition.
+
+
+--------------------------------------------------------------------------------
+■ 이미지 생성 후 웹페이지 적용 방법
+--------------------------------------------------------------------------------
+1. 마음에 드는 이미지를 다운로드합니다.
+2. 파일명을 `Title.png` 로 변경하여 `웹페이지 제작` 폴더에 덮어쓰거나, 
+   새 파일명(예: `Hero.png`)으로 저장합니다.
+3. 웹페이지에 배너로 다시 표시하고 싶으실 경우 언제든 말씀해주시면 
+   잘림 없이 딱 들어맞는 완벽한 비율로 연동해 드립니다!
+================================================================================

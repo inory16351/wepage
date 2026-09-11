@@ -1,0 +1,26 @@
+{
+  "Civilization VI": {
+    "id": 19130,
+    "title": "Sid Meier's Civilization VI",
+    "platform": "PlayStation 4 / Linux / Android / PC (Microsoft Windows) / iOS / Mac / Xbox One / Nintendo Switch",
+    "genre": "Simulator / Strategy / Turn-based strategy (TBS)",
+    "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaaqr.jpg",
+    "releaseYear": 2016
+  },
+  "RimWorld": {
+    "id": 9789,
+    "title": "RimWorld",
+    "platform": "Linux / PC (Microsoft Windows) / Mac",
+    "genre": "Real Time Strategy (RTS) / Simulator / Strategy / Indie",
+    "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaaqj.jpg",
+    "releaseYear": 2018
+  },
+  "Football Manager 2024": {
+    "id": 266382,
+    "title": "Football Manager 2024",
+    "platform": "Xbox Series X|S / PC (Microsoft Windows) / PlayStation 5 / Mac / Xbox One / Nintendo Switch",
+    "genre": "Simulator / Sport / Strategy",
+    "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co73z1.jpg",
+    "releaseYear": 2023
+  }
+}
