@@ -1,0 +1,536 @@
+{
+  "source": "Steam 클라이언트 기록 (localconfig.vdf)",
+  "profile": "https://steamcommunity.com/profiles/76561198112205675",
+  "updatedAt": "2026-10-29",
+  "totalHours": 10432,
+  "games": [
+    {
+      "appid": 1904540,
+      "name": "Football Manager 2023",
+      "genres": [
+        "시뮬레이션",
+        "스포츠"
+      ],
+      "category": "management",
+      "hours": 3097.6,
+      "lastPlayed": "2023-10-24",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1904540/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1904540/"
+    },
+    {
+      "appid": 1569040,
+      "name": "Football Manager 2022",
+      "genres": [
+        "시뮬레이션",
+        "스포츠"
+      ],
+      "category": "management",
+      "hours": 2348.6,
+      "lastPlayed": "2022-10-20",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1569040/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1569040/"
+    },
+    {
+      "appid": 1100600,
+      "name": "Football Manager 2020",
+      "genres": [
+        "시뮬레이션",
+        "스포츠"
+      ],
+      "category": "management",
+      "hours": 1652.8,
+      "lastPlayed": "2020-11-28",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1100600/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1100600/"
+    },
+    {
+      "appid": 1263850,
+      "name": "Football Manager 2021",
+      "genres": [
+        "시뮬레이션",
+        "스포츠"
+      ],
+      "category": "management",
+      "hours": 1410.9,
+      "lastPlayed": "2022-02-14",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1263850/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1263850/"
+    },
+    {
+      "appid": 570,
+      "name": "Dota 2",
+      "genres": [
+        "액션",
+        "전략",
+        "무료 플레이"
+      ],
+      "category": "strategy",
+      "hours": 824.9,
+      "lastPlayed": "2026-10-11",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/570/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/570/"
+    },
+    {
+      "appid": 1086940,
+      "name": "Baldur's Gate 3",
+      "genres": [
+        "어드벤처",
+        "RPG",
+        "전략"
+      ],
+      "category": "rpg",
+      "hours": 168.4,
+      "lastPlayed": "2025-08-05",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1086940/"
+    },
+    {
+      "appid": 289070,
+      "name": "Sid Meier's Civilization VI",
+      "genres": [
+        "전략"
+      ],
+      "category": "strategy",
+      "hours": 135.7,
+      "lastPlayed": "2025-12-09",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/289070/"
+    },
+    {
+      "appid": 268500,
+      "name": "XCOM 2",
+      "genres": [
+        "전략"
+      ],
+      "category": "strategy",
+      "hours": 127.5,
+      "lastPlayed": "2023-08-06",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/268500/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/268500/"
+    },
+    {
+      "appid": 1623730,
+      "name": "Palworld (팰월드)",
+      "genres": [
+        "액션",
+        "어드벤처",
+        "인디",
+        "RPG"
+      ],
+      "category": "management",
+      "hours": 81.1,
+      "lastPlayed": "2024-06-30",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1623730/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1623730/"
+    },
+    {
+      "appid": 703080,
+      "name": "플래닛 주",
+      "genres": [
+        "캐주얼",
+        "시뮬레이션",
+        "전략"
+      ],
+      "category": "management",
+      "hours": 71.7,
+      "lastPlayed": "2026-03-02",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/703080/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/703080/"
+    },
+    {
+      "appid": 322330,
+      "name": "Don't Starve Together",
+      "genres": [
+        "액션",
+        "어드벤처",
+        "인디",
+        "RPG",
+        "시뮬레이션",
+        "전략"
+      ],
+      "category": "management",
+      "hours": 57.5,
+      "lastPlayed": "2024-10-21",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/322330/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/322330/"
+    },
+    {
+      "appid": 1147560,
+      "name": "Skul: The Hero Slayer",
+      "genres": [
+        "액션",
+        "인디"
+      ],
+      "category": "etc",
+      "hours": 45,
+      "lastPlayed": "2026-10-29",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1147560/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1147560/"
+    },
+    {
+      "appid": 1158310,
+      "name": "Crusader Kings III",
+      "genres": [
+        "RPG",
+        "시뮬레이션",
+        "전략"
+      ],
+      "category": "strategy",
+      "hours": 42.8,
+      "lastPlayed": "2025-01-11",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1158310/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1158310/"
+    },
+    {
+      "appid": 262060,
+      "name": "Darkest Dungeon",
+      "genres": [
+        "인디",
+        "RPG",
+        "전략"
+      ],
+      "category": "rpg",
+      "hours": 41.1,
+      "lastPlayed": "2024-06-12",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/262060/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/262060/"
+    },
+    {
+      "appid": 1054490,
+      "name": "Wingspan (윙스팬)",
+      "genres": [
+        "인디",
+        "전략"
+      ],
+      "category": "strategy",
+      "hours": 31.2,
+      "lastPlayed": "2025-06-08",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1054490/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1054490/"
+    },
+    {
+      "appid": 1049590,
+      "name": "이터널 리턴",
+      "genres": [],
+      "category": "strategy",
+      "hours": 31,
+      "lastPlayed": "2025-09-22",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1049590/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1049590/"
+    },
+    {
+      "appid": 2868840,
+      "name": "Slay the Spire 2",
+      "genres": [
+        "인디",
+        "전략",
+        "앞서 해보기"
+      ],
+      "category": "strategy",
+      "hours": 30.6,
+      "lastPlayed": "2026-03-31",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/2868840/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/2868840/"
+    },
+    {
+      "appid": 945360,
+      "name": "Among Us",
+      "genres": [
+        "캐주얼"
+      ],
+      "category": "etc",
+      "hours": 29.8,
+      "lastPlayed": "2021-09-12",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/945360/"
+    },
+    {
+      "appid": 413150,
+      "name": "Stardew Valley",
+      "genres": [
+        "인디",
+        "RPG",
+        "시뮬레이션"
+      ],
+      "category": "management",
+      "hours": 28.3,
+      "lastPlayed": "2024-06-06",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/413150/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/413150/"
+    },
+    {
+      "appid": 1568590,
+      "name": "Goose Goose Duck",
+      "genres": [
+        "캐주얼",
+        "인디",
+        "대규모 멀티플레이어",
+        "전략",
+        "무료 플레이"
+      ],
+      "category": "etc",
+      "hours": 24.1,
+      "lastPlayed": "2023-12-31",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1568590/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1568590/"
+    },
+    {
+      "appid": 1238810,
+      "name": "Battlefield V",
+      "genres": [
+        "액션"
+      ],
+      "category": "etc",
+      "hours": 23.6,
+      "lastPlayed": "2024-06-30",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1238810/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1238810/"
+    },
+    {
+      "appid": 646570,
+      "name": "Slay the Spire",
+      "genres": [
+        "인디",
+        "전략"
+      ],
+      "category": "strategy",
+      "hours": 23.2,
+      "lastPlayed": "2025-01-13",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/646570/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/646570/"
+    },
+    {
+      "appid": 286160,
+      "name": "Tabletop Simulator",
+      "genres": [
+        "캐주얼",
+        "인디",
+        "RPG",
+        "시뮬레이션",
+        "전략"
+      ],
+      "category": "strategy",
+      "hours": 21.6,
+      "lastPlayed": "2022-06-19",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/286160/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/286160/"
+    },
+    {
+      "appid": 527230,
+      "name": "For The King",
+      "genres": [
+        "어드벤처",
+        "인디",
+        "RPG",
+        "전략"
+      ],
+      "category": "rpg",
+      "hours": 18.5,
+      "lastPlayed": "2024-08-16",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/527230/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/527230/"
+    },
+    {
+      "appid": 2438990,
+      "name": "Ark Nova",
+      "genres": [
+        "전략"
+      ],
+      "category": "strategy",
+      "hours": 11.1,
+      "lastPlayed": "2025-10-15",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/2438990/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/2438990/"
+    },
+    {
+      "appid": 1301390,
+      "name": "No Umbrellas Allowed",
+      "genres": [
+        "인디",
+        "시뮬레이션",
+        "전략"
+      ],
+      "category": "management",
+      "hours": 10.9,
+      "lastPlayed": "2023-05-04",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1301390/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1301390/"
+    },
+    {
+      "appid": 2321470,
+      "name": "Deep Rock Galactic: Survivor",
+      "genres": [
+        "액션"
+      ],
+      "category": "etc",
+      "hours": 5.4,
+      "lastPlayed": "2024-03-16",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/2321470/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/2321470/"
+    },
+    {
+      "appid": 1097150,
+      "name": "Fall Guys",
+      "genres": [
+        "액션",
+        "캐주얼",
+        "인디",
+        "대규모 멀티플레이어",
+        "스포츠"
+      ],
+      "category": "etc",
+      "hours": 5.2,
+      "lastPlayed": "2024-04-11",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1097150/"
+    },
+    {
+      "appid": 728880,
+      "name": "Overcooked! 2",
+      "genres": [
+        "액션",
+        "캐주얼",
+        "인디"
+      ],
+      "category": "etc",
+      "hours": 3.9,
+      "lastPlayed": "2024-04-17",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/728880/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/728880/"
+    },
+    {
+      "appid": 387290,
+      "name": "Ori and the Blind Forest: Definitive Edition",
+      "genres": [
+        "액션"
+      ],
+      "category": "etc",
+      "hours": 3.7,
+      "lastPlayed": "2023-05-05",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/387290/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/387290/"
+    },
+    {
+      "appid": 437920,
+      "name": "Tricky Towers",
+      "genres": [
+        "캐주얼",
+        "인디"
+      ],
+      "category": "etc",
+      "hours": 3.6,
+      "lastPlayed": "2025-06-14",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/437920/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/437920/"
+    },
+    {
+      "appid": 892970,
+      "name": "Valheim",
+      "genres": [
+        "액션",
+        "어드벤처",
+        "인디",
+        "RPG"
+      ],
+      "category": "management",
+      "hours": 3.6,
+      "lastPlayed": "2024-07-10",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/892970/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/892970/"
+    },
+    {
+      "appid": 1172620,
+      "name": "Sea of Thieves",
+      "genres": [
+        "액션",
+        "어드벤처"
+      ],
+      "category": "etc",
+      "hours": 3.4,
+      "lastPlayed": "2020-12-27",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1172620/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1172620/"
+    },
+    {
+      "appid": 389730,
+      "name": "TEKKEN 7",
+      "genres": [
+        "액션",
+        "스포츠"
+      ],
+      "category": "etc",
+      "hours": 3.2,
+      "lastPlayed": "2021-06-24",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/389730/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/389730/"
+    },
+    {
+      "appid": 271590,
+      "name": "Grand Theft Auto V",
+      "genres": [
+        "액션",
+        "어드벤처"
+      ],
+      "category": "etc",
+      "hours": 2.7,
+      "lastPlayed": "2024-07-12",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/271590/"
+    },
+    {
+      "appid": 648800,
+      "name": "Raft",
+      "genres": [
+        "어드벤처",
+        "인디",
+        "시뮬레이션"
+      ],
+      "category": "management",
+      "hours": 2.3,
+      "lastPlayed": "2021-10-04",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/648800/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/648800/"
+    },
+    {
+      "appid": 381210,
+      "name": "Dead by Daylight",
+      "genres": [
+        "액션"
+      ],
+      "category": "etc",
+      "hours": 2.3,
+      "lastPlayed": "2020-12-31",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/381210/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/381210/"
+    },
+    {
+      "appid": 578080,
+      "name": "PUBG: BATTLEGROUNDS",
+      "genres": [
+        "액션",
+        "어드벤처",
+        "대규모 멀티플레이어",
+        "무료 플레이"
+      ],
+      "category": "etc",
+      "hours": 1.7,
+      "lastPlayed": "2024-07-12",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/578080/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/578080/"
+    },
+    {
+      "appid": 1085660,
+      "name": "데스티니 가디언즈",
+      "genres": [
+        "액션",
+        "어드벤처",
+        "무료 플레이"
+      ],
+      "category": "etc",
+      "hours": 1.1,
+      "lastPlayed": "2024-07-01",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/1085660/library_600x900.jpg",
+      "store": "https://store.steampowered.com/app/1085660/"
+    }
+  ]
+}

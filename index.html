@@ -43,7 +43,8 @@
             --font-display: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
             --font-mono: "Commit Mono", ui-monospace, monospace;
             --font-marquee: "Bebas Neue", "Pretendard", Impact, sans-serif;
-            --gutter: clamp(16px, 4vw, 60px);
+            --gutter: clamp(16px, 4.5vw, 72px);
+            --card-gap: 12px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -60,6 +61,9 @@
         body.no-scroll { overflow: hidden; }
         img { max-width: 100%; }
         button { font-family: inherit; }
+        button, a { -webkit-tap-highlight-color: transparent; }
+        :where(button, a, [tabindex]):focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+        :where(.nf-card-info, .nf-modal-body, .related-item, .play-card-body) { overflow-wrap: anywhere; }
         ::-webkit-scrollbar { width: 10px; height: 10px; }
         ::-webkit-scrollbar-track { background: #0b0b0b; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 6px; }
@@ -144,42 +148,41 @@
            1. 헤더 (상단은 투명, 스크롤 시 검정)
         ============================================================= */
         header {
-            position: fixed; top: 0; left: 0; right: 0; height: 68px; z-index: 1000;
-            display: flex; align-items: center; justify-content: space-between; gap: 20px;
-            padding: 0 var(--gutter);
-            background: linear-gradient(180deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,0) 100%);
-            transition: background .35s ease;
+            position: fixed; inset: 0 0 auto; height: 76px; z-index: 1000;
+            display: flex; align-items: center; gap: clamp(24px, 3vw, 48px); padding: 0 var(--gutter);
+            background: linear-gradient(180deg, rgba(0,0,0,.8), transparent);
+            transition: background .35s ease, box-shadow .35s ease;
         }
-        header.scrolled, header.solid { background: rgba(20,20,20,.97); }
-        .brand-logo {
-            font-family: var(--font-marquee); font-size: 34px; letter-spacing: .03em; color: var(--nf-red);
-            cursor: pointer; line-height: 1; white-space: nowrap; text-shadow: 0 2px 12px rgba(229,9,20,.25);
-        }
+        header.scrolled, header.solid { background: #141414; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+        .brand-logo { flex: none; font-family: var(--font-marquee); font-size: 34px; letter-spacing: .025em; color: var(--nf-red); cursor: pointer; line-height: 1; white-space: nowrap; }
         .brand-logo small { font-family: var(--font-display); font-size: 10px; letter-spacing: .3em; color: #bbb; margin-left: 8px; vertical-align: middle; }
-        nav { display: flex; align-items: center; gap: 6px; flex: 1; justify-content: flex-end; min-width: 0; }
-        .nav-links { display: flex; align-items: center; gap: 4px; margin-right: auto; margin-left: 28px; overflow-x: auto; scrollbar-width: none; }
-        .nav-links::-webkit-scrollbar { display: none; }
-        .nav-link {
-            background: none; border: none; color: var(--nf-text-2); font-size: 14px; padding: 8px 12px; cursor: pointer;
-            white-space: nowrap; transition: color .2s; border-radius: 4px;
-        }
-        .nav-link:hover { color: #b3b3b3; }
-        .nav-link.active { color: #fff; font-weight: 700; }
-        .edit-toggle-btn {
-            background: transparent; border: 1px solid #555; color: #ccc; padding: 6px 12px; border-radius: 4px;
-            font-size: 12px; cursor: pointer; transition: all .2s; font-family: var(--font-mono); white-space: nowrap;
-        }
+        nav { display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0; }
+        .nav-links { display: flex; align-items: center; gap: clamp(12px, 1.7vw, 26px); margin-right: auto; min-width: 0; }
+        .nav-link { position: relative; flex: none; background: none; border: none; color: #c7c7c7; font-size: 13px; padding: 12px 0; cursor: pointer; white-space: nowrap; transition: color .2s; }
+        .nav-link:hover { color: #fff; }
+        .nav-link.active { color: #fff; font-weight: 800; }
+        .nav-link.active::after { content: ''; position: absolute; bottom: 4px; left: 0; right: 0; height: 2px; background: var(--nf-red); }
+        .edit-toggle-btn { flex: none; background: transparent; border: 1px solid #666; color: #ccc; padding: 7px 10px; border-radius: 3px; font: 500 11px var(--font-display); cursor: pointer; transition: background .2s, color .2s; white-space: nowrap; }
         .edit-toggle-btn:hover { border-color: #fff; color: #fff; }
         .edit-toggle-btn.active { background: var(--nf-red); border-color: var(--nf-red); color: #fff; font-weight: 700; }
-        .header-avatar {
-            width: 34px; height: 34px; border-radius: 4px; border: none; cursor: pointer; font-size: 18px;
-            display: flex; align-items: center; justify-content: center; margin-left: 8px; flex: 0 0 auto;
+        .header-avatar { width: 34px; height: 34px; border-radius: 4px; border: none; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; flex: none; }
+        /* 작은 화면에서는 브랜드·보조 버튼과 탐색 메뉴를 두 줄로 분리 */
+        @media (max-width: 1100px) {
+            header { display: grid; grid-template-columns: 1fr auto auto; height: 104px; column-gap: 12px; row-gap: 0; padding-block: 8px 0; }
+            nav { display: contents; }
+            .brand-logo { font-size: 29px; }
+            .nav-links { grid-column: 1 / -1; grid-row: 2; width: 100%; gap: 24px; overflow-x: auto; scrollbar-width: none; }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .edit-toggle-btn { grid-column: 2; grid-row: 1; }
+            .header-menu { display: inline-flex; align-items: center; gap: 8px; padding: 0; border: none; border-radius: 4px; cursor: pointer; background: transparent; color: #ddd; font-size: 12px; white-space: nowrap; }
+            .nav-link { padding: 12px 0 14px; }
+            .nav-link.active::after { bottom: 5px; }
         }
-        @media (max-width: 860px) {
-            header { height: auto; min-height: 60px; flex-wrap: wrap; padding-block: 8px; gap: 6px; }
-            .brand-logo { font-size: 26px; }
-            nav { flex-basis: 100%; order: 3; }
-            .nav-links { margin-left: 0; }
+        @media (max-width: 600px) {
+            .brand-logo { font-size: 27px; }
+            .nav-links { justify-content: space-between; gap: 8px; }
+            .nav-link { font-size: 11.5px; letter-spacing: -.035em; }
+            .edit-toggle-btn { font-size: 10px; padding: 6px 7px; }
         }
 
         /* =============================================================
@@ -190,8 +193,18 @@
         @keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
 
         .btn-play, .btn-info, .btn-primary, .btn-ghost {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: none; border-radius: 4px;
-            font-size: clamp(14px, 1.3vw, 18px); font-weight: 700; padding: .6em 1.6em; cursor: pointer; transition: background .2s, transform .15s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 44px;
+            border: none;
+            border-radius: 4px;
+            font-size: clamp(14px, 1.25vw, 18px);
+            font-weight: 750;
+            padding: .7em 1.65em;
+            cursor: pointer;
+            transition: background .2s, transform .15s;
             text-decoration: none;
         }
         .btn-play, .btn-primary { background: #fff; color: #000; }
@@ -201,9 +214,9 @@
         .btn-play:active, .btn-info:active { transform: scale(.97); }
         .btn-play .ico { font-size: 1.25em; line-height: 1; }
 
-        .series-mark { display: inline-flex; align-items: center; gap: 8px; font: 700 12px var(--font-mono); letter-spacing: .45em; color: #ddd; margin-bottom: 14px; }
+        .series-mark { display: inline-flex; align-items: center; gap: 9px; font: 700 11px var(--font-display); letter-spacing: .3em; color: #ddd; margin-bottom: 18px; }
         .series-mark b { font-family: var(--font-marquee); font-size: 30px; color: var(--nf-red); letter-spacing: 0; line-height: .8; }
-        .title-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 15px; color: #ddd; margin-bottom: 16px; }
+        .title-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; font-size: 13px; line-height: 1.5; color: #c7c7c7; margin-bottom: 18px; }
         .title-meta .match { color: var(--nf-green); font-weight: 700; }
         .title-meta .age { border: 1px solid rgba(255,255,255,.5); padding: 0 6px; font-size: 12px; line-height: 20px; }
         .title-meta .hd { border: 1px solid rgba(255,255,255,.5); border-radius: 3px; padding: 0 5px; font-size: 10px; line-height: 16px; font-weight: 700; }
@@ -211,82 +224,149 @@
         /* =============================================================
            3. 홈: 빌보드 + 가로 스크롤 줄(Row)
         ============================================================= */
-        .billboard { position: relative; height: min(92vh, 56.25vw + 120px); min-height: 560px; overflow: hidden; }
-        .billboard-bg {
-            position: absolute; inset: 0;
-            background: url('assets/art/home.png') center / cover no-repeat;
-            transform: scale(1.04); animation: kenburns 24s ease-in-out infinite alternate;
-        }
+        .billboard { position: relative; min-height: 680px; overflow: hidden; }
+        .billboard-bg { position: absolute; inset: 0; background: url('assets/art/home.png') center / cover no-repeat; transform: scale(1.04); animation: kenburns 24s ease-in-out infinite alternate; }
         @keyframes kenburns { from { transform: scale(1.04) translate(0,0); } to { transform: scale(1.12) translate(-1.5%, -1%); } }
         .billboard-vignette {
-            position: absolute; inset: 0; pointer-events: none;
-            background:
-                linear-gradient(77deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.45) 38%, rgba(0,0,0,0) 70%),
-                linear-gradient(180deg, rgba(20,20,20,0) 55%, rgba(20,20,20,.7) 80%, var(--nf-bg) 100%);
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,.55) 55%, rgba(0,0,0,.12)), linear-gradient(180deg, rgba(20,20,20,.08) 40%, rgba(20,20,20,.65) 78%, var(--nf-bg));
         }
-        .billboard-content {
-            position: absolute; left: var(--gutter); bottom: 26%; width: min(760px, 88vw); z-index: 2;
+        /* 왼쪽 설명 + 오른쪽 배경 속 얼굴 (배경 사진이 얼굴 역할) */
+        #homeBillboard {
+            display: grid;
+            grid-template-columns: minmax(0, 700px);
+            align-items: center;
+            min-height: min(820px, 92svh);
+            padding: 156px var(--gutter) 150px;
         }
-        .billboard-sub { font: 600 12px var(--font-mono); letter-spacing: .35em; color: var(--nf-red); text-transform: uppercase; margin-bottom: 12px; }
+        .billboard-content { position: relative; grid-column: 1; grid-row: 1; z-index: 2; min-width: 0; }
+        .billboard-sub { font: 600 11px var(--font-display); letter-spacing: .16em; color: #c9c9c9; text-transform: uppercase; margin-bottom: 16px; }
         .billboard-title {
-            font-size: clamp(28px, 3.3vw, 50px); font-weight: 900; line-height: 1.2; word-break: keep-all; letter-spacing: -.02em; margin-bottom: 16px;
-            text-shadow: 0 3px 18px rgba(0,0,0,.6);
+            font-size: clamp(30px, 3.1vw, 48px);
+            font-weight: 900;
+            line-height: 1.22;
+            letter-spacing: -.045em;
+            margin-bottom: 22px;
+            text-wrap: balance;
+            text-shadow: 0 3px 24px rgba(0,0,0,.65);
         }
-        .billboard-desc { font-size: clamp(14px, 1.25vw, 19px); line-height: 1.6; color: #eee; margin-bottom: 26px; text-shadow: 0 2px 8px rgba(0,0,0,.7); }
-        .billboard-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+        .billboard-desc { max-width: 590px; font-size: clamp(14px, 1.2vw, 17px); line-height: 1.75; color: #dedede; margin-bottom: 28px; text-shadow: 0 2px 8px rgba(0,0,0,.7); }
+        .billboard-actions { display: flex; gap: 10px; flex-wrap: wrap; }
         .billboard-rating {
-            position: absolute; right: 0; bottom: 34%; z-index: 2; display: flex; align-items: center; gap: 10px;
-            background: rgba(51,51,51,.6); border-left: 3px solid #dcdcdc; padding: 6px 60px 6px 12px; font-size: 14px; color: #fff;
+            position: absolute;
+            right: 0;
+            bottom: 106px;
+            z-index: 2;
+            background: rgba(51,51,51,.55);
+            border-left: 3px solid #dcdcdc;
+            padding: 9px var(--gutter) 9px 16px;
+            font-size: 12px;
+            color: #ddd;
         }
+        @media (max-width: 1100px) { #homeBillboard { padding-top: 156px; } }
         @media (max-width: 700px) {
-            .billboard { min-height: 620px; }
-            .billboard-content { bottom: 22%; }
+            #homeBillboard { grid-template-columns: minmax(0, 1fr); min-height: 0; padding: 300px var(--gutter) 108px; }
+            .billboard-content { grid-column: 1; grid-row: 1; }
+            .billboard-title { font-size: clamp(27px, 5.8vw, 38px); line-height: 1.25; margin-bottom: 18px; }
+            .billboard-sub { font-size: 9px; letter-spacing: .1em; margin-bottom: 12px; }
+            .billboard-desc { font-size: 14px; line-height: 1.7; margin-bottom: 22px; }
+            .billboard-content .series-mark { margin-bottom: 14px; }
             .billboard-rating { display: none; }
+            .billboard-bg { background-position: 62% center; }
         }
 
-        .rows-wrap { position: relative; z-index: 3; margin-top: -9vw; padding-bottom: 80px; }
+        .rows-wrap { position: relative; z-index: 3; margin-top: -54px; padding-bottom: 72px; }
         .rows-wrap.plain { margin-top: 0; }
-        .nf-row { margin-bottom: 3.2vw; min-width: 0; }
+        .nf-row { position: relative; margin-bottom: clamp(32px, 3.5vw, 56px); min-width: 0; }
         .row-title {
-            display: flex; align-items: baseline; gap: 14px; padding: 0 var(--gutter);
-            font-size: clamp(16px, 1.5vw, 22px); font-weight: 700; color: #e5e5e5; margin-bottom: 12px;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 6px 18px;
+            padding: 0 var(--gutter);
+            font-size: clamp(18px, 1.65vw, 25px);
+            line-height: 1.35;
+            letter-spacing: -.025em;
+            font-weight: 750;
+            color: #eee;
+            margin-bottom: 14px;
         }
-        .row-more { font-size: 13px; color: #54b9c5; font-weight: 600; cursor: pointer; opacity: .9; }
+        .row-more { font-size: 12px; color: #b8b8b8; font-weight: 600; cursor: pointer; transition: color .2s; }
         .row-more:hover { opacity: 1; text-decoration: underline; }
         .row-sub { font-size: 13px; color: var(--nf-muted); font-weight: 400; }
         .row-viewport { position: relative; }
         .row-track {
-            display: flex; gap: 8px; overflow-x: auto; overflow-y: visible; scroll-behavior: smooth;
-            padding: 18px var(--gutter) 30px; margin: -18px 0 -30px; scrollbar-width: none; scroll-padding: 0 var(--gutter);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--card-gap);
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            padding: 24px var(--gutter) 112px;
+            margin: -24px 0 -112px;
+            scrollbar-width: none;
+            scroll-padding-inline: var(--gutter);
+            scroll-snap-type: x proximity;
         }
         .row-track::-webkit-scrollbar { display: none; }
         .row-arrow {
-            position: absolute; top: 0; bottom: 0; width: var(--gutter); min-width: 34px; z-index: 6; border: none; cursor: pointer;
-            background: rgba(20,20,20,.55); color: #fff; font-size: 38px; opacity: 0; transition: opacity .2s, background .2s;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: calc(var(--gutter) - 6px);
+            min-width: 28px;
+            z-index: 6;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            background: rgba(20,20,20,.7);
+            color: #fff;
+            font-size: 38px;
+            opacity: .4;
+            transition: opacity .2s, background .2s;
         }
         .row-arrow.left { left: 0; } .row-arrow.right { right: 0; }
-        .row-viewport:hover .row-arrow { opacity: 1; }
+        .row-viewport:hover .row-arrow, .row-viewport:focus-within .row-arrow { opacity: 1; }
         .row-arrow:hover { background: rgba(20,20,20,.8); }
         @media (hover: none) { .row-arrow { display: none; } }
 
         /* 카드 공통: 호버 시 확대 */
         .nf-card {
-            position: relative; flex: 0 0 auto; border-radius: 6px; overflow: hidden; background: var(--nf-surface);
-            cursor: pointer; transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s; transform-origin: center;
+            position: relative;
+            flex: 0 0 auto;
+            border-radius: 5px;
+            overflow: hidden;
+            background: var(--nf-surface-2);
+            cursor: pointer;
+            scroll-snap-align: start;
+            transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s;
+            transform-origin: center;
         }
-        .nf-card:hover { transform: scale(1.08); z-index: 5; box-shadow: 0 14px 34px rgba(0,0,0,.75); }
+        .nf-row:hover, .nf-row:focus-within { z-index: 5; }
+        @media (hover: hover) and (pointer: fine) {
+            /* 정보 패널은 카드 아래로 겹쳐 펼쳐져 다음 줄이 밀리지 않음 */
+            .row-track .nf-card:is(.nf-landscape, .nf-episode) { overflow: visible; padding-bottom: 78px; }
+            .row-track .nf-card:is(.nf-landscape, .nf-episode) .nf-card-info { position: absolute; top: calc(100% - 78px); left: 0; right: 0; min-height: 78px; background: var(--nf-surface-2); border-radius: 0 0 5px 5px; }
+            .row-track :is(.card-media, .ep-thumb) { border-radius: 5px 5px 0 0; }
+            .nf-card:hover, .nf-card:focus-within { transform: scale(1.045); z-index: 5; box-shadow: 0 12px 32px rgba(0,0,0,.8); }
+            .row-track .nf-card-info > p, .row-track .nf-card-info > .card-tags { max-height: 0; opacity: 0; overflow: hidden; margin: 0; transition: max-height .25s, opacity .2s, margin .25s; }
+            .row-track .nf-card:is(:hover, :focus-within) .nf-card-info > p { max-height: 100px; opacity: 1; }
+            .row-track .nf-card:is(:hover, :focus-within) .card-tags { max-height: 60px; opacity: 1; margin-top: 10px; }
+        }
         .row-track > .nf-card:first-child:hover { transform-origin: left center; }
         .row-track > .nf-card:last-child:hover { transform-origin: right center; }
 
         /* 가로형(16:9) 작품 카드 */
-        .nf-landscape { width: clamp(260px, 26vw, 400px); }
+        .nf-landscape { width: clamp(260px, 24vw, 360px); }
         .nf-landscape .card-media { position: relative; aspect-ratio: 16 / 9; background: #222; overflow: hidden; }
         .nf-landscape .card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .card-media .card-top-badge { position: absolute; left: 8px; top: 8px; font-family: var(--font-marquee); font-size: 22px; color: var(--nf-red); text-shadow: 0 1px 6px rgba(0,0,0,.8); line-height: 1; }
         .card-media .card-new { position: absolute; left: 0; bottom: 10px; background: var(--nf-red); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 0 3px 3px 0; }
-        .nf-card-info { padding: 12px 14px 14px; }
-        .nf-card-kicker { font: 600 11px var(--font-mono); color: var(--nf-green); margin-bottom: 4px; letter-spacing: .02em; }
-        .nf-card-info h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+        .nf-card-info { padding: 15px 16px 16px; }
+        .nf-card-kicker { font: 600 10px var(--font-display); color: var(--nf-green); margin-bottom: 7px; letter-spacing: .055em; }
+        .nf-card-info h3 { font-size: 15px; line-height: 1.4; font-weight: 750; margin-bottom: 5px; }
         .nf-card-info p { font-size: 12.5px; line-height: 1.55; color: var(--nf-muted); }
         .card-tags { display: flex; flex-wrap: wrap; gap: 4px 8px; margin-top: 8px; font-size: 11.5px; color: #ccc; }
         .card-tags span + span::before { content: '•'; color: #666; margin-right: 8px; }
@@ -310,7 +390,7 @@
         .top-poster .top-label { position: absolute; top: 14px; right: 12px; font: 700 10px var(--font-mono); background: var(--nf-red); padding: 3px 6px; border-radius: 2px; }
 
         /* 에피소드 카드 */
-        .nf-episode { width: clamp(240px, 22vw, 340px); }
+        .nf-episode { width: clamp(240px, 22vw, 330px); }
         .ep-thumb { position: relative; aspect-ratio: 16 / 9; overflow: hidden; display: flex; align-items: center; justify-content: center; }
         .ep-thumb img { max-height: 100%; object-fit: contain; }
         .ep-thumb.cover img { width: 100%; height: 100%; object-fit: cover; }
@@ -326,7 +406,7 @@
         .ep-bar span { display: block; height: 100%; background: var(--nf-red); }
 
         /* 세로형 포스터 (필모그래피 / 문서 / 게임) */
-        .nf-poster { width: clamp(140px, 12vw, 190px); aspect-ratio: 2 / 3; display: flex; flex-direction: column; text-decoration: none; color: #fff; }
+        .nf-poster { width: clamp(148px, 13vw, 200px); aspect-ratio: 2 / 3; display: flex; flex-direction: column; text-decoration: none; color: #fff; }
         .film-poster {
             justify-content: space-between; padding: 14px 12px;
             background: var(--poster-bg, linear-gradient(160deg, #2b2b2b, #0e0e0e));
@@ -366,14 +446,14 @@
         /* =============================================================
            4. 타이틀 히어로 (자기소개서 / 포트폴리오 / 플레이 히스토리 상단)
         ============================================================= */
-        .title-hero { position: relative; min-height: 70vh; display: flex; align-items: flex-end; overflow: hidden; }
+        .title-hero { position: relative; min-height: 620px; display: flex; align-items: flex-end; overflow: hidden; }
         .title-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center 30%; }
         .title-hero::after {
             content: ''; position: absolute; inset: 0; pointer-events: none;
             background: linear-gradient(77deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.5) 42%, rgba(0,0,0,.05) 75%), linear-gradient(180deg, rgba(20,20,20,0) 50%, var(--nf-bg) 100%);
         }
-        .title-hero-content { position: relative; z-index: 2; padding: 120px var(--gutter) 70px; width: min(760px, 100%); }
-        .title-hero-name { font-size: clamp(40px, 6vw, 84px); font-weight: 900; letter-spacing: -.03em; line-height: 1.05; margin-bottom: 14px; }
+        .title-hero-content { position: relative; z-index: 2; padding: 156px var(--gutter) 64px; width: min(850px, 100%); }
+        .title-hero-name { font-size: clamp(36px, 5.5vw, 76px); font-weight: 900; letter-spacing: -.045em; line-height: 1.1; margin-bottom: 20px; }
         .title-hero-name.marquee { font-family: var(--font-marquee); font-weight: 400; letter-spacing: .02em; }
         .title-hero-desc { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.65; color: #e6e6e6; margin-bottom: 24px; }
         .cl-hero .title-hero-bg { background-image: url('coverletter_bg.png'), radial-gradient(ellipse at 75% 35%, #4a0a10 0%, #1a0406 45%, #0a0a0a 80%); }
@@ -382,7 +462,7 @@
         .pf-hero .title-hero-bg.is-switching { opacity:.18; transform:scale(1.035); }
         .pf-hero .title-hero-content > * { transition: opacity .3s ease, transform .3s ease; }
         .pf-hero.is-switching .title-hero-content > * { opacity:.18; transform:translateY(8px); }
-        .ph-hero { min-height: 52vh; }
+        .ph-hero { min-height: 440px; }
         .ph-hero .title-hero-bg { background-image: radial-gradient(ellipse at 80% 30%, #3a0a10 0%, #120405 50%, #0a0a0a 85%); }
 
         /* 자기소개서: 에피소드 목록 */
@@ -418,52 +498,89 @@
         .pf-count-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #fff; background: rgba(229,9,20,.18); border: 1px solid rgba(229,9,20,.45); padding: 4px 12px; border-radius: 3px; }
         #page-playhistory .ph-body { padding: 0 var(--gutter) 90px; }
         .ph-toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin: 10px 0 18px; }
-        .play-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
-        .play-card { position: relative; border-radius: 6px; overflow: hidden; background: var(--nf-surface); transition: transform .3s, box-shadow .3s; }
-        .play-card:hover { transform: scale(1.05); z-index: 3; box-shadow: 0 14px 30px rgba(0,0,0,.7); }
-        .play-cover-img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; background: #222; }
-        .play-card-body { padding: 10px 12px 14px; }
-        .play-card-title { font-size: 14px; font-weight: 700; line-height: 1.35; margin-bottom: 4px; }
-        .play-card-meta { font-size: 12px; color: var(--nf-muted); }
-        .play-progress { height: 3px; background: #4d4d4d; }
+        .play-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 24px 16px; }
+        .play-card { position: relative; border-radius: 5px; overflow: hidden; background: #202020; transition: transform .25s, box-shadow .25s; }
+        .play-card:hover { transform: translateY(-4px); z-index: 3; box-shadow: 0 12px 28px rgba(0,0,0,.5); }
+        .play-cover-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 30%; display: block; background: #222; }
+        .play-card-body { padding: 13px 14px 16px; }
+        .play-card-title { font-size: 14px; font-weight: 700; line-height: 1.5; margin-bottom: 6px; }
+        .play-card-meta { font-size: 11px; line-height: 1.6; color: #b3b3b3; }
+        .play-progress { height: 4px; margin: 12px 14px 0; background: #494949; }
         .play-progress span { display: block; height: 100%; background: var(--nf-red); }
         #openSearchModalBtn { color: #fff; }
-        .radar-triangle-container { background: #181818 !important; border: 1px solid #2a2a2a !important; border-radius: 8px !important; }
 
         /* =============================================================
            7. 상세 모달 (작품 / 정승운 시리즈 정보)
         ============================================================= */
         .nf-modal-overlay {
-            position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,.75); display: none; justify-content: center; align-items: flex-start;
-            overflow-y: auto; padding: 36px 16px;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0,0,0,.82);
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            padding: 40px 24px;
+            backdrop-filter: blur(5px);
         }
         .nf-modal-overlay.active { display: flex; }
-        .nf-modal { position: relative; width: min(900px, 100%); background: var(--nf-surface); border-radius: 8px; overflow: hidden; box-shadow: 0 20px 70px rgba(0,0,0,.8); animation: modalIn .3s cubic-bezier(.2,.8,.2,1); }
+        .nf-modal {
+            position: relative;
+            flex: none;
+            width: min(920px, 100%);
+            background: var(--nf-surface);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 24px 90px #000;
+            animation: modalIn .3s cubic-bezier(.2,.8,.2,1);
+        }
         @keyframes modalIn { from { opacity: 0; transform: scale(.94) translateY(20px); } to { opacity: 1; transform: none; } }
-        .nf-modal-hero { position: relative; aspect-ratio: 16 / 8; background: #000; overflow: hidden; }
+        .nf-modal-hero { position: relative; aspect-ratio: 16 / 8.5; background: #000; overflow: hidden; }
         .nf-modal-hero img, .nf-modal-hero .about-hero-bg { width: 100%; height: 100%; object-fit: cover; display: block; }
         .about-hero-bg { background: url('main1.png') center/cover; }
-        .nf-modal-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(24,24,24,0) 45%, var(--nf-surface) 100%); pointer-events: none; }
-        .nf-modal-hero-content { position: absolute; left: 40px; right: 40px; bottom: 34px; z-index: 2; }
+        .nf-modal-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, var(--nf-surface), rgba(24,24,24,.2) 65%), linear-gradient(90deg, rgba(0,0,0,.48), transparent);
+            pointer-events: none;
+        }
+        .nf-modal-hero-content { position: absolute; left: 40px; right: 40px; bottom: 30px; z-index: 2; }
         .nf-modal-title { font-size: clamp(26px, 3.4vw, 42px); font-weight: 900; letter-spacing: -.02em; margin-bottom: 18px; text-shadow: 0 3px 16px rgba(0,0,0,.7); }
         .nf-modal-actions { display: flex; gap: 10px; flex-wrap: wrap; }
         .modal-close {
-            position: absolute; top: 14px; right: 14px; z-index: 5; width: 38px; height: 38px; border-radius: 50%; border: none;
-            background: #181818; color: #fff; font-size: 18px; cursor: pointer;
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            z-index: 5;
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,.18);
+            background: rgba(24,24,24,.95);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 2px 12px #0005;
         }
         .modal-close:hover { background: #333; }
-        .nf-modal-body { padding: 6px 40px 36px; }
-        .nf-modal-cols { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; margin-bottom: 26px; }
+        .nf-modal-body { padding: 12px 40px 40px; }
+        .nf-modal-cols { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); gap: 32px; margin-bottom: 32px; }
         .nf-modal-cols .lead { font-size: 15px; line-height: 1.7; color: #e5e5e5; }
-        .nf-side-meta { font-size: 13.5px; line-height: 1.8; color: #ddd; }
+        .nf-side-meta { font-size: 13px; line-height: 1.9; color: #ddd; overflow-wrap: anywhere; }
         .nf-side-meta span { color: #777; }
-        .project-detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
-        .project-detail-block { background: #232323; border-radius: 6px; padding: 16px; border-top: 3px solid var(--nf-red); }
-        .project-detail-block h4 { font-size: 14px; margin-bottom: 8px; color: #fff; }
+        .project-detail-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 36px; }
+        .project-detail-block { background: #222; border-radius: 5px; padding: 20px; border: 1px solid #303030; }
+        .project-detail-block h4 { font-size: 14px; margin-bottom: 12px; color: #fff; display: flex; align-items: center; gap: 8px; }
+        .project-detail-block h4::before { content: ''; width: 3px; height: 13px; background: var(--nf-red); flex: none; }
         .project-detail-block p { font-size: 13px; line-height: 1.7; color: #bdbdbd; }
         .nf-modal-section-title { font-size: 20px; font-weight: 700; margin: 6px 0 12px; }
         .related-list { display: flex; flex-direction: column; }
-        .related-item { display: grid; grid-template-columns: 34px 1fr auto; gap: 16px; align-items: center; padding: 16px 12px; border-bottom: 1px solid #404040; color: #fff; text-decoration: none; border-radius: 4px; }
+        .related-item { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 20px 12px; border-bottom: 1px solid #383838; color: #fff; text-decoration: none; border-radius: 4px; }
         .related-item:hover { background: #2a2a2a; }
         .related-item .ri-no { font-size: 20px; color: #bbb; text-align: center; }
         .related-item h5 { font-size: 14.5px; margin-bottom: 4px; }
@@ -475,7 +592,14 @@
         .competence-title { font-weight: 800; font-size: 15px; margin-bottom: 6px; }
         .competence-desc { font-size: 12.5px; line-height: 1.6; color: #bdbdbd; }
         @media (max-width: 760px) {
-            .nf-modal-cols, .project-detail-grid, .about-comp { grid-template-columns: 1fr; }
+            .nf-modal-overlay { padding: 12px 8px; }
+            .nf-modal-cols, .project-detail-grid, .about-comp { grid-template-columns: minmax(0, 1fr); }
+            .nf-modal-title { font-size: 27px; line-height: 1.2; }
+            .nf-modal-hero-content .series-mark { max-width: 100%; font-size: 9px; letter-spacing: .15em; }
+            .related-item { gap: 10px; padding-inline: 0; }
+            .related-item h5 { overflow-wrap: anywhere; }
+            .title-hero { min-height: 560px; }
+            .ph-hero { min-height: 380px; }
             .nf-modal-body { padding: 6px 20px 28px; }
             .nf-modal-hero-content { left: 20px; right: 20px; bottom: 20px; }
             .nf-modal-hero { aspect-ratio: 4 / 3; }
@@ -539,7 +663,7 @@
         /* =============================================================
            9. 필모그래피 카드 (썸네일 + 링크)
         ============================================================= */
-        .film-card { width: clamp(230px, 20vw, 310px); text-decoration: none; color: #fff; }
+        .film-card { width: clamp(260px, 24vw, 360px); text-decoration: none; color: #fff; }
         .nf-landscape .card-media.film-media { background: var(--poster-bg, #222); }
         .film-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .film-media > video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .28s ease; z-index:1; }
@@ -1060,40 +1184,22 @@
         @media (max-width: 560px) { .career-activity-grid { grid-template-columns: 1fr; } .stage-3-wrap { padding: 0 18px; } .stage-3-title { font-size: 26px; } }
 
         .radar-triangle-container {
-            background: rgba(15, 17, 23, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 36px 40px;
-            margin-bottom: 36px;
-            display: flex;
+            background: #181818;
+            border: 1px solid #303030;
+            border-radius: 6px;
+            padding: clamp(18px, 3vw, 40px);
+            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
             align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
+            gap: 32px;
         }
 
-        .radar-svg-col {
-            flex: 1;
-            min-width: 320px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        .radar-svg-col { min-width: 0; display: flex; justify-content: center; align-items: center; }
 
-        .radar-desc-col {
-            flex: 1.2;
-            min-width: 320px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+        .radar-desc-col { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
 
-        .radar-axis-card {
-            background: rgba(16, 19, 28, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 12px;
-            padding: 16px 20px;
-            border-left: 3px solid var(--color-iris-violet);
-        }
+        .radar-axis-card { background: #222; border: 1px solid #303030; border-radius: 4px; padding: 16px 18px; border-left: 3px solid var(--nf-red); }
 
         .radar-axis-title {
             font-size: 15px;
@@ -1108,6 +1214,14 @@
             font-size: 13px;
             color: var(--color-ash-gray);
             line-height: 1.6;
+        }
+
+        .radar-svg-col svg { width: min(340px, 100%); height: auto; }
+        @media (max-width: 760px) {
+            .radar-triangle-container { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+            .play-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 10px; }
+            .play-card-body { padding: 10px 11px 14px; }
+            .play-card-title { font-size: 12.5px; }
         }
 
         /* -------------------------------------------------------------
@@ -1346,7 +1460,6 @@
         .film-logo { position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 2; color: #fff; line-height: 1.02; font-size: 28px; letter-spacing: -.01em;
             text-shadow: 0 2px 12px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.9); word-break: keep-all; }
         .film-logo small { display: block; font: 700 8.5px var(--font-mono); letter-spacing: .28em; color: rgba(255,255,255,.8); margin-bottom: 5px; text-shadow: 0 1px 4px rgba(0,0,0,.9); }
-        .film-card .nf-card-info h3 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
         .film-card:hover .film-logo { transform: scale(1.03); transform-origin: left bottom; transition: transform .3s; }
         .film-media::after { background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.05) 50%, rgba(0,0,0,.78) 100%) !important; }
         .t-duff2026, .t-duff2020 { font-family: 'Black Han Sans', var(--font-display); font-size: 30px; }
@@ -1379,6 +1492,117 @@
         .doc-poster .doc-type { z-index: 2; }
         .doc-poster .doc-project, .doc-poster .doc-title { position: relative; z-index: 2; text-shadow: 0 2px 8px rgba(0,0,0,.8); }
         .doc-poster .doc-hover { z-index: 3; }
+
+        /* 포트폴리오: 프로젝트 폴더 단위 정리 */
+        .doc-poster.proj-lastsanctuary { --poster-bg: linear-gradient(165deg, #3b0a10 0%, #150507 60%, #050505 100%); }
+        .doc-poster.proj-smartfarm { --poster-bg: linear-gradient(165deg, #1f4a24 0%, #0d1f10 60%, #050805 100%); }
+        .doc-poster.proj-nkk { --poster-bg: linear-gradient(165deg, #5a3a1c 0%, #1f140a 60%, #070504 100%); }
+        .doc-poster.proj-ratknight { --poster-bg: linear-gradient(165deg, #2a2f5c 0%, #10122a 60%, #05050c 100%); }
+        .doc-poster.proj-ratpirate { --poster-bg: linear-gradient(165deg, #12507a 0%, #08263b 60%, #030a10 100%); }
+        .doc-poster.proj-ratwar { --poster-bg: linear-gradient(165deg, #4a4a2a 0%, #1c1c10 60%, #070705 100%); }
+        .doc-poster.proj-career { --poster-bg: linear-gradient(165deg, #3a3a3a 0%, #161616 60%, #070707 100%); }
+        .doc-poster.is-game .doc-type { background: var(--nf-red); border-color: var(--nf-red); color: #fff; }
+        .doc-poster.is-game .doc-project { color: #fff; }
+        .pf-folder-tabs { display: flex; flex-wrap: wrap; gap: 10px; padding: 4px var(--gutter) 32px; }
+        .pf-folder-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex: none;
+            min-height: 38px;
+            font: 600 13px var(--font-display);
+            color: #ccc;
+            background: transparent;
+            border: 1px solid #555;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background .2s, border-color .2s, color .2s;
+        }
+        .pf-folder-tab .ic { width: 14px; height: 14px; color: currentColor; }
+        .pf-folder-tab b { font: 700 11px var(--font-mono); color: var(--nf-muted); }
+        .pf-folder-tab:hover { background: rgba(255,255,255,.12); color: #fff; }
+        .pf-folder-tab.active { background: #fff; color: #111; border-color: #fff; }
+        .pf-folder-tab.active b { color: #555; }
+        .pf-folder { position: relative; margin: 0 0 44px; }
+        .pf-folder:hover, .pf-folder:focus-within { z-index: 5; }
+        .pf-folder[hidden] { display: none; }
+        .pf-folder-head { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 0 var(--gutter) 18px; }
+        .pf-folder-icon { flex: none; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 4px; background: #252525; border: 1px solid #383838; }
+        .pf-folder-icon .ic { width: 21px; height: 21px; color: #ddd; }
+        .pf-folder-text { flex: 1; min-width: 0; }
+        .pf-folder-path { font: 500 11px var(--font-mono); color: var(--nf-muted); letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .pf-folder-name { font-size: clamp(18px, 1.8vw, 24px); font-weight: 750; letter-spacing: -.025em; margin: 5px 0 8px; }
+        .pf-folder-name small { display: inline-block; font: 600 10px var(--font-mono); color: var(--nf-muted); letter-spacing: .04em; margin-left: 6px; vertical-align: middle; }
+        .pf-folder-counts { display: flex; flex-wrap: wrap; gap: 6px; }
+        .pf-folder-count { font: 500 11px var(--font-display); padding: 3px 8px; border-radius: 3px; background: #252525; color: #bdbdbd; }
+        .pf-folder-count.k-game { background: rgba(229,9,20,.22); color: #fff; }
+        .pf-folder-info { flex: none; min-height: 38px; font: 600 12px var(--font-display); color: #ddd; background: transparent; border: 1px solid #555; padding: 8px 14px; border-radius: 4px; cursor: pointer; }
+        .pf-folder-info:hover { background: rgba(255,255,255,.12); }
+        @media (max-width: 600px) {
+            .pf-folder-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 26px; }
+            .pf-folder-tab { font-size: 12px; padding-inline: 12px; }
+            .pf-folder-icon { width: 32px; height: 36px; }
+            .pf-folder-head { gap: 10px; }
+            .pf-folder-text { flex-basis: calc(100% - 42px); }
+            .pf-folder-info { margin-left: 42px; }
+        }
+
+        button.doc-poster { border: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+        /* 상세 모달: 웹빌드 맛보기 플레이어 (상단 이미지 자리를 대체) */
+        .pd-player { position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; background: #000; }
+        .pd-player[hidden] { display: none; }
+        .pd-player iframe { flex: 1 1 0; min-height: 0; width: 100%; border: 0; background: #000; }
+        .pd-player-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 10px 12px; background: #181818; border-top: 3px solid var(--nf-red); font-size: 12px; }
+        .pd-player-hint { flex: 1; min-width: 0; color: #cfcfcf; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .pd-player-bar button, .pd-player-bar a {
+            flex: none;
+            min-height: 36px;
+            font: 600 12px var(--font-display);
+            color: #fff;
+            background: #303030;
+            border: 1px solid #555;
+            border-radius: 4px;
+            padding: 7px 10px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .pd-player-bar button:hover, .pd-player-bar a:hover { background: rgba(255,255,255,.22); }
+        .project-detail-modal.is-playing .nf-modal { width: min(1180px, 100%); }
+        .project-detail-modal.is-playing .nf-modal-hero { aspect-ratio: 16 / 9; height: auto; }
+        .project-detail-modal.is-playing .nf-modal-hero-content, .project-detail-modal.is-playing .modal-close { z-index: 5; }
+        .project-detail-modal.is-playing .nf-modal-hero-content { display: none; }
+        .pd-player:fullscreen .pd-player-bar { position: absolute; left: 0; right: 0; bottom: 0; opacity: .25; transition: opacity .2s; }
+        .pd-player:fullscreen .pd-player-bar:hover { opacity: 1; }
+        @media (max-width: 600px) { .project-detail-modal.is-playing .nf-modal-hero { aspect-ratio: 4 / 5; } .pd-player-hint { display: none; } }
+        .ph-steam-note { margin: 14px 0 0; font-size: 12px; color: var(--nf-muted); }
+        .ph-steam-note a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+        /* 인트로가 끝나면: 얼굴 → 옆 설명 → 헤더 → 로비(홈) 줄 순서로 등장 */
+        @keyframes revealSide { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
+        @keyframes revealUp { from { opacity: 0; transform: translateY(34px); } to { opacity: 1; transform: none; } }
+        @keyframes revealDown { from { opacity: 0; transform: translateY(-100%); } to { opacity: 1; transform: none; } }
+        @keyframes revealFade { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes revealPhotoCurtain { 0% { opacity: 1; } 100% { opacity: 0; } }
+        /* 1단계: 배경 속 얼굴이 어둠에서 떠오름 (배경 자체는 켄번스가 돌고 있어 위에 덮은 막을 걷어냄) */
+        body.home-reveal #homeBillboard::before {
+            content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+            background: radial-gradient(ellipse 40% 60% at 72% 42%, rgba(0,0,0,.2), #000 70%);
+            animation: revealPhotoCurtain 1.1s ease .1s both;
+        }
+        body.home-reveal #homeBillboard .billboard-content > * { animation: revealSide .7s cubic-bezier(.2,.75,.25,1) both; }
+        body.home-reveal #homeBillboard .billboard-content > :nth-child(1) { animation-delay: .75s; }
+        body.home-reveal #homeBillboard .billboard-content > :nth-child(2) { animation-delay: .9s; }
+        body.home-reveal #homeBillboard .billboard-content > :nth-child(3) { animation-delay: 1.05s; }
+        body.home-reveal #homeBillboard .billboard-content > :nth-child(4) { animation-delay: 1.25s; }
+        body.home-reveal #homeBillboard .billboard-content > :nth-child(5) { animation-delay: 1.4s; }
+        body.home-reveal #homeBillboard .billboard-content > :nth-child(n+6) { animation-delay: 1.6s; }
+        body.home-reveal #homeBillboard .billboard-rating { animation: revealFade .6s ease 1.75s both; }
+        body.home-reveal #siteHeader { animation: revealDown .6s cubic-bezier(.2,.75,.25,1) 1.9s both; }
+        body.home-reveal #page-main .rows-wrap > .nf-row { animation: revealUp .7s cubic-bezier(.2,.75,.25,1) both; animation-delay: calc(2.1s + var(--row-i, 0) * .14s); }
+        @media (prefers-reduced-motion: reduce) {
+            body.home-reveal * { animation-duration: .01s !important; animation-delay: 0s !important; }
+        }
         /* 이력 에피소드 2~5 배경 */
         .stage-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: .55; z-index: 0; }
         .stage-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0,0,0,.35) 0%, rgba(0,0,0,.85) 100%); }
@@ -1391,13 +1615,10 @@
         .top-poster.has-art .top-icon { display: none; }
         .top-poster { background: linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.92) 100%), var(--poster-img, none) center/cover no-repeat, var(--poster-bg, #333) !important; }
 
-        /* Portrait and film still art direction */
-        .header-profile-photo { width: 34px; height: 38px; object-fit: cover; object-position: center 18%; border-radius: 5px; background: #343434; }
+        /* 프로필과 영화 스틸 이미지 스타일 */
+        .header-profile-photo { width: 32px; height: 34px; object-fit: cover; object-position: center 18%; border-radius: 4px; background: #343434; }
         .home-portrait { display:none; position: absolute; right: 5%; top: 100px; width: min(31vw, 420px); height: 72%; z-index: 1; pointer-events: none; }
         .home-portrait img { width: 100%; height: 100%; object-fit: contain; object-position: center top; filter: drop-shadow(0 8px 35px #0008); mask-image: linear-gradient(#000 65%, transparent 100%); }
-        #homeBillboard .billboard-content { width: min(760px, 59vw); }
-        #homeBillboard .billboard-rating { bottom: 20%; }
-        .film-card { width: clamp(280px, 25vw, 380px); }
         .film-media .film-logo { bottom: 18px; left: 18px; right: 18px; line-height: 1.18; white-space: normal; text-shadow: 0 2px 10px #0009; }
         .film-media .t-shoerack { font-family: 'Gowun Batang', serif; font-size: 27px; letter-spacing: -.04em; color: #fff8e7; }
         .film-media > img[src="posters/shoerack.png"] { transform: scale(1.32); }
@@ -1408,7 +1629,6 @@
         .film-media .t-blindtalk { font-size: 25px; letter-spacing: -.025em; }
         .film-media .t-inheritance { font-size: 28px; transform: none; -webkit-text-stroke: 0; text-shadow: 0 2px 10px #0009; }
         .film-media .film-src { font-size: 9px; opacity: .85; }
-        .film-card .nf-card-info h3 { position: static; width: auto; height: auto; clip: auto; font-size: 15px; margin-bottom: 5px; }
 
         /* 포스터 타이포그래피: Pretendard를 기본으로 작품별 리듬을 분리 */
         .film-media .film-logo, .film-media .film-logo small { font-family: var(--font-display); }
@@ -1430,14 +1650,14 @@
         .film-card .ep-play { top: 44%; }
         @media (max-width: 860px) {
             .home-portrait { top: 125px; right: 3%; width: 32vw; height: 350px; opacity: .8; }
-            #homeBillboard .billboard-content { width: 65vw; }
         }
         @media (max-width: 600px) {
             .home-portrait { top: 122px; width: 150px; height: 210px; right: 12px; opacity: .8; }
-            #homeBillboard .billboard-content { width: calc(100% - 32px); bottom: 17%; }
-            #homeBillboard .billboard-title { font-size: 27px; }
-            #homeBillboard { min-height: 760px; }
-            .film-card { width: 280px; }
+            .film-card { width: 260px; }
+            .row-sub { flex-basis: 100%; font-size: 12px; }
+            .title-meta { font-size: 12px; gap: 7px 10px; }
+            .play-cover-img { aspect-ratio: 4 / 3; }
+            .showcase-nav-bar { top: 116px; }
         }
     </style>
 </head>
@@ -1574,6 +1794,22 @@
                         <article class="nf-card nf-landscape" onclick="openProjectDetail('film')">
                             <div class="card-media"><img src="film_banner.png" alt="영화 제작활동" onerror="this.onerror=function(){this.onerror=null;this.src='film-reel.svg'};this.src='https://drive.google.com/thumbnail?id=1_eC8ucOiwlN1_MdvGf5F_klVlIWwlQ4l&amp;sz=w1280'"><span class="card-top-badge">S</span></div>
                             <div class="nf-card-info"><div class="nf-card-kicker">FILM PRODUCTION</div><h3>영화 제작활동</h3><p>2026 동국영화제 운영팀장을 비롯해 홍보·음향·미술·제작·PD 등 영화 현장 활동 모음.</p><div class="card-tags"><span>운영팀장</span><span>PD</span><span>음향</span></div></div>
+                        </article>
+                        <article class="nf-card nf-landscape" onclick="openProjectDetail('nkk')">
+                            <div class="card-media"><img src="assets/projects/nkk.jpg" alt="찍!찍!!찍!!!" loading="lazy"><span class="card-top-badge">S</span><span class="card-new">부팀장</span></div>
+                            <div class="nf-card-info"><div class="nf-card-kicker">NKK STUDIO · 부팀장</div><h3>찍!찍!!찍!!!</h3><p>실험실 탈출 쥐 파괴·번식 게임. 튜토리얼·보스 기획과 웹 프로토타입.</p><div class="card-tags"><span>튜토리얼</span><span>보스</span><span>팀 프로젝트</span></div></div>
+                        </article>
+                        <article class="nf-card nf-landscape" onclick="openProjectDetail('ratknight')">
+                            <div class="card-media"><img src="assets/projects/ratknight.jpg" alt="기사쥐의 모험" loading="lazy"><span class="card-top-badge">S</span><span class="card-new">플레이 가능</span></div>
+                            <div class="nf-card-info"><div class="nf-card-kicker">2D ACTION METROIDVANIA</div><h3>기사쥐의 모험</h3><p>쓰레기로 만든 갑옷의 꼬마 기사쥐. 픽셀 팝아트 액션 메트로베니아.</p><div class="card-tags"><span>액션</span><span>메트로베니아</span><span>웹 프로토</span></div></div>
+                        </article>
+                        <article class="nf-card nf-landscape" onclick="openProjectDetail('ratpirate')">
+                            <div class="card-media"><img src="assets/projects/ratpirate.jpg" alt="쥐적선" loading="lazy"><span class="card-top-badge">S</span><span class="card-new">플레이 가능</span></div>
+                            <div class="nf-card-info"><div class="nf-card-kicker">TOP-VIEW NAVAL ACTION</div><h3>쥐적선</h3><p>뱃전 일제 사격으로 일곱 바다를 정복하는 탑뷰 해전 액션.</p><div class="card-tags"><span>해전</span><span>배 진화</span><span>웹 플레이</span></div></div>
+                        </article>
+                        <article class="nf-card nf-landscape" onclick="openProjectDetail('ratwar')">
+                            <div class="card-media"><img src="assets/projects/ratwar.jpg" alt="쥐스컴 (쥐들의 전쟁)" loading="lazy"><span class="card-top-badge">S</span><span class="card-new">Windows 빌드</span></div>
+                            <div class="nf-card-info"><div class="nf-card-kicker">TURN-BASED TACTICS</div><h3>쥐스컴 (쥐들의 전쟁)</h3><p>고양이 총통에 맞서는 쥐 분대의 턴제 전술과 로스터 관리.</p><div class="card-tags"><span>전술</span><span>영구 사망</span><span>Unity</span></div></div>
                         </article>
                     </div>
                     <button class="row-arrow right" onclick="scrollRow(this,1)" aria-label="다음">›</button>
@@ -2082,6 +2318,22 @@
                             <div class="card-media"><img src="assets/art/film.png" alt="영화 제작활동"><span class="card-top-badge">S</span></div>
                             <div class="nf-card-info"><div class="nf-card-kicker">FILM PRODUCTION</div><h3>영화 제작활동</h3><p>2026 동국영화제 운영팀장을 비롯해 홍보·음향·미술·제작·PD 등 영화 현장 활동 모음.</p></div>
                         </article>
+                        <article class="nf-card nf-landscape" onclick="openProjectDetail('nkk')">
+                            <div class="card-media"><img src="assets/projects/nkk.jpg" alt="찍!찍!!찍!!!" loading="lazy"><span class="card-top-badge">S</span><span class="card-new">부팀장</span></div>
+                            <div class="nf-card-info"><div class="nf-card-kicker">NKK STUDIO · 부팀장</div><h3>찍!찍!!찍!!!</h3><p>실험실 탈출 쥐 파괴·번식 게임. 튜토리얼·보스 기획과 웹 프로토타입.</p></div>
+                        </article>
+                        <article class="nf-card nf-landscape" onclick="openProjectDetail('ratknight')">
+                            <div class="card-media"><img src="assets/projects/ratknight.jpg" alt="기사쥐의 모험" loading="lazy"><span class="card-top-badge">S</span><span class="card-new">플레이 가능</span></div>
+                            <div class="nf-card-info"><div class="nf-card-kicker">2D ACTION METROIDVANIA</div><h3>기사쥐의 모험</h3><p>쓰레기로 만든 갑옷의 꼬마 기사쥐. 픽셀 팝아트 액션 메트로베니아.</p></div>
+                        </article>
+                        <article class="nf-card nf-landscape" onclick="openProjectDetail('ratpirate')">
+                            <div class="card-media"><img src="assets/projects/ratpirate.jpg" alt="쥐적선" loading="lazy"><span class="card-top-badge">S</span><span class="card-new">플레이 가능</span></div>
+                            <div class="nf-card-info"><div class="nf-card-kicker">TOP-VIEW NAVAL ACTION</div><h3>쥐적선</h3><p>뱃전 일제 사격으로 일곱 바다를 정복하는 탑뷰 해전 액션.</p></div>
+                        </article>
+                        <article class="nf-card nf-landscape" onclick="openProjectDetail('ratwar')">
+                            <div class="card-media"><img src="assets/projects/ratwar.jpg" alt="쥐스컴 (쥐들의 전쟁)" loading="lazy"><span class="card-top-badge">S</span><span class="card-new">Windows 빌드</span></div>
+                            <div class="nf-card-info"><div class="nf-card-kicker">TURN-BASED TACTICS</div><h3>쥐스컴 (쥐들의 전쟁)</h3><p>고양이 총통에 맞서는 쥐 분대의 턴제 전술과 로스터 관리.</p></div>
+                        </article>
                     </div>
                     <button class="row-arrow right" onclick="scrollRow(this,1)" aria-label="다음">›</button>
                 </div>
@@ -2144,17 +2396,17 @@
                     <!-- 1. 전략 & 시뮬레이션 45%: y = 160 - (100 * 0.45) = 115 -> (180, 115) (50% 라인 바로 아래) -->
                     <!-- 2. 경영 & 샌드박스 30%: x = 180 + (100 * 0.30 * 0.866) = 206, y = 160 + (100 * 0.30 * 0.5) = 175 -> (206, 175) (25% 라인 바로 바깥) -->
                     <!-- 3. RPG & 내러티브 25%: x = 180 - (100 * 0.25 * 0.866) = 158.3, y = 160 + (100 * 0.25 * 0.5) = 172.5 -> (158.3, 172.5) (25% 라인 정확히 일치) -->
-                    <polygon points="180,115 206,175 158.3,172.5" fill="url(#polyGrad)" stroke="#e50914" stroke-width="2.5" filter="url(#radarGlow)" />
+                    <polygon id="radarPoly" points="180,115 206,175 158.3,172.5" fill="url(#polyGrad)" stroke="#e50914" stroke-width="2.5" filter="url(#radarGlow)" />
 
                     <!-- 꼭짓점 데이터 마커 -->
-                    <circle cx="180" cy="115" r="5" fill="#fff" stroke="#e50914" stroke-width="2.5"/>
-                    <circle cx="206" cy="175" r="5" fill="#fff" stroke="#e50914" stroke-width="2.5"/>
-                    <circle cx="158.3" cy="172.5" r="5" fill="#fff" stroke="#e50914" stroke-width="2.5"/>
+                    <circle id="radarDot0" cx="180" cy="115" r="5" fill="#fff" stroke="#e50914" stroke-width="2.5"/>
+                    <circle id="radarDot1" cx="206" cy="175" r="5" fill="#fff" stroke="#e50914" stroke-width="2.5"/>
+                    <circle id="radarDot2" cx="158.3" cy="172.5" r="5" fill="#fff" stroke="#e50914" stroke-width="2.5"/>
 
                     <!-- 장르 라벨 -->
-                    <text x="180" y="38" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" font-family="Pretendard">전략 & 시뮬레이션 (45%)</text>
-                    <text x="282" y="235" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle" font-family="Pretendard">경영 & 샌드박스 (30%)</text>
-                    <text x="78" y="235" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle" font-family="Pretendard">RPG & 내러티브 (25%)</text>
+                    <text id="radarLbl0" x="180" y="38" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" font-family="Pretendard">전략 & 시뮬레이션 (45%)</text>
+                    <text id="radarLbl1" x="282" y="235" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle" font-family="Pretendard">경영 & 샌드박스 (30%)</text>
+                    <text id="radarLbl2" x="78" y="235" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle" font-family="Pretendard">RPG & 내러티브 (25%)</text>
                 </svg>
             </div>
 
@@ -2163,7 +2415,7 @@
                 <div class="radar-axis-card">
                     <div class="radar-axis-title">
                         <span>전략 & 시뮬레이션 (Strategy & Simulation)</span>
-                        <span style="color:var(--color-iris-violet); font-family:var(--font-mono);">45%</span>
+                        <span id="radarPct0" style="color:var(--color-iris-violet); font-family:var(--font-mono);">45%</span>
                     </div>
                     <div class="radar-axis-txt">
                         타일 기반 자원 수식, 테크 트리 연계성, AI 의사결정 알고리즘 및 턴제/실시간 시스템 밸런싱 집중 분석 (문명 시리즈, RTS).
@@ -2173,7 +2425,7 @@
                 <div class="radar-axis-card">
                     <div class="radar-axis-title">
                         <span>경영 & 샌드박스 (Management & Sandbox)</span>
-                        <span style="color:var(--color-iris-violet); font-family:var(--font-mono);">30%</span>
+                        <span id="radarPct1" style="color:var(--color-iris-violet); font-family:var(--font-mono);">30%</span>
                     </div>
                     <div class="radar-axis-txt">
                         다변수 수치 시뮬레이션, 구단 재정 및 이적 시장 순환 경제, 상태 머신(FSM) 기반 NPC 인터랙션 벤치마킹 (FM 시리즈, 림월드).
@@ -2183,7 +2435,7 @@
                 <div class="radar-axis-card">
                     <div class="radar-axis-title">
                         <span>RPG & 내러티브 (Role Playing & Narrative)</span>
-                        <span style="color:var(--color-iris-violet); font-family:var(--font-mono);">25%</span>
+                        <span id="radarPct2" style="color:var(--color-iris-violet); font-family:var(--font-mono);">25%</span>
                     </div>
                     <div class="radar-axis-txt">
                         선택지에 따른 분기 구조, 스토리텔링 템포 조절, 퀘스트 플로우 및 시스템적 내러티브 연출 연구 (발더스 게이트, 위쳐).
@@ -2191,7 +2443,7 @@
                 </div>
 
                 <div style="font-family:var(--font-mono); font-size:12px; color:var(--color-ash-gray); text-align:right; padding-right:4px;">
-                    총 플레이 누적 시간: <strong style="color:#fff;">2,500h+</strong> (장르 합계: 100%)
+                    총 플레이 누적 시간: <strong id="phTotalHours" style="color:#fff;">2,500h+</strong> <span id="phTotalSource">(장르 합계: 100%)</span>
                 </div>
             </div>
         </div>
@@ -2205,23 +2457,8 @@
                 </button>
             </div>
             <div class="play-grid" id="playGrid">
-                <div class="play-card">
-                    <img src="https://images.igdb.com/igdb/image/upload/t_cover_big/coaaqr.jpg" alt="Civilization VI" class="play-cover-img" onerror="this.style.visibility='hidden'">
-                    <div class="play-progress"><span style="width:100%"></span></div>
-                    <div class="play-card-body">
-                        <div class="play-card-title">Sid Meier's Civilization VI</div>
-                        <div class="play-card-meta">전략 &amp; 시뮬레이션 / 1,200h+</div>
-                    </div>
-                </div>
-                <div class="play-card">
-                    <img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co73z1.jpg" alt="Football Manager 2024" class="play-cover-img" onerror="this.style.visibility='hidden'">
-                    <div class="play-progress"><span style="width:79%"></span></div>
-                    <div class="play-card-body">
-                        <div class="play-card-title">Football Manager 2024</div>
-                        <div class="play-card-meta">경영 &amp; 스포츠 시뮬 / 950h+</div>
-                    </div>
-                </div>
-                <div class="play-card">
+                <!-- 스팀 기록 카드는 data/steam-playtime.json 에서 앞쪽에 자동 생성 -->
+                <div class="play-card" data-source="manual">
                     <img src="https://images.igdb.com/igdb/image/upload/t_cover_big/coaaqj.jpg" alt="RimWorld" class="play-cover-img" onerror="this.style.visibility='hidden'">
                     <div class="play-progress"><span style="width:58%"></span></div>
                     <div class="play-card-body">
@@ -2230,6 +2467,7 @@
                     </div>
                 </div>
             </div>
+            <p class="ph-steam-note" id="phSteamNote"></p>
         </div>
     </section>
 
@@ -2241,6 +2479,15 @@
             <button class="modal-close" onclick="closeProjectDetail()" aria-label="닫기">✕</button>
             <div class="nf-modal-hero">
                 <img id="projectDetailImage" src="film-reel.svg" alt="프로젝트 대표 이미지">
+                <div class="pd-player" id="projectDetailPlayer" hidden>
+                    <iframe id="projectDetailFrame" title="웹 빌드 플레이" allow="fullscreen; autoplay; gamepad" allowfullscreen></iframe>
+                    <div class="pd-player-bar">
+                        <span class="pd-player-hint" id="projectDetailHint"></span>
+                        <button type="button" onclick="toggleProjectPlayerFullscreen()">전체 화면</button>
+                        <a id="projectDetailNewTab" href="#" target="_blank" rel="noopener">새 탭 ↗</a>
+                        <button type="button" onclick="stopProjectPlay()">닫기 ✕</button>
+                    </div>
+                </div>
                 <div class="nf-modal-hero-content">
                     <div class="series-mark" style="margin-bottom:8px;"><b>S</b><span id="projectDetailKicker">PROJECT DETAIL</span></div>
                     <h3 class="nf-modal-title" id="projectDetailTitle">프로젝트</h3>
@@ -2427,7 +2674,7 @@
         function startIntro() {
             const intro = document.getElementById('theaterIntro');
             if (!intro) return;
-            if (ssGet('sw-intro-done')) { intro.remove(); return; }
+            if (ssGet('sw-intro-done')) { intro.remove(); revealHome(); return; }
             document.body.classList.add('no-scroll');
             introTimers.push(setTimeout(() => intro.classList.add('open'), 1500));
             introTimers.push(setTimeout(finishIntro, 2900));
@@ -2439,7 +2686,19 @@
             intro.classList.add('open', 'done');
             ssSet('sw-intro-done', '1');
             setTimeout(() => intro.remove(), 900);
-            openProfileGate();
+            document.body.classList.remove('no-scroll');
+            switchPage('main');
+            revealHome();
+        }
+        // 인트로 직후 홈 등장 연출: 얼굴 → 옆 설명 → 헤더 → 로비 줄 (CSS body.home-reveal)
+        function revealHome() {
+            const body = document.body;
+            document.querySelectorAll('#page-main .rows-wrap > .nf-row').forEach((row, i) => row.style.setProperty('--row-i', i));
+            body.classList.remove('home-reveal');
+            void body.offsetWidth;
+            body.classList.add('home-reveal');
+            clearTimeout(revealHome.timer);
+            revealHome.timer = setTimeout(() => body.classList.remove('home-reveal'), 4200);
         }
         // 이용 메뉴 선택 화면 (인트로 후 / 헤더 [메뉴] 버튼)
         function openProfileGate() {
@@ -2525,7 +2784,6 @@
         // ─────────────────────────────────────────────
         // 3. 작품 상세 모달 / 시리즈 정보 모달
         // ─────────────────────────────────────────────
-        const PROJECT_DOC_FILTER = { smartfarm: '슬기로운 재배생활', lastsanctuary: 'LAST SANCTUARY' };
         const FILM_CREDITS = [ // [역할, 제목, 구분, 설명, 링크, 썸네일, 출처]
             ["운영팀장", "2026 동국영화제", "FILM FESTIVAL", "행사 현장 운영·계획 수립 · 자원봉사자 모집·교육 · MD 굿즈 발주·판매", "https://www.instagram.com/2026_duff/", "web/film/duff2026.jpg", "Instagram", "2025.09–2026.02", "duff2026"],
             ["음향 감독", "블라인드 톡 투미", "STUDENT FILM", "음향 감독 참여작", "https://drive.google.com/file/d/1hzR6JlZIoXEHYGAdnwu4kpgo4-puPrQZ/view", "", "Google Drive", "2025.06–2025.12", "blindtalk"],
@@ -2540,9 +2798,10 @@
         ];
 
         let currentProjectId = null;
-        function openProjectDetail(projectId) {
+        function openProjectDetail(projectId, autoPlay) {
             const base = PROJECT_DETAILS[projectId];
             if (!base) return;
+            stopProjectPlay();
             currentProjectId = projectId;
             const project = Object.assign({}, base, EditMode.getProjectOverrides(projectId));
             document.getElementById('projectDetailKicker').textContent = project.kicker;
@@ -2562,11 +2821,43 @@
             overlay.scrollTop = 0;
             document.body.classList.add('no-scroll');
             EditMode.refresh();
+            if (autoPlay) startProjectPlay(projectId);
         }
         function closeProjectDetail(e) {
             if (e && e.target !== e.currentTarget) return;
+            stopProjectPlay();
             document.getElementById('projectDetailModal').classList.remove('active');
             syncScrollLock();
+        }
+        // 웹빌드 맛보기: 상세 모달 상단 이미지 자리에서 게임을 바로 실행 (각 게임 레포의 GitHub Pages)
+        function projectPlay(projectId) {
+            const p = PORTFOLIO_PROJECTS.find(x => x.id === projectId);
+            return p && p.play && p.play.url ? p.play : null;
+        }
+        function startProjectPlay(projectId) {
+            const play = projectPlay(projectId || currentProjectId);
+            if (!play) return;
+            const box = document.getElementById('projectDetailPlayer');
+            document.getElementById('projectDetailFrame').src = play.url;
+            document.getElementById('projectDetailHint').textContent = play.hint || '';
+            document.getElementById('projectDetailNewTab').href = play.url;
+            box.hidden = false;
+            document.getElementById('projectDetailModal').classList.add('is-playing');
+            document.getElementById('projectDetailModal').scrollTop = 0;
+            setTimeout(() => document.getElementById('projectDetailFrame').focus(), 300);
+        }
+        function stopProjectPlay() {
+            const box = document.getElementById('projectDetailPlayer');
+            if (!box || box.hidden) return;
+            if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+            document.getElementById('projectDetailFrame').src = 'about:blank';
+            box.hidden = true;
+            document.getElementById('projectDetailModal').classList.remove('is-playing');
+        }
+        function toggleProjectPlayerFullscreen() {
+            const box = document.getElementById('projectDetailPlayer');
+            if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+            else if (box.requestFullscreen) box.requestFullscreen().catch(() => {});
         }
         function renderProjectRelated(projectId) {
             const box = document.getElementById('projectDetailDocs');
@@ -2584,12 +2875,16 @@
                 playBtn.onclick = () => { closeProjectDetail(); playSeries(4); };
                 return;
             }
-            const docs = PORTFOLIO_DOCS.filter(d => d.project === PROJECT_DOC_FILTER[projectId]);
-            title.textContent = `관련 기획 문서 (${docs.length})`;
+            const docs = PORTFOLIO_DOCS.filter(d => d.projectId === projectId);
+            title.textContent = `프로젝트 폴더 (${docs.length})`;
             box.innerHTML = docs.length ? docs.map((d, i) => {
-                const isPdf = /\.pdf$/i.test(d.name);
-                return `<a class="related-item film" href="${docUrl(d)}" target="_blank" rel="noopener" ${isPdf ? '' : 'download'}><span class="ri-no">${i + 1}</span><span class="ri-thumb doc"><img src="${docThumb(d)}" alt="" loading="lazy" onerror="this.remove()"></span><div><h5>${escapeHtml(d.title)}</h5><p>${escapeHtml(d.desc || '')}</p></div><span class="ri-type">${d.type || ''}${d.sizeFormatted ? ' · ' + d.sizeFormatted : ''}</span></a>`;
+                return `<a class="related-item film" href="${docUrl(d)}" target="_blank" rel="noopener" ${docOpensInline(d) ? '' : 'download'}><span class="ri-no">${i + 1}</span><span class="ri-thumb doc"><img src="${docThumb(d)}" alt="" loading="lazy" onerror="this.remove()"></span><div><h5>${escapeHtml(d.title)}</h5><p>${escapeHtml(d.desc || '')}</p></div><span class="ri-type">${DOC_KIND_LABEL[d.kind] || ''} · ${d.type || ''}${d.sizeFormatted ? ' · ' + d.sizeFormatted : ''}</span></a>`;
             }).join('') : '<div class="row-empty" style="padding:12px 0">관련 문서가 아직 없습니다.</div>';
+            if (projectPlay(projectId)) {
+                playBtn.innerHTML = '<span class="ico"><svg class="ic"><use href="#i-play"/></svg></span>플레이 해보기';
+                playBtn.onclick = () => startProjectPlay(projectId);
+                return;
+            }
             playBtn.innerHTML = '<span class="ico"><svg class="ic"><use href="#i-play"/></svg></span>기획서 열람';
             playBtn.onclick = scrollToRelated;
         }
@@ -2612,38 +2907,49 @@
         }
 
         // ─────────────────────────────────────────────
-        // 4. 포트폴리오 문서: 서버 목록 우선 → 서버가 꺼져 있으면 폴더 경로로 직접 연결
+        // 4. 포트폴리오 문서
         // ─────────────────────────────────────────────
-        const STATIC_DOC_GROUPS = [{"category": "공식 제출 서류 (이력서 및 자기소개서)", "badge": "CAREER & ESSAY", "items": [{"name": "20260901_12-3_이력서_Ver01_정승운.pdf", "folder": "root", "title": "정승운 이력서 Ver01", "desc": "인적사항, 기술 스택, 영화 및 게임 개발 프로젝트 이력, 학력 상세 기재 원본", "project": "커리어 공식 서류", "group": "career", "type": "PDF", "sizeFormatted": "54 KB"}, {"name": "20260904_13-1_자기소개서_Ver01_정승운.pdf", "folder": "root", "title": "정승운 자기소개서 Ver01", "desc": "지원 동기, AI 행동 트리 전투 로직 구축 역량, UI 리소스 갈등 조율 및 문제 해결 경험", "project": "커리어 공식 서류", "group": "career", "type": "PDF", "sizeFormatted": "44 KB"}]}, {"category": "기획서 & 가이드 (PDF)", "badge": "GDD & GUIDE", "items": [{"name": "20260722_7-5_컨셉기획서_Ver05_파송송계란탁.pdf", "folder": "portfolio", "title": "LAST SANCTUARY 컨셉 기획서 Ver05", "desc": "키 컨셉·원페이지 기획, 테마와 재미요소, 승패 조건·코어루프·전투·건설 시스템, 비주얼 및 UI 화면 명세", "project": "LAST SANCTUARY", "group": "plan", "type": "PDF", "sizeFormatted": "3.4 MB"}, {"name": "20260725_비쥬얼가이드_Ver02_파송송계란탁.pdf", "folder": "portfolio", "title": "LAST SANCTUARY 비주얼 가이드 Ver02", "desc": "세미 리얼리스틱 고딕 판타지 일러스트와 탑뷰 픽셀 도트 인게임 화풍, 톤 앤 무드, 배경·캐릭터·몬스터 비주얼 기준", "project": "LAST SANCTUARY", "group": "plan", "type": "PDF", "sizeFormatted": "3.3 MB"}, {"name": "0718_시스템기획서_Ver03.pdf", "folder": "portfolio", "title": "슬기로운 재배생활 시스템 기획서 Ver03", "desc": "재배·제조·판매·연구소·캐릭터·뽑기 시스템별 구성요소, 플로우차트, 데이터 테이블과 콘텐츠 순환 구조 정리", "project": "슬기로운 재배생활", "group": "plan", "type": "PDF", "sizeFormatted": "1.2 MB"}]}, {"category": "캐릭터 & 시스템 기획서 (PPTX)", "badge": "CHARACTER & SYSTEM", "items": [{"name": "20260810_캐릭터가이드_Ver02_파송송계란탁.pptx", "folder": "portfolio", "title": "캐릭터 가이드 Ver02", "desc": "캐릭터 AI 행동 로직(대기·진군·웨이브), 전투/설계 역할, 초기 능력치, 패시브 스킬 3종, 내러티브, 침식 수치와 정신 이상 시스템 설계 기준", "project": "LAST SANCTUARY", "group": "char", "type": "PPTX", "sizeFormatted": "17.9 MB"}, {"name": "20260811_비기오르 기획서_Ver02_파송송계란탁.pptx", "folder": "portfolio", "title": "캐릭터 기획서: 비기오르", "desc": "검과 판금 갑옷으로 전선을 지휘하는 탱커 천사 — 탱커/근접 딜러 설계, 스킬 3종(강철의 의지·타오르는 날개·로 아이아스), 외형", "project": "LAST SANCTUARY", "group": "char", "type": "PPTX", "sizeFormatted": "2.7 MB"}, {"name": "20260828_세라피엘 기획서_Ver01_파송송계란탁.pptx", "folder": "portfolio", "title": "캐릭터 기획서: 세라피엘", "desc": "침묵하는 고독한 총사 — 원거리 딜러 설계, 스킬 3종(회피 기동·명사수·종말의 선언), 후드와 가면으로 표현한 외형", "project": "LAST SANCTUARY", "group": "char", "type": "PPTX", "sizeFormatted": "2.7 MB"}, {"name": "20260828_시안 기획서_Ver01_파송송계란탁.pptx", "folder": "portfolio", "title": "캐릭터 기획서: 시안", "desc": "영혼을 수확해 성장하는 사신 천사 — 근거리 딜러 설계, 스킬 3종(영혼 흡수·사신의 낫·한계 돌파), 검정·프러시안 블루 외형", "project": "LAST SANCTUARY", "group": "char", "type": "PPTX", "sizeFormatted": "2.6 MB"}, {"name": "20260828_아르세니아 기획서_Ver01_파송송계란탁.pptx", "folder": "portfolio", "title": "캐릭터 기획서: 아르세니아", "desc": "약물 조제와 마법으로 아군을 돕는 불완전한 천사 연금술사 — 지원가/마법 딜러 설계, 스킬 3종(불안정성·성스러운 축복·완성되지 못한 고귀함)", "project": "LAST SANCTUARY", "group": "char", "type": "PPTX", "sizeFormatted": "2.6 MB"}, {"name": "20260828_엘리시아 기획서_Ver01_파송송계란탁.pptx", "folder": "portfolio", "title": "캐릭터 기획서: 엘리시아", "desc": "방패로 전열을 수호하는 회복형 탱커 전사 — 탱커/지원가 설계, 스킬 3종(강인한 정신력·군단의 방패·네 날개의 가호)", "project": "LAST SANCTUARY", "group": "char", "type": "PPTX", "sizeFormatted": "2.7 MB"}, {"name": "20260828_엘린 기획서_Ver01_파송송계란탁.pptx", "folder": "portfolio", "title": "캐릭터 기획서: 엘린", "desc": "눈을 잃은 자기희생형 파수꾼 — 마법 딜러/지원가 설계, 스킬 3종(타고난 섬세함·희생·유혈 낭자), 붕대와 피로 시각화한 외형", "project": "LAST SANCTUARY", "group": "char", "type": "PPTX", "sizeFormatted": "2.5 MB"}, {"name": "20260901_유물발굴기획서_Ver01_파송송계란탁.pptx", "folder": "portfolio", "title": "유물 발굴 시스템 기획서 Ver01", "desc": "캐릭터 공통 성장 요소로서의 유물 기획 의도, 타일 발굴·몬스터 사냥 획득 방법, 보상/페널티, 등급별 유물 비주얼", "project": "LAST SANCTUARY", "group": "char", "type": "PPTX", "sizeFormatted": "352 KB"}]}, {"category": "데이터 테이블 (XLSX)", "badge": "DATA & BALANCE", "items": [{"name": "무역소 테이블.xlsx", "folder": "portfolio", "title": "무역소 테이블", "desc": "지역 해금 그룹, 지역별 판매 소요 시간, 식물별 지역 보너스, 무역소 시설 업그레이드 데이터", "project": "슬기로운 재배생활", "group": "data", "type": "XLSX", "sizeFormatted": "13 KB"}, {"name": "설명 테이블.xlsx", "folder": "portfolio", "title": "설명 테이블", "desc": "적용 객체 ID별 게임 내 설명 스크립트 텍스트 테이블", "project": "슬기로운 재배생활", "group": "data", "type": "XLSX", "sizeFormatted": "14 KB"}, {"name": "슬기로운재배생활_재배테이블.xlsx", "folder": "portfolio", "title": "재배 테이블", "desc": "원료 식물별 성장 시간·해금 레벨/골드·고사 시간, 성장 단계 이미지 매핑, 시설 업그레이드(성장 보너스·밭 칸 수)", "project": "슬기로운 재배생활", "group": "data", "type": "XLSX", "sizeFormatted": "15 KB"}, {"name": "제조테이블.xlsx", "folder": "portfolio", "title": "제조 테이블", "desc": "보약별 제조 속도·실패 확률·판매 가격, 필요 원료 식물 그룹과 수량, 제조 시설 업그레이드 보너스", "project": "슬기로운 재배생활", "group": "data", "type": "XLSX", "sizeFormatted": "16 KB"}]}];
+        // 프로젝트 폴더('포폴 정리용/<번호_프로젝트>/<기획서|데이터 테이블|게임>') 단위 목록
+        //  - 서버가 켜져 있으면 /api/portfolio-documents (폴더 실시간 스캔)
+        //  - 서버가 없으면 data/portfolio.json (node tools/portfolio-scan.js 로 생성)
+        let PORTFOLIO_PROJECTS = [];
         let PORTFOLIO_DOCS = [];
+        let portfolioFilter = 'all';
+        const DOC_KIND_LABEL = { game: '게임', career: '공식 서류', plan: '기획서', data: '데이터 테이블', etc: '기타' };
 
         function escapeHtml(s) {
             return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
         }
         function docUrl(item) {
-            if (item.url) return item.url.startsWith('/') ? API_BASE + item.url : item.url;
-            const dir = item.folder === 'root' ? '포폴 정리용/' : '포폴 정리용/포트폴리오/';
-            return encodeURI(dir + item.name);
+            return encodeURI(item.path || item.name).replace(/#/g, '%23');
         }
-        function docProjClass(p) {
-            return p === 'LAST SANCTUARY' ? 'proj-ls' : p === '슬기로운 재배생활' ? 'proj-smart' : 'proj-career';
+        function docOpensInline(item) {
+            return /\.(pdf|html|md|png|jpg|mp4)$/i.test(item.name);
+        }
+        function docProjClass(item) {
+            return 'proj-' + (item.projectId || 'career');
         }
         function docIcon(name) {
             const n = (name || '').toLowerCase();
-            const key = n.endsWith('.pdf') || /\.docx?$/.test(n) ? 'file' : /\.pptx?$/.test(n) ? 'slides' : /\.(xlsx?|csv)$/.test(n) ? 'table' : 'folder';
+            const key = n.endsWith('.pdf') || /\.(docx?|md)$/.test(n) ? 'file' : /\.pptx?$/.test(n) ? 'slides' : /\.(xlsx?|csv)$/.test(n) ? 'table' : /\.(html|zip)$/.test(n) ? 'gamepad' : 'folder';
             return `<svg class="ic"><use href="#i-${key}"/></svg>`;
         }
         function docThumb(item) {
+            if (item.kind === 'game' && item.cover) return item.cover;
             return 'web/docs/' + encodeURIComponent(String(item.name || '').replace(/\.[^.]+$/, '')) + '.jpg';
         }
+        function docActionLabel(item) {
+            if (item.kind === 'game') return /\.zip$/i.test(item.name) ? '빌드 다운로드' : '바로 플레이';
+            return docOpensInline(item) ? '열기' : '다운로드';
+        }
         function docPosterHtml(item) {
-            const isPdf = /\.pdf$/i.test(item.name);
-            return `<a class="nf-card nf-poster doc-poster ${docProjClass(item.project)}" href="${docUrl(item)}" target="_blank" rel="noopener" ${isPdf ? '' : 'download'}>
+            const inline = docOpensInline(item);
+            return `<a class="nf-card nf-poster doc-poster ${docProjClass(item)}${item.kind === 'game' ? ' is-game' : ''}" href="${docUrl(item)}" target="_blank" rel="noopener" ${inline ? '' : 'download'}>
                 <img class="doc-thumb" src="${docThumb(item)}" alt="" loading="lazy" onerror="this.remove()">
-                <span class="doc-type">${item.type || ''}</span><span class="doc-icon">${docIcon(item.name)}</span>
-                <div class="doc-project">${escapeHtml(item.project || '')}</div>
+                <span class="doc-type">${item.kind === 'game' ? '▶ PLAY' : (item.type || '')}</span><span class="doc-icon">${docIcon(item.name)}</span>
+                <div class="doc-project">${escapeHtml(DOC_KIND_LABEL[item.kind] || '')}</div>
                 <h4 class="doc-title">${escapeHtml(item.title || item.name)}</h4>
-                <div class="doc-hover"><p>${escapeHtml(item.desc || '')}</p><span class="doc-open">${isPdf ? '열기' : '다운로드'}${item.sizeFormatted ? ' · ' + item.sizeFormatted : ''}</span></div>
+                <div class="doc-hover"><p>${escapeHtml(item.desc || '')}</p><span class="doc-open">${docActionLabel(item)}${item.sizeFormatted ? ' · ' + item.sizeFormatted : ''}</span></div>
             </a>`;
         }
         function rowHtml(title, sub, inner) {
@@ -2652,33 +2958,76 @@
                 <div class="row-track">${inner}</div>
                 <button class="row-arrow right" onclick="scrollRow(this,1)" aria-label="다음">›</button></div></div>`;
         }
+        // 프로젝트 폴더 한 개 = 폴더 머리(이름 · 종류별 개수 · 작품 정보) + 파일 줄
+        function folderBlockHtml(p) {
+            const counts = ['game', 'plan', 'data', 'career', 'etc']
+                .map(k => [k, p.docs.filter(d => d.kind === k).length]).filter(([, n]) => n)
+                .map(([k, n]) => `<span class="pf-folder-count k-${k}">${DOC_KIND_LABEL[k]} ${n}</span>`).join('')
+                + (p.play ? '<span class="pf-folder-count k-game">▶ 웹빌드 플레이</span>' : '');
+            const info = PROJECT_DETAILS[p.id] ? `<button class="pf-folder-info" onclick="openProjectDetail('${p.id}')">작품 정보 ›</button>` : '';
+            const playCard = p.play ? `<button type="button" class="nf-card nf-poster doc-poster is-game proj-${escapeHtml(p.id)}" onclick="openProjectDetail('${p.id}', true)">
+                <img class="doc-thumb" src="${escapeHtml(p.cover)}" alt="" loading="lazy" onerror="this.remove()">
+                <span class="doc-type">▶ PLAY</span><span class="doc-icon"><svg class="ic"><use href="#i-gamepad"/></svg></span>
+                <div class="doc-project">웹빌드</div>
+                <h4 class="doc-title">${escapeHtml(p.play.label)}</h4>
+                <div class="doc-hover"><p>${escapeHtml(p.play.hint || '')}</p><span class="doc-open">바로 플레이</span></div>
+            </button>` : '';
+            return `<section class="pf-folder" data-folder="${escapeHtml(p.id)}">
+                <div class="pf-folder-head">
+                    <span class="pf-folder-icon"><svg class="ic"><use href="#i-folder"/></svg></span>
+                    <div class="pf-folder-text">
+                        <div class="pf-folder-path">포폴 정리용 / ${escapeHtml(p.folder)}</div>
+                        <h2 class="pf-folder-name">${escapeHtml(p.title)}${p.kicker ? ` <small>${escapeHtml(p.kicker)}</small>` : ''}</h2>
+                        <div class="pf-folder-counts">${counts}</div>
+                    </div>
+                    ${info}
+                </div>
+                <div class="row-viewport"><button class="row-arrow left" onclick="scrollRow(this,-1)" aria-label="이전">‹</button>
+                <div class="row-track">${playCard}${p.docs.map(docPosterHtml).join('')}</div>
+                <button class="row-arrow right" onclick="scrollRow(this,1)" aria-label="다음">›</button></div>
+            </section>`;
+        }
+        function setPortfolioFilter(id) {
+            portfolioFilter = id;
+            document.querySelectorAll('.pf-folder-tab').forEach(b => b.classList.toggle('active', b.dataset.folder === id));
+            document.querySelectorAll('#docsContainer .pf-folder').forEach(s => { s.hidden = id !== 'all' && s.dataset.folder !== id; });
+        }
 
         async function loadPortfolioDocuments() {
-            let groups = null;
+            let data = null;
             try {
                 await apiReady;
                 if (serverOnline) {
                     const r = await fetch(API_BASE + '/api/portfolio-documents', { cache: 'no-store' });
-                    if (r.ok) {
-                        const j = await r.json();
-                        if (Array.isArray(j) && j.length && Array.isArray(j[0].items)) groups = j;
-                    }
+                    if (r.ok) data = await r.json();
                 }
-            } catch (e) { console.warn('문서 목록 서버 로드 실패 → 오프라인 목록 사용', e); }
-            const online = !!groups;
-            if (!groups) groups = STATIC_DOC_GROUPS;
-            PORTFOLIO_DOCS = groups.flatMap(g => g.items.map(it => ({ ...it, category: g.category })));
-            document.querySelectorAll('.doc-total-count').forEach(el => { el.textContent = PORTFOLIO_DOCS.length; });
+            } catch (e) { console.warn('문서 목록 서버 로드 실패 → data/portfolio.json 사용', e); }
+            if (!data || !Array.isArray(data.projects)) {
+                try { data = await (await fetch('data/portfolio.json', { cache: 'no-store' })).json(); } catch (e) { data = { projects: [] }; }
+            }
+            const online = serverOnline;
+            PORTFOLIO_PROJECTS = data.projects || [];
+            PORTFOLIO_DOCS = PORTFOLIO_PROJECTS.flatMap(p => p.docs.map(d => ({ ...d, projectId: p.id, cover: p.cover })));
+            document.querySelectorAll('.doc-total-count').forEach(el => { el.textContent = PORTFOLIO_DOCS.filter(d => d.kind !== 'game').length; });
+            document.querySelectorAll('.game-total-count').forEach(el => { el.textContent = PORTFOLIO_DOCS.filter(d => d.kind === 'game').length; });
 
             const container = document.getElementById('docsContainer');
             if (container) {
-                container.innerHTML = groups.map(g => rowHtml(g.category, g.badge, g.items.map(docPosterHtml).join(''))).join('');
+                const projects = PORTFOLIO_PROJECTS.map(p => ({ ...p, docs: p.docs.map(d => ({ ...d, projectId: p.id, cover: p.cover })) }));
+                const tabs = [{ id: 'all', title: '전체', n: PORTFOLIO_DOCS.length }, ...projects.map(p => ({ id: p.id, title: p.title, n: p.docs.length }))]
+                    .map(t => `<button class="pf-folder-tab${t.id === portfolioFilter ? ' active' : ''}" data-folder="${escapeHtml(t.id)}" onclick="setPortfolioFilter(this.dataset.folder)">${t.id === 'all' ? '' : '<svg class="ic"><use href="#i-folder"/></svg>'}${escapeHtml(t.title)} <b>${t.n}</b></button>`).join('');
+                container.innerHTML = `<div class="pf-folder-tabs">${tabs}</div>` + projects.map(folderBlockHtml).join('');
+                setPortfolioFilter(portfolioFilter);
                 EditMode.registerDynamic(container, online ? 'docs' : 'docs-offline');
             }
             const home = document.getElementById('homeDocsRow');
             if (home) {
-                const featured = PORTFOLIO_DOCS.filter(d => d.group !== 'career' && !/공식 제출/.test(d.category));
-                home.innerHTML = featured.slice(0, 12).map(docPosterHtml).join('') || '<div class="row-empty">등록된 기획서가 없습니다.</div>';
+                // 프로젝트마다 번갈아 뽑아서 한 프로젝트가 줄을 다 차지하지 않게
+                const pools = PORTFOLIO_PROJECTS.filter(p => p.id !== 'career')
+                    .map(p => PORTFOLIO_DOCS.filter(d => d.projectId === p.id && d.kind !== 'career'));
+                const featured = [];
+                for (let i = 0; featured.length < 14 && pools.some(q => q[i]); i++) pools.forEach(q => { if (q[i] && featured.length < 14) featured.push(q[i]); });
+                home.innerHTML = featured.map(docPosterHtml).join('') || '<div class="row-empty">등록된 기획서가 없습니다.</div>';
             }
             if (currentProjectId && document.getElementById('projectDetailModal').classList.contains('active')) {
                 renderProjectRelated(currentProjectId);
@@ -2706,12 +3055,79 @@
         }
         window.onPlayGridChange = renderHomeGames;
 
+        // ─────────────────────────────────────────────
+        // 5-1. 플레이 히스토리 = 스팀 플레이 시간 DB (data/steam-playtime.json)
+        //      갱신: node tools/steam-playtime.js
+        // ─────────────────────────────────────────────
+        const STEAM_CATEGORY_LABEL = { strategy: '전략 & 시뮬레이션', management: '경영 & 샌드박스', rpg: 'RPG & 내러티브' };
+        const STEAM_CARD_MIN_HOURS = 20;
+        function playBarWidth(hours, maxHours) {
+            return Math.max(4, Math.round(Math.log(hours + 1) / Math.log(maxHours + 1) * 100)) + '%';
+        }
+        async function loadSteamPlaytime() {
+            let db;
+            try { db = await (await fetch('data/steam-playtime.json', { cache: 'no-store' })).json(); } catch (e) { return; }
+            const games = (db.games || []).slice().sort((a, b) => b.hours - a.hours);
+            if (!games.length) return;
+            const maxHours = games[0].hours;
+
+            // 카드: 스팀 기록을 앞에, 직접 입력한 카드(data-source="manual")는 뒤에
+            const grid = document.getElementById('playGrid');
+            const shown = games.filter(g => g.hours >= STEAM_CARD_MIN_HOURS);
+            const html = shown.map(g => `
+                <div class="play-card" data-steam-appid="${g.appid}">
+                    <img src="${escapeHtml(g.cover)}" alt="${escapeHtml(g.name)}" class="play-cover-img" loading="lazy" onerror="this.onerror=null;this.src='https://cdn.cloudflare.steamstatic.com/steam/apps/${g.appid}/header.jpg'">
+                    <div class="play-progress"><span style="width:${playBarWidth(g.hours, maxHours)}"></span></div>
+                    <div class="play-card-body">
+                        <div class="play-card-title">${escapeHtml(g.name)}</div>
+                        <div class="play-card-meta">${escapeHtml(STEAM_CATEGORY_LABEL[g.category] || g.genres[0] || '기타')} / ${g.hours.toLocaleString()}h</div>
+                    </div>
+                </div>`).join('');
+            grid.querySelectorAll('[data-steam-appid]').forEach(c => c.remove());
+            grid.insertAdjacentHTML('afterbegin', html);
+            grid.querySelectorAll('[data-source="manual"]').forEach(c => {
+                const m = /([\d,]+)\s*h/.exec(c.querySelector('.play-card-meta')?.textContent || '');
+                const bar = c.querySelector('.play-progress span');
+                if (m && bar) bar.style.width = playBarWidth(+m[1].replace(/,/g, ''), maxHours);
+            });
+
+            // 레이더: 3개 장르 축 비율 (그 외 액션 · 파티 게임은 총합에만 포함)
+            const axes = ['strategy', 'management', 'rpg'];
+            const sums = axes.map(k => games.filter(g => g.category === k).reduce((n, g) => n + g.hours, 0));
+            const axisTotal = sums.reduce((a, b) => a + b, 0) || 1;
+            const pct = sums.map(s => Math.round(s / axisTotal * 100));
+            const f = sums.map(s => s / axisTotal);
+            const pts = [[180, 160 - 100 * f[0]], [180 + 86.6 * f[1], 160 + 50 * f[1]], [180 - 86.6 * f[2], 160 + 50 * f[2]]]
+                .map(([x, y]) => [Math.round(x * 10) / 10, Math.round(y * 10) / 10]);
+            const poly = document.getElementById('radarPoly');
+            if (poly) poly.setAttribute('points', pts.map(p => p.join(',')).join(' '));
+            pts.forEach(([x, y], i) => {
+                const dot = document.getElementById('radarDot' + i);
+                if (dot) { dot.setAttribute('cx', x); dot.setAttribute('cy', y); }
+                const lbl = document.getElementById('radarLbl' + i);
+                if (lbl) lbl.textContent = `${STEAM_CATEGORY_LABEL[axes[i]]} (${pct[i]}%)`;
+                const pc = document.getElementById('radarPct' + i);
+                if (pc) pc.textContent = `${pct[i]}% · ${Math.round(sums[i]).toLocaleString()}h`;
+            });
+            const total = document.getElementById('phTotalHours');
+            if (total) total.textContent = `${Math.round(db.totalHours).toLocaleString()}h`;
+            const src = document.getElementById('phTotalSource');
+            if (src) src.innerHTML = `(스팀 기록 · ${escapeHtml(db.updatedAt || '')} 기준)`;
+            const note = document.getElementById('phSteamNote');
+            if (note) note.innerHTML = `<a href="${escapeHtml(db.profile)}" target="_blank" rel="noopener">스팀 프로필</a> 플레이 기록 기준 · 1시간 이상 플레이한 ${games.length}개 중 ${STEAM_CARD_MIN_HOURS}시간 이상 ${shown.length}개 표시 (에디터 · 유틸리티 제외)`;
+            renderHomeGames();
+        }
+
 
         // 작품 상세 데이터
         const PROJECT_DETAILS = {
             smartfarm: { kicker:'DVELOCKET · TEAM LEAD', title:'슬기로운 재배생활', image:'슬기로운재배생활.png', goal:'농작물 재배와 유통 시장을 연결하는 PC 타이쿤 게임의 전체 시스템을 설계하고, 팀장이자 기획자로서 플레이 루프를 완성하는 것이 목표였습니다.', solution:'전체 시스템 구조를 먼저 정리한 뒤 유니티 바이브 코딩으로 핵심 객체와 상호작용을 검증했습니다. 테이블 작업으로 작물·시설·시장 수치를 구조화하고 밸런스 패치를 반복했습니다.', lesson:'기획서와 플레이 가능한 프로토타입을 빠르게 오가며 시스템의 문제를 조기에 발견하는 방법을 익혔고, 팀 단위 의사결정과 수치 기반 밸런싱 역량을 강화했습니다.' },
             lastsanctuary: { kicker:'DVELOCKET · TEAM MEMBER', title:'LAST SANCTUARY', image:'lastsanctuary.png', goal:'생존과 기지 운영을 결합한 PC 게임의 전체 시스템을 구축하고, 플레이어가 반복적으로 선택하고 성장하는 구조를 만드는 것이 목표였습니다.', solution:'유니티 바이브 코딩과 테이블 작업을 병행하고, 밸런스 패치로 시스템 수치를 조정했습니다. 퀘스트·캐릭터·번역·메인 PV까지 플레이 경험을 구성하는 콘텐츠를 함께 설계했습니다.', lesson:'시스템 기획은 개별 기능보다 퀘스트, 캐릭터, 수치, 영상 연출이 하나의 플레이 흐름으로 연결되어야 한다는 점을 배웠습니다.' },
-            film: { kicker:'FILM PRODUCTION', title:'영화 제작활동', image:'film_banner.png', goal:'영화 제작 현장에서 홍보, 촬영, 음향, 미술, 제작 운영 등 다양한 역할을 수행하며 영상 제작 전반의 실무 경험을 쌓는 것이 목표였습니다.', solution:'2026 동국영화제 운영팀장, 2020 동국영화제 홍보와 PAPIC 콘텐츠 제작부터 학생영화 음향·미술·제작부·PD 업무까지 프로젝트별 요구에 맞춰 현장 운영, 예산, 로케이션, 소품, 데이터 관리를 담당했습니다.', lesson:'현장에서는 사전 계획과 실시간 커뮤니케이션이 결과물의 완성도를 좌우한다는 점을 익혔고, 영화 제작 경험을 게임의 연출·퀘스트·PV 제작으로 확장할 수 있게 되었습니다.' }
+            film: { kicker:'FILM PRODUCTION', title:'영화 제작활동', image:'film_banner.png', goal:'영화 제작 현장에서 홍보, 촬영, 음향, 미술, 제작 운영 등 다양한 역할을 수행하며 영상 제작 전반의 실무 경험을 쌓는 것이 목표였습니다.', solution:'2026 동국영화제 운영팀장, 2020 동국영화제 홍보와 PAPIC 콘텐츠 제작부터 학생영화 음향·미술·제작부·PD 업무까지 프로젝트별 요구에 맞춰 현장 운영, 예산, 로케이션, 소품, 데이터 관리를 담당했습니다.', lesson:'현장에서는 사전 계획과 실시간 커뮤니케이션이 결과물의 완성도를 좌우한다는 점을 익혔고, 영화 제작 경험을 게임의 연출·퀘스트·PV 제작으로 확장할 수 있게 되었습니다.' },
+            nkk: { kicker:'NKK STUDIO · 부팀장', title:'찍!찍!!찍!!!', image:'assets/projects/nkk.jpg', goal:'기맞기획 11기 기업 협약 프로젝트 2팀(NKK 스튜디오)에서 실험실을 탈출하는 쥐들의 파괴·번식 게임을 웹 프로토타입에서 유니티로 옮기며, 반복 전투가 지루해지지 않는 진행 구조를 만드는 것이 목표였습니다.', solution:'튜토리얼 기획서에서 처음부터 모든 기능을 열지 않고 첫 탄생·10마리·고양이 첫 등장 같은 상황이 처음 생길 때 단계적으로 해금되는 구조를 설계했습니다. 보스 기획서에서는 5층마다 새 보스와 쿨타임 스킬, 2단계 발악을 넣어 리프레시 지점을 만들었습니다.', lesson:'부팀장으로서 팀원들의 증강·스테이지·성장 시스템과 담당 문서가 엑셀 테이블 기준으로 맞물리도록 조율하며, 문서와 데이터와 구현을 한 흐름으로 관리하는 방법을 익혔습니다.' },
+            ratknight: { kicker:'2D ACTION METROIDVANIA', title:'기사쥐의 모험', image:'assets/projects/ratknight.jpg', goal:'「찍!찍!!찍!!!」 기사쥐의 우직한 낭만을 이어받아, 도시의 쓰레기로 기사 장비를 만든 꼬마쥐가 전설의 명검을 찾아가는 픽셀 팝아트 액션 메트로베니아를 만드는 것이 목표입니다.', solution:'카타나 제로·할로우 나이트를 레퍼런스로 이동·베기·대시·내려찍기가 끊김 없이 이어지는 조작을 정의하고, 플랫하게 그린 원본을 코드로 도트화한 뒤 칼 궤적을 따라 휘는 칼빛과 팝아트 데미지 숫자를 얹는 연출 파이프라인을 웹 프로토로 검증했습니다.', lesson:'귀여운 겉모습과 묵직한 손맛의 대비처럼, 비주얼 콘셉트와 조작감을 같은 문서 안에서 함께 설계해야 플레이 감각이 일관된다는 점을 확인했습니다.' },
+            ratpirate: { kicker:'TOP-VIEW NAVAL ACTION', title:'쥐적선', image:'assets/projects/ratpirate.jpg', goal:'원작의 해적 쥐를 바다로 확장한 캐주얼 해전 액션으로, 비행 슈팅과는 다른 "배 몰기" 조작 재미와 눈에 보이는 성장을 만드는 것이 목표입니다.', solution:'옆구리를 적에게 돌려야 쏘는 뱃전 일제 사격을 핵심 조작으로 두고, 갤리선에서 현대 함정까지 실제 배 발전 순서대로 진화하는 배 16척과 장비 213종, 조선소 의뢰·합성·티어 업으로 이어지는 재화 순환을 설계해 웹 플레이어블로 구현했습니다.', lesson:'이미 검증한 아웃게임 구조(쥐 비행기 게임)를 새 장르에 맞게 변환하면서, 재사용할 구조와 장르 고유의 재미를 구분하는 기준을 세웠습니다.' },
+            ratwar: { kicker:'TURN-BASED TACTICS', title:'쥐스컴 (쥐들의 전쟁)', image:'assets/projects/ratwar.jpg', goal:'아트 슈피겔만의 「쥐」에서 영감을 받아, 고양이 총통에 맞서는 쥐 분대의 턴제 전술로 전쟁의 참혹함과 개인의 소중함을 전하는 것이 목표입니다.', solution:'엑스컴의 엄폐·명중률 공개·영구 사망과 다키스트 던전의 스트레스·로스터 교대를 결합하고, 부위파괴와 플랫한 톤의 고어로 비극성을 표현했습니다. 4막 16임무 캠페인과 땅굴파기·철조망 갉기 같은 쥐 특성 스킬을 Unity 6 URP로 구현했습니다.', lesson:'명중률 보정 항목을 모두 화면에 공개하는 것처럼, 확률 시스템은 숫자를 숨기지 않을 때 긴장감과 납득감을 함께 줄 수 있다는 점을 배웠습니다.' }
         };
 
         // 4. IGDB 게임 검색 모달 제어
@@ -3418,6 +3834,7 @@
                 const m = /url\('([^']+)'\)/.exec(p.getAttribute('style') || '');
                 if (m) { const im = new Image(); im.onload = () => p.classList.add('has-art'); im.src = m[1]; }
             });
+            await loadSteamPlaytime();
             await EditMode.init();
             renderHomeGames();
             loadPortfolioDocuments();
