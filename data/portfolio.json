@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T09:50:57.465Z",
+  "generatedAt": "2026-10-29T09:55:27.967Z",
   "projects": [
     {
       "id": "career",
@@ -37,222 +37,8 @@
       ]
     },
     {
-      "id": "lastsanctuary",
-      "folder": "01_LAST SANCTUARY",
-      "title": "LAST SANCTUARY",
-      "kicker": "DVELOCKET · TEAM 파송송계란탁",
-      "desc": "생존과 기지 운영을 결합한 PC 게임. 컨셉·비주얼·캐릭터·유물 시스템 기획",
-      "cover": "lastsanctuary.png",
-      "play": null,
-      "docs": [
-        {
-          "name": "20260722_7-5_컨셉기획서_Ver05_파송송계란탁.pdf",
-          "path": "포폴 정리용/01_LAST SANCTUARY/기획서/20260722_7-5_컨셉기획서_Ver05_파송송계란탁.pdf",
-          "subfolder": "기획서",
-          "kind": "plan",
-          "project": "LAST SANCTUARY",
-          "title": "LAST SANCTUARY 컨셉 기획서 Ver05",
-          "desc": "키 컨셉·원페이지 기획, 테마와 재미요소, 승패 조건·코어루프·전투·건설 시스템, 비주얼 및 UI 화면 명세",
-          "type": "PDF",
-          "sizeBytes": 3560647,
-          "sizeFormatted": "3.4 MB"
-        },
-        {
-          "name": "20260725_비쥬얼가이드_Ver02_파송송계란탁.pdf",
-          "path": "포폴 정리용/01_LAST SANCTUARY/기획서/20260725_비쥬얼가이드_Ver02_파송송계란탁.pdf",
-          "subfolder": "기획서",
-          "kind": "plan",
-          "project": "LAST SANCTUARY",
-          "title": "LAST SANCTUARY 비주얼 가이드 Ver02",
-          "desc": "세미 리얼리스틱 고딕 판타지 일러스트와 탑뷰 픽셀 도트 인게임 화풍, 톤 앤 무드, 배경·캐릭터·몬스터 비주얼 기준",
-          "type": "PDF",
-          "sizeBytes": 3478184,
-          "sizeFormatted": "3.3 MB"
-        },
-        {
-          "name": "20260810_캐릭터가이드_Ver02_파송송계란탁.pptx",
-          "path": "포폴 정리용/01_LAST SANCTUARY/기획서/20260810_캐릭터가이드_Ver02_파송송계란탁.pptx",
-          "subfolder": "기획서",
-          "kind": "plan",
-          "project": "LAST SANCTUARY",
-          "title": "캐릭터 가이드 Ver02",
-          "desc": "캐릭터 AI 행동 로직(대기·진군·웨이브), 전투/설계 역할, 초기 능력치, 패시브 스킬 3종, 내러티브, 침식 수치와 정신 이상 시스템 설계 기준",
-          "type": "PPTX",
-          "sizeBytes": 18780802,
-          "sizeFormatted": "17.9 MB"
-        },
-        {
-          "name": "20260811_비기오르 기획서_Ver02_파송송계란탁.pptx",
-          "path": "포폴 정리용/01_LAST SANCTUARY/기획서/20260811_비기오르 기획서_Ver02_파송송계란탁.pptx",
-          "subfolder": "기획서",
-          "kind": "plan",
-          "project": "LAST SANCTUARY",
-          "title": "캐릭터 기획서: 비기오르",
-          "desc": "검과 판금 갑옷으로 전선을 지휘하는 탱커 천사 — 탱커/근접 딜러 설계, 스킬 3종(강철의 의지·타오르는 날개·로 아이아스), 외형",
-          "type": "PPTX",
-          "sizeBytes": 2833743,
-          "sizeFormatted": "2.7 MB"
-        },
-        {
-          "name": "20260828_세라피엘 기획서_Ver01_파송송계란탁.pptx",
-          "path": "포폴 정리용/01_LAST SANCTUARY/기획서/20260828_세라피엘 기획서_Ver01_파송송계란탁.pptx",
-          "subfolder": "기획서",
-          "kind": "plan",
-          "project": "LAST SANCTUARY",
-          "title": "캐릭터 기획서: 세라피엘",
-          "desc": "침묵하는 고독한 총사 — 원거리 딜러 설계, 스킬 3종(회피 기동·명사수·종말의 선언), 후드와 가면으로 표현한 외형",
-          "type": "PPTX",
-          "sizeBytes": 2782981,
-          "sizeFormatted": "2.7 MB"
-        },
-        {
-          "name": "20260828_시안 기획서_Ver01_파송송계란탁.pptx",
-          "path": "포폴 정리용/01_LAST SANCTUARY/기획서/20260828_시안 기획서_Ver01_파송송계란탁.pptx",
-          "subfolder": "기획서",
-          "kind": "plan",
-          "project": "LAST SANCTUARY",
-          "title": "캐릭터 기획서: 시안",
-          "desc": "영혼을 수확해 성장하는 사신 천사 — 근거리 딜러 설계, 스킬 3종(영혼 흡수·사신의 낫·한계 돌파), 검정·프러시안 블루 외형",
-          "type": "PPTX",
-          "sizeBytes": 2696005,
-          "sizeFormatted": "2.6 MB"
-        },
-        {
-          "name": "20260828_아르세니아 기획서_Ver01_파송송계란탁.pptx",
-          "path": "포폴 정리용/01_LAST SANCTUARY/기획서/20260828_아르세니아 기획서_Ver01_파송송계란탁.pptx",
-          "subfolder": "기획서",
-          "kind": "plan",
-          "project": "LAST SANCTUARY",
-          "title": "캐릭터 기획서: 아르세니아",
-          "desc": "약물 조제와 마법으로 아군을 돕는 불완전한 천사 연금술사 — 지원가/마법 딜러 설계, 스킬 3종(불안정성·성스러운 축복·완성되지 못한 고귀함)",
-          "type": "PPTX",
-          "sizeBytes": 2702076,
-          "sizeFormatted": "2.6 MB"
-        },
-        {
-          "name": "20260828_엘리시아 기획서_Ver01_파송송계란탁.pptx",
-          "path": "포폴 정리용/01_LAST SANCTUARY/기획서/20260828_엘리시아 기획서_Ver01_파송송계란탁.pptx",
-          "subfolder": "기획서",
-          "kind": "plan",
-          "project": "LAST SANCTUARY",
-          "title": "캐릭터 기획서: 엘리시아",
-          "desc": "방패로 전열을 수호하는 회복형 탱커 전사 — 탱커/지원가 설계, 스킬 3종(강인한 정신력·군단의 방패·네 날개의 가호)",
-          "type": "PPTX",
-          "sizeBytes": 2838832,
-          "sizeFormatted": "2.7 MB"
-        },
-        {
-          "name": "20260828_엘린 기획서_Ver01_파송송계란탁.pptx",
-          "path": "포폴 정리용/01_LAST SANCTUARY/기획서/20260828_엘린 기획서_Ver01_파송송계란탁.pptx",
-          "subfolder": "기획서",
-          "kind": "plan",
-          "project": "LAST SANCTUARY",
-          "title": "캐릭터 기획서: 엘린",
-          "desc": "눈을 잃은 자기희생형 파수꾼 — 마법 딜러/지원가 설계, 스킬 3종(타고난 섬세함·희생·유혈 낭자), 붕대와 피로 시각화한 외형",
-          "type": "PPTX",
-          "sizeBytes": 2602705,
-          "sizeFormatted": "2.5 MB"
-        },
-        {
-          "name": "20260901_유물발굴기획서_Ver01_파송송계란탁.pptx",
-          "path": "포폴 정리용/01_LAST SANCTUARY/기획서/20260901_유물발굴기획서_Ver01_파송송계란탁.pptx",
-          "subfolder": "기획서",
-          "kind": "plan",
-          "project": "LAST SANCTUARY",
-          "title": "유물 발굴 시스템 기획서 Ver01",
-          "desc": "캐릭터 공통 성장 요소로서의 유물 기획 의도, 타일 발굴·몬스터 사냥 획득 방법, 보상/페널티, 등급별 유물 비주얼",
-          "type": "PPTX",
-          "sizeBytes": 360493,
-          "sizeFormatted": "352 KB"
-        }
-      ]
-    },
-    {
-      "id": "smartfarm",
-      "folder": "02_슬기로운 재배생활",
-      "title": "슬기로운 재배생활",
-      "kicker": "DVELOCKET · TEAM LEAD",
-      "desc": "재배·제조·유통을 잇는 PC 타이쿤. 시스템 기획서와 데이터 테이블",
-      "cover": "assets/art/smartfarm.png",
-      "play": null,
-      "docs": [
-        {
-          "name": "0709_UI재배시설기획_Ver02.pdf",
-          "path": "포폴 정리용/02_슬기로운 재배생활/기획서/0709_UI재배시설기획_Ver02.pdf",
-          "subfolder": "기획서",
-          "kind": "plan",
-          "project": "슬기로운 재배생활",
-          "title": "슬기로운 재배생활 UI 재배시설 기획 Ver02",
-          "desc": "재배 시설 화면의 UI 구성, 슬롯·타이머 표시와 시설 업그레이드 화면 흐름",
-          "type": "PDF",
-          "sizeBytes": 1012457,
-          "sizeFormatted": "989 KB"
-        },
-        {
-          "name": "0718_시스템기획서_Ver03.pdf",
-          "path": "포폴 정리용/02_슬기로운 재배생활/기획서/0718_시스템기획서_Ver03.pdf",
-          "subfolder": "기획서",
-          "kind": "plan",
-          "project": "슬기로운 재배생활",
-          "title": "슬기로운 재배생활 시스템 기획서 Ver03",
-          "desc": "재배·제조·판매·연구소·캐릭터·뽑기 시스템별 구성요소, 플로우차트, 데이터 테이블과 콘텐츠 순환 구조 정리",
-          "type": "PDF",
-          "sizeBytes": 1285028,
-          "sizeFormatted": "1.2 MB"
-        },
-        {
-          "name": "무역소 테이블.xlsx",
-          "path": "포폴 정리용/02_슬기로운 재배생활/데이터 테이블/무역소 테이블.xlsx",
-          "subfolder": "데이터 테이블",
-          "kind": "data",
-          "project": "슬기로운 재배생활",
-          "title": "무역소 테이블",
-          "desc": "지역 해금 그룹, 지역별 판매 소요 시간, 식물별 지역 보너스, 무역소 시설 업그레이드 데이터",
-          "type": "XLSX",
-          "sizeBytes": 13625,
-          "sizeFormatted": "13 KB"
-        },
-        {
-          "name": "설명 테이블.xlsx",
-          "path": "포폴 정리용/02_슬기로운 재배생활/데이터 테이블/설명 테이블.xlsx",
-          "subfolder": "데이터 테이블",
-          "kind": "data",
-          "project": "슬기로운 재배생활",
-          "title": "설명 테이블",
-          "desc": "적용 객체 ID별 게임 내 설명 스크립트 텍스트 테이블",
-          "type": "XLSX",
-          "sizeBytes": 14434,
-          "sizeFormatted": "14 KB"
-        },
-        {
-          "name": "슬기로운재배생활_재배테이블.xlsx",
-          "path": "포폴 정리용/02_슬기로운 재배생활/데이터 테이블/슬기로운재배생활_재배테이블.xlsx",
-          "subfolder": "데이터 테이블",
-          "kind": "data",
-          "project": "슬기로운 재배생활",
-          "title": "재배 테이블",
-          "desc": "원료 식물별 성장 시간·해금 레벨/골드·고사 시간, 성장 단계 이미지 매핑, 시설 업그레이드(성장 보너스·밭 칸 수)",
-          "type": "XLSX",
-          "sizeBytes": 15106,
-          "sizeFormatted": "15 KB"
-        },
-        {
-          "name": "제조테이블.xlsx",
-          "path": "포폴 정리용/02_슬기로운 재배생활/데이터 테이블/제조테이블.xlsx",
-          "subfolder": "데이터 테이블",
-          "kind": "data",
-          "project": "슬기로운 재배생활",
-          "title": "제조 테이블",
-          "desc": "보약별 제조 속도·실패 확률·판매 가격, 필요 원료 식물 그룹과 수량, 제조 시설 업그레이드 보너스",
-          "type": "XLSX",
-          "sizeBytes": 15874,
-          "sizeFormatted": "16 KB"
-        }
-      ]
-    },
-    {
       "id": "nkk",
-      "folder": "03_찍찍찍",
+      "folder": "01_찍찍찍",
       "title": "찍!찍!!찍!!!",
       "kicker": "NKK STUDIO · 부팀장",
       "desc": "실험실을 탈출하는 쥐들의 파괴 · 번식 게임 (기맞기획 11기 기업 협약 2팀). 튜토리얼 · 보스 기획 담당",
@@ -265,7 +51,7 @@
       "docs": [
         {
           "name": "20261009_프로젝트 NKK_튜토리얼 기획서_정승운.pptx",
-          "path": "포폴 정리용/03_찍찍찍/기획서/20261009_프로젝트 NKK_튜토리얼 기획서_정승운.pptx",
+          "path": "포폴 정리용/01_찍찍찍/기획서/20261009_프로젝트 NKK_튜토리얼 기획서_정승운.pptx",
           "subfolder": "기획서",
           "kind": "plan",
           "project": "찍!찍!!찍!!!",
@@ -277,7 +63,7 @@
         },
         {
           "name": "20261022_프로젝트 NKK_보스 기획서_정승운_Ver.01.pptx",
-          "path": "포폴 정리용/03_찍찍찍/기획서/20261022_프로젝트 NKK_보스 기획서_정승운_Ver.01.pptx",
+          "path": "포폴 정리용/01_찍찍찍/기획서/20261022_프로젝트 NKK_보스 기획서_정승운_Ver.01.pptx",
           "subfolder": "기획서",
           "kind": "plan",
           "project": "찍!찍!!찍!!!",
@@ -289,7 +75,7 @@
         },
         {
           "name": "MVP 구현범위_20260929_정승운_Ver01.md",
-          "path": "포폴 정리용/03_찍찍찍/기획서/MVP 구현범위_20260929_정승운_Ver01.md",
+          "path": "포폴 정리용/01_찍찍찍/기획서/MVP 구현범위_20260929_정승운_Ver01.md",
           "subfolder": "기획서",
           "kind": "plan",
           "project": "찍!찍!!찍!!!",
@@ -302,8 +88,35 @@
       ]
     },
     {
+      "id": "ratwar",
+      "folder": "02_밴드 오브 마이스",
+      "title": "밴드 오브 마이스",
+      "kicker": "TURN-BASED TACTICS · 가제",
+      "desc": "엑스컴 × 다키스트 던전. 고양이 총통에 맞서는 쥐 분대의 턴제 전술과 영구 사망",
+      "cover": "assets/projects/ratwar.jpg",
+      "play": {
+        "url": "https://inory16351.github.io/RatWar/",
+        "label": "밴드 오브 마이스 — WebGL 빌드",
+        "hint": "마우스로 플레이 · Unity WebGL"
+      },
+      "docs": [
+        {
+          "name": "20261028_밴드 오브 마이스_컨셉기획서_v2_정승운.pptx",
+          "path": "포폴 정리용/02_밴드 오브 마이스/기획서/20261028_밴드 오브 마이스_컨셉기획서_v2_정승운.pptx",
+          "subfolder": "기획서",
+          "kind": "plan",
+          "project": "밴드 오브 마이스",
+          "title": "밴드 오브 마이스 컨셉 기획서 v2.0",
+          "desc": "턴제 분대 전술 + 로스터 관리 — 명중률·치명타·부위파괴·스트레스·최전방 교대, 병사 성장과 신병 모집",
+          "type": "PPTX",
+          "sizeBytes": 1900077,
+          "sizeFormatted": "1.8 MB"
+        }
+      ]
+    },
+    {
       "id": "ratknight",
-      "folder": "04_기사쥐의 모험",
+      "folder": "03_기사쥐의 모험",
       "title": "기사쥐의 모험",
       "kicker": "2D ACTION METROIDVANIA · 가제",
       "desc": "도시의 쓰레기로 기사 장비를 만든 꼬마쥐가 명검을 찾아가는 픽셀 팝아트 액션",
@@ -316,7 +129,7 @@
       "docs": [
         {
           "name": "20261029_기사쥐의 모험_컨셉기획서_v0.6_정승운.pptx",
-          "path": "포폴 정리용/04_기사쥐의 모험/기획서/20261029_기사쥐의 모험_컨셉기획서_v0.6_정승운.pptx",
+          "path": "포폴 정리용/03_기사쥐의 모험/기획서/20261029_기사쥐의 모험_컨셉기획서_v0.6_정승운.pptx",
           "subfolder": "기획서",
           "kind": "plan",
           "project": "기사쥐의 모험",
@@ -330,7 +143,7 @@
     },
     {
       "id": "ratpirate",
-      "folder": "05_쥐항해 시대",
+      "folder": "04_쥐항해 시대",
       "title": "쥐항해 시대",
       "kicker": "TOP-VIEW NAVAL ACTION · 가제",
       "desc": "뱃전을 돌려 일제 사격하는 탑뷰 해전 액션. 배 16척 진화와 장비 213종",
@@ -343,7 +156,7 @@
       "docs": [
         {
           "name": "쥐항해시대_컨셉기획_정승운.pptx",
-          "path": "포폴 정리용/05_쥐항해 시대/기획서/쥐항해시대_컨셉기획_정승운.pptx",
+          "path": "포폴 정리용/04_쥐항해 시대/기획서/쥐항해시대_컨셉기획_정승운.pptx",
           "subfolder": "기획서",
           "kind": "plan",
           "project": "쥐항해 시대",
@@ -356,29 +169,216 @@
       ]
     },
     {
-      "id": "ratwar",
-      "folder": "06_밴드 오브 마이스",
-      "title": "밴드 오브 마이스",
-      "kicker": "TURN-BASED TACTICS · 가제",
-      "desc": "엑스컴 × 다키스트 던전. 고양이 총통에 맞서는 쥐 분대의 턴제 전술과 영구 사망",
-      "cover": "assets/projects/ratwar.jpg",
-      "play": {
-        "url": "https://inory16351.github.io/RatWar/",
-        "label": "밴드 오브 마이스 — WebGL 빌드",
-        "hint": "마우스로 플레이 · Unity WebGL"
-      },
+      "id": "lastsanctuary",
+      "folder": "05_LAST SANCTUARY",
+      "title": "LAST SANCTUARY",
+      "kicker": "DVELOCKET · TEAM 파송송계란탁",
+      "desc": "생존과 기지 운영을 결합한 PC 게임. 컨셉·비주얼·캐릭터·유물 시스템 기획",
+      "cover": "lastsanctuary.png",
+      "play": null,
       "docs": [
         {
-          "name": "20261028_밴드 오브 마이스_컨셉기획서_v2_정승운.pptx",
-          "path": "포폴 정리용/06_밴드 오브 마이스/기획서/20261028_밴드 오브 마이스_컨셉기획서_v2_정승운.pptx",
+          "name": "20260722_7-5_컨셉기획서_Ver05_파송송계란탁.pdf",
+          "path": "포폴 정리용/05_LAST SANCTUARY/기획서/20260722_7-5_컨셉기획서_Ver05_파송송계란탁.pdf",
           "subfolder": "기획서",
           "kind": "plan",
-          "project": "밴드 오브 마이스",
-          "title": "밴드 오브 마이스 컨셉 기획서 v2.0",
-          "desc": "턴제 분대 전술 + 로스터 관리 — 명중률·치명타·부위파괴·스트레스·최전방 교대, 병사 성장과 신병 모집",
+          "project": "LAST SANCTUARY",
+          "title": "LAST SANCTUARY 컨셉 기획서 Ver05",
+          "desc": "키 컨셉·원페이지 기획, 테마와 재미요소, 승패 조건·코어루프·전투·건설 시스템, 비주얼 및 UI 화면 명세",
+          "type": "PDF",
+          "sizeBytes": 3560647,
+          "sizeFormatted": "3.4 MB"
+        },
+        {
+          "name": "20260725_비쥬얼가이드_Ver02_파송송계란탁.pdf",
+          "path": "포폴 정리용/05_LAST SANCTUARY/기획서/20260725_비쥬얼가이드_Ver02_파송송계란탁.pdf",
+          "subfolder": "기획서",
+          "kind": "plan",
+          "project": "LAST SANCTUARY",
+          "title": "LAST SANCTUARY 비주얼 가이드 Ver02",
+          "desc": "세미 리얼리스틱 고딕 판타지 일러스트와 탑뷰 픽셀 도트 인게임 화풍, 톤 앤 무드, 배경·캐릭터·몬스터 비주얼 기준",
+          "type": "PDF",
+          "sizeBytes": 3478184,
+          "sizeFormatted": "3.3 MB"
+        },
+        {
+          "name": "20260810_캐릭터가이드_Ver02_파송송계란탁.pptx",
+          "path": "포폴 정리용/05_LAST SANCTUARY/기획서/20260810_캐릭터가이드_Ver02_파송송계란탁.pptx",
+          "subfolder": "기획서",
+          "kind": "plan",
+          "project": "LAST SANCTUARY",
+          "title": "캐릭터 가이드 Ver02",
+          "desc": "캐릭터 AI 행동 로직(대기·진군·웨이브), 전투/설계 역할, 초기 능력치, 패시브 스킬 3종, 내러티브, 침식 수치와 정신 이상 시스템 설계 기준",
           "type": "PPTX",
-          "sizeBytes": 1900077,
-          "sizeFormatted": "1.8 MB"
+          "sizeBytes": 18780802,
+          "sizeFormatted": "17.9 MB"
+        },
+        {
+          "name": "20260811_비기오르 기획서_Ver02_파송송계란탁.pptx",
+          "path": "포폴 정리용/05_LAST SANCTUARY/기획서/20260811_비기오르 기획서_Ver02_파송송계란탁.pptx",
+          "subfolder": "기획서",
+          "kind": "plan",
+          "project": "LAST SANCTUARY",
+          "title": "캐릭터 기획서: 비기오르",
+          "desc": "검과 판금 갑옷으로 전선을 지휘하는 탱커 천사 — 탱커/근접 딜러 설계, 스킬 3종(강철의 의지·타오르는 날개·로 아이아스), 외형",
+          "type": "PPTX",
+          "sizeBytes": 2833743,
+          "sizeFormatted": "2.7 MB"
+        },
+        {
+          "name": "20260828_세라피엘 기획서_Ver01_파송송계란탁.pptx",
+          "path": "포폴 정리용/05_LAST SANCTUARY/기획서/20260828_세라피엘 기획서_Ver01_파송송계란탁.pptx",
+          "subfolder": "기획서",
+          "kind": "plan",
+          "project": "LAST SANCTUARY",
+          "title": "캐릭터 기획서: 세라피엘",
+          "desc": "침묵하는 고독한 총사 — 원거리 딜러 설계, 스킬 3종(회피 기동·명사수·종말의 선언), 후드와 가면으로 표현한 외형",
+          "type": "PPTX",
+          "sizeBytes": 2782981,
+          "sizeFormatted": "2.7 MB"
+        },
+        {
+          "name": "20260828_시안 기획서_Ver01_파송송계란탁.pptx",
+          "path": "포폴 정리용/05_LAST SANCTUARY/기획서/20260828_시안 기획서_Ver01_파송송계란탁.pptx",
+          "subfolder": "기획서",
+          "kind": "plan",
+          "project": "LAST SANCTUARY",
+          "title": "캐릭터 기획서: 시안",
+          "desc": "영혼을 수확해 성장하는 사신 천사 — 근거리 딜러 설계, 스킬 3종(영혼 흡수·사신의 낫·한계 돌파), 검정·프러시안 블루 외형",
+          "type": "PPTX",
+          "sizeBytes": 2696005,
+          "sizeFormatted": "2.6 MB"
+        },
+        {
+          "name": "20260828_아르세니아 기획서_Ver01_파송송계란탁.pptx",
+          "path": "포폴 정리용/05_LAST SANCTUARY/기획서/20260828_아르세니아 기획서_Ver01_파송송계란탁.pptx",
+          "subfolder": "기획서",
+          "kind": "plan",
+          "project": "LAST SANCTUARY",
+          "title": "캐릭터 기획서: 아르세니아",
+          "desc": "약물 조제와 마법으로 아군을 돕는 불완전한 천사 연금술사 — 지원가/마법 딜러 설계, 스킬 3종(불안정성·성스러운 축복·완성되지 못한 고귀함)",
+          "type": "PPTX",
+          "sizeBytes": 2702076,
+          "sizeFormatted": "2.6 MB"
+        },
+        {
+          "name": "20260828_엘리시아 기획서_Ver01_파송송계란탁.pptx",
+          "path": "포폴 정리용/05_LAST SANCTUARY/기획서/20260828_엘리시아 기획서_Ver01_파송송계란탁.pptx",
+          "subfolder": "기획서",
+          "kind": "plan",
+          "project": "LAST SANCTUARY",
+          "title": "캐릭터 기획서: 엘리시아",
+          "desc": "방패로 전열을 수호하는 회복형 탱커 전사 — 탱커/지원가 설계, 스킬 3종(강인한 정신력·군단의 방패·네 날개의 가호)",
+          "type": "PPTX",
+          "sizeBytes": 2838832,
+          "sizeFormatted": "2.7 MB"
+        },
+        {
+          "name": "20260828_엘린 기획서_Ver01_파송송계란탁.pptx",
+          "path": "포폴 정리용/05_LAST SANCTUARY/기획서/20260828_엘린 기획서_Ver01_파송송계란탁.pptx",
+          "subfolder": "기획서",
+          "kind": "plan",
+          "project": "LAST SANCTUARY",
+          "title": "캐릭터 기획서: 엘린",
+          "desc": "눈을 잃은 자기희생형 파수꾼 — 마법 딜러/지원가 설계, 스킬 3종(타고난 섬세함·희생·유혈 낭자), 붕대와 피로 시각화한 외형",
+          "type": "PPTX",
+          "sizeBytes": 2602705,
+          "sizeFormatted": "2.5 MB"
+        },
+        {
+          "name": "20260901_유물발굴기획서_Ver01_파송송계란탁.pptx",
+          "path": "포폴 정리용/05_LAST SANCTUARY/기획서/20260901_유물발굴기획서_Ver01_파송송계란탁.pptx",
+          "subfolder": "기획서",
+          "kind": "plan",
+          "project": "LAST SANCTUARY",
+          "title": "유물 발굴 시스템 기획서 Ver01",
+          "desc": "캐릭터 공통 성장 요소로서의 유물 기획 의도, 타일 발굴·몬스터 사냥 획득 방법, 보상/페널티, 등급별 유물 비주얼",
+          "type": "PPTX",
+          "sizeBytes": 360493,
+          "sizeFormatted": "352 KB"
+        }
+      ]
+    },
+    {
+      "id": "smartfarm",
+      "folder": "06_슬기로운 재배생활",
+      "title": "슬기로운 재배생활",
+      "kicker": "DVELOCKET · TEAM WEED HOLDINGS · 팀장",
+      "desc": "재배·제조·유통을 잇는 PC 타이쿤. 시스템 기획서와 데이터 테이블",
+      "cover": "assets/art/smartfarm.png",
+      "play": null,
+      "docs": [
+        {
+          "name": "0709_UI재배시설기획_Ver02.pdf",
+          "path": "포폴 정리용/06_슬기로운 재배생활/기획서/0709_UI재배시설기획_Ver02.pdf",
+          "subfolder": "기획서",
+          "kind": "plan",
+          "project": "슬기로운 재배생활",
+          "title": "슬기로운 재배생활 UI 재배시설 기획 Ver02",
+          "desc": "재배 시설 화면의 UI 구성, 슬롯·타이머 표시와 시설 업그레이드 화면 흐름",
+          "type": "PDF",
+          "sizeBytes": 1012457,
+          "sizeFormatted": "989 KB"
+        },
+        {
+          "name": "0718_시스템기획서_Ver03.pdf",
+          "path": "포폴 정리용/06_슬기로운 재배생활/기획서/0718_시스템기획서_Ver03.pdf",
+          "subfolder": "기획서",
+          "kind": "plan",
+          "project": "슬기로운 재배생활",
+          "title": "슬기로운 재배생활 시스템 기획서 Ver03",
+          "desc": "재배·제조·판매·연구소·캐릭터·뽑기 시스템별 구성요소, 플로우차트, 데이터 테이블과 콘텐츠 순환 구조 정리",
+          "type": "PDF",
+          "sizeBytes": 1285028,
+          "sizeFormatted": "1.2 MB"
+        },
+        {
+          "name": "무역소 테이블.xlsx",
+          "path": "포폴 정리용/06_슬기로운 재배생활/데이터 테이블/무역소 테이블.xlsx",
+          "subfolder": "데이터 테이블",
+          "kind": "data",
+          "project": "슬기로운 재배생활",
+          "title": "무역소 테이블",
+          "desc": "지역 해금 그룹, 지역별 판매 소요 시간, 식물별 지역 보너스, 무역소 시설 업그레이드 데이터",
+          "type": "XLSX",
+          "sizeBytes": 13625,
+          "sizeFormatted": "13 KB"
+        },
+        {
+          "name": "설명 테이블.xlsx",
+          "path": "포폴 정리용/06_슬기로운 재배생활/데이터 테이블/설명 테이블.xlsx",
+          "subfolder": "데이터 테이블",
+          "kind": "data",
+          "project": "슬기로운 재배생활",
+          "title": "설명 테이블",
+          "desc": "적용 객체 ID별 게임 내 설명 스크립트 텍스트 테이블",
+          "type": "XLSX",
+          "sizeBytes": 14434,
+          "sizeFormatted": "14 KB"
+        },
+        {
+          "name": "슬기로운재배생활_재배테이블.xlsx",
+          "path": "포폴 정리용/06_슬기로운 재배생활/데이터 테이블/슬기로운재배생활_재배테이블.xlsx",
+          "subfolder": "데이터 테이블",
+          "kind": "data",
+          "project": "슬기로운 재배생활",
+          "title": "재배 테이블",
+          "desc": "원료 식물별 성장 시간·해금 레벨/골드·고사 시간, 성장 단계 이미지 매핑, 시설 업그레이드(성장 보너스·밭 칸 수)",
+          "type": "XLSX",
+          "sizeBytes": 15106,
+          "sizeFormatted": "15 KB"
+        },
+        {
+          "name": "제조테이블.xlsx",
+          "path": "포폴 정리용/06_슬기로운 재배생활/데이터 테이블/제조테이블.xlsx",
+          "subfolder": "데이터 테이블",
+          "kind": "data",
+          "project": "슬기로운 재배생활",
+          "title": "제조 테이블",
+          "desc": "보약별 제조 속도·실패 확률·판매 가격, 필요 원료 식물 그룹과 수량, 제조 시설 업그레이드 보너스",
+          "type": "XLSX",
+          "sizeBytes": 15874,
+          "sizeFormatted": "16 KB"
         }
       ]
     }

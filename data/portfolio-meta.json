@@ -6,21 +6,7 @@
       "kicker": "CAREER & ESSAY",
       "desc": "이력서와 자기소개서 원본"
     },
-    "01_LAST SANCTUARY": {
-      "id": "lastsanctuary",
-      "title": "LAST SANCTUARY",
-      "kicker": "DVELOCKET · TEAM 파송송계란탁",
-      "desc": "생존과 기지 운영을 결합한 PC 게임. 컨셉·비주얼·캐릭터·유물 시스템 기획",
-      "cover": "lastsanctuary.png"
-    },
-    "02_슬기로운 재배생활": {
-      "id": "smartfarm",
-      "title": "슬기로운 재배생활",
-      "kicker": "DVELOCKET · TEAM LEAD",
-      "desc": "재배·제조·유통을 잇는 PC 타이쿤. 시스템 기획서와 데이터 테이블",
-      "cover": "assets/art/smartfarm.png"
-    },
-    "03_찍찍찍": {
+    "01_찍찍찍": {
       "id": "nkk",
       "title": "찍!찍!!찍!!!",
       "kicker": "NKK STUDIO · 부팀장",
@@ -32,7 +18,19 @@
         "hint": "마우스로 플레이 · 유니티 이식 전 원본 웹게임"
       }
     },
-    "04_기사쥐의 모험": {
+    "02_밴드 오브 마이스": {
+      "id": "ratwar",
+      "title": "밴드 오브 마이스",
+      "kicker": "TURN-BASED TACTICS · 가제",
+      "desc": "엑스컴 × 다키스트 던전. 고양이 총통에 맞서는 쥐 분대의 턴제 전술과 영구 사망",
+      "cover": "assets/projects/ratwar.jpg",
+      "play": {
+        "url": "https://inory16351.github.io/RatWar/",
+        "label": "밴드 오브 마이스 — WebGL 빌드",
+        "hint": "마우스로 플레이 · Unity WebGL"
+      }
+    },
+    "03_기사쥐의 모험": {
       "id": "ratknight",
       "title": "기사쥐의 모험",
       "kicker": "2D ACTION METROIDVANIA · 가제",
@@ -44,7 +42,7 @@
         "hint": "← → 이동 · Z/Space 점프 · A/X/J 베기 · C/Shift 대시"
       }
     },
-    "05_쥐항해 시대": {
+    "04_쥐항해 시대": {
       "id": "ratpirate",
       "title": "쥐항해 시대",
       "kicker": "TOP-VIEW NAVAL ACTION · 가제",
@@ -56,17 +54,19 @@
         "hint": "W/S 돛 · A/D 키 · 클릭 뱃전 일제 사격 (36MB, 첫 로딩이 조금 걸려요)"
       }
     },
-    "06_밴드 오브 마이스": {
-      "id": "ratwar",
-      "title": "밴드 오브 마이스",
-      "kicker": "TURN-BASED TACTICS · 가제",
-      "desc": "엑스컴 × 다키스트 던전. 고양이 총통에 맞서는 쥐 분대의 턴제 전술과 영구 사망",
-      "cover": "assets/projects/ratwar.jpg",
-      "play": {
-        "url": "https://inory16351.github.io/RatWar/",
-        "label": "밴드 오브 마이스 — WebGL 빌드",
-        "hint": "마우스로 플레이 · Unity WebGL"
-      }
+    "05_LAST SANCTUARY": {
+      "id": "lastsanctuary",
+      "title": "LAST SANCTUARY",
+      "kicker": "DVELOCKET · TEAM 파송송계란탁",
+      "desc": "생존과 기지 운영을 결합한 PC 게임. 컨셉·비주얼·캐릭터·유물 시스템 기획",
+      "cover": "lastsanctuary.png"
+    },
+    "06_슬기로운 재배생활": {
+      "id": "smartfarm",
+      "title": "슬기로운 재배생활",
+      "kicker": "DVELOCKET · TEAM WEED HOLDINGS · 팀장",
+      "desc": "재배·제조·유통을 잇는 PC 타이쿤. 시스템 기획서와 데이터 테이블",
+      "cover": "assets/art/smartfarm.png"
     }
   },
   "docs": {
