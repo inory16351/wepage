@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T09:11:18.936Z",
+  "generatedAt": "2026-10-29T09:50:57.465Z",
   "projects": [
     {
       "id": "career",
@@ -259,7 +259,7 @@
       "cover": "assets/projects/nkk.jpg",
       "play": {
         "url": "https://inory16351.github.io/NKK_PROJECT/",
-        "label": "쥐들의 반란 — 웹 프로토타입",
+        "label": "찍!찍!!찍!!! — 웹 프로토타입",
         "hint": "마우스로 플레이 · 유니티 이식 전 원본 웹게임"
       },
       "docs": [
@@ -305,12 +305,12 @@
       "id": "ratknight",
       "folder": "04_기사쥐의 모험",
       "title": "기사쥐의 모험",
-      "kicker": "2D ACTION METROIDVANIA",
+      "kicker": "2D ACTION METROIDVANIA · 가제",
       "desc": "도시의 쓰레기로 기사 장비를 만든 꼬마쥐가 명검을 찾아가는 픽셀 팝아트 액션",
       "cover": "assets/projects/ratknight.jpg",
       "play": {
         "url": "https://inory16351.github.io/RatKnight/",
-        "label": "기사쥐 — 액션 모션 프로토",
+        "label": "기사쥐의 모험 — 액션 프로토",
         "hint": "← → 이동 · Z/Space 점프 · A/X/J 베기 · C/Shift 대시"
       },
       "docs": [
@@ -330,24 +330,24 @@
     },
     {
       "id": "ratpirate",
-      "folder": "05_쥐적선",
-      "title": "쥐적선",
-      "kicker": "TOP-VIEW NAVAL ACTION",
+      "folder": "05_쥐항해 시대",
+      "title": "쥐항해 시대",
+      "kicker": "TOP-VIEW NAVAL ACTION · 가제",
       "desc": "뱃전을 돌려 일제 사격하는 탑뷰 해전 액션. 배 16척 진화와 장비 213종",
       "cover": "assets/projects/ratpirate.jpg",
       "play": {
         "url": "https://inory16351.github.io/RatPlain/",
-        "label": "쥐 해적 — 일곱 바다 정복",
+        "label": "쥐항해 시대 — 웹빌드",
         "hint": "W/S 돛 · A/D 키 · 클릭 뱃전 일제 사격 (36MB, 첫 로딩이 조금 걸려요)"
       },
       "docs": [
         {
-          "name": "쥐적선_컨셉기획_정승운.pptx",
-          "path": "포폴 정리용/05_쥐적선/기획서/쥐적선_컨셉기획_정승운.pptx",
+          "name": "쥐항해시대_컨셉기획_정승운.pptx",
+          "path": "포폴 정리용/05_쥐항해 시대/기획서/쥐항해시대_컨셉기획_정승운.pptx",
           "subfolder": "기획서",
           "kind": "plan",
-          "project": "쥐적선",
-          "title": "쥐적선 컨셉 기획서",
+          "project": "쥐항해 시대",
+          "title": "쥐항해 시대 컨셉 기획서",
           "desc": "탑뷰 해전 액션 — 뱃전 일제 사격 조작, 배 진화(갤리선→현대 함정), 장비·조선소 의뢰·재화 순환",
           "type": "PPTX",
           "sizeBytes": 6834268,
@@ -357,24 +357,24 @@
     },
     {
       "id": "ratwar",
-      "folder": "06_쥐스컴 (쥐들의 전쟁)",
-      "title": "쥐스컴 (쥐들의 전쟁)",
-      "kicker": "TURN-BASED TACTICS",
+      "folder": "06_밴드 오브 마이스",
+      "title": "밴드 오브 마이스",
+      "kicker": "TURN-BASED TACTICS · 가제",
       "desc": "엑스컴 × 다키스트 던전. 고양이 총통에 맞서는 쥐 분대의 턴제 전술과 영구 사망",
       "cover": "assets/projects/ratwar.jpg",
       "play": {
         "url": "https://inory16351.github.io/RatWar/",
-        "label": "쥐들의 전쟁 — WebGL 빌드",
+        "label": "밴드 오브 마이스 — WebGL 빌드",
         "hint": "마우스로 플레이 · Unity WebGL"
       },
       "docs": [
         {
-          "name": "20261028_쥐들의 전쟁_컨셉기획서_v2_정승운.pptx",
-          "path": "포폴 정리용/06_쥐스컴 (쥐들의 전쟁)/기획서/20261028_쥐들의 전쟁_컨셉기획서_v2_정승운.pptx",
+          "name": "20261028_밴드 오브 마이스_컨셉기획서_v2_정승운.pptx",
+          "path": "포폴 정리용/06_밴드 오브 마이스/기획서/20261028_밴드 오브 마이스_컨셉기획서_v2_정승운.pptx",
           "subfolder": "기획서",
           "kind": "plan",
-          "project": "쥐스컴 (쥐들의 전쟁)",
-          "title": "쥐들의 전쟁 컨셉 기획서 v2.0",
+          "project": "밴드 오브 마이스",
+          "title": "밴드 오브 마이스 컨셉 기획서 v2.0",
           "desc": "턴제 분대 전술 + 로스터 관리 — 명중률·치명타·부위파괴·스트레스·최전방 교대, 병사 성장과 신병 모집",
           "type": "PPTX",
           "sizeBytes": 1900077,
