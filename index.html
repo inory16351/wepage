@@ -1549,32 +1549,49 @@
         }
 
         button.doc-poster { border: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; }
-        /* 상세 모달: 웹빌드 맛보기 플레이어 (상단 이미지 자리를 대체) */
-        .pd-player { position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; background: #000; }
+        /* 상세 모달: [플레이] / [기획서 모음] / [작품 소개] 탭 */
+        .pd-tabs { display: flex; gap: 4px; padding: 0 40px; border-bottom: 1px solid #333; background: var(--nf-surface); position: sticky; top: 0; z-index: 6; }
+        .pd-tab { position: relative; font: 700 14px var(--font-display, inherit); color: #9a9a9a; background: none; border: 0; padding: 16px 14px 14px; cursor: pointer; transition: color .2s; }
+        .pd-tab:hover { color: #fff; }
+        .pd-tab.active { color: #fff; }
+        .pd-tab.active::after { content: ''; position: absolute; left: 10px; right: 10px; bottom: -1px; height: 3px; background: var(--nf-red); }
+        .project-detail-modal:not(.has-play) #projectDetailTabPlay,
+        .project-detail-modal:not(.has-play) #projectDetailPlay { display: none; }
+        .pd-panel { padding-top: 22px; }
+        .pd-panel[hidden] { display: none; }
+        /* 플레이: 16:9 무대 — 시작 전엔 대표 이미지 + 재생 버튼, 누르면 게임 iframe */
+        .pd-stage { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; overflow: hidden; }
+        .pd-start { position: absolute; inset: 0; width: 100%; padding: 0; border: 0; background: #000; cursor: pointer; display: grid; place-items: center; }
+        .pd-start[hidden] { display: none; }
+        .pd-start img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; transition: opacity .25s, transform .4s; }
+        .pd-start:hover img { opacity: .7; transform: scale(1.02); }
+        .pd-start-btn { position: relative; width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; background: rgba(0,0,0,.55); border: 3px solid #fff; color: #fff; transition: transform .2s, background .2s; }
+        .pd-start-btn .ic { width: 36px; height: 36px; margin-left: 5px; }
+        .pd-start:hover .pd-start-btn { transform: scale(1.08); background: var(--nf-red); border-color: var(--nf-red); }
+        .pd-start-label { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; font: 800 16px var(--font-display, inherit); color: #fff; text-shadow: 0 2px 10px #000; }
+        .pd-player { position: absolute; inset: 0; background: #000; }
         .pd-player[hidden] { display: none; }
-        .pd-player iframe { flex: 1 1 0; min-height: 0; width: 100%; border: 0; background: #000; }
-        .pd-player-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 10px 12px; background: #181818; border-top: 3px solid var(--nf-red); font-size: 12px; }
-        .pd-player-hint { flex: 1; min-width: 0; color: #cfcfcf; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .pd-player iframe { width: 100%; height: 100%; border: 0; display: block; background: #000; }
+        .pd-stage:fullscreen { border-radius: 0; }
+        .pd-player-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 12px 0 0; font-size: 12.5px; }
+        .pd-player-hint { flex: 1; min-width: 0; color: #bdbdbd; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .pd-player-bar button, .pd-player-bar a {
-            flex: none;
-            min-height: 36px;
-            font: 600 12px var(--font-display);
-            color: #fff;
-            background: #303030;
-            border: 1px solid #555;
-            border-radius: 4px;
-            padding: 7px 10px;
-            cursor: pointer;
-            text-decoration: none;
+            flex: none; min-height: 36px; font: 600 12px var(--font-display); color: #fff; background: #303030;
+            border: 1px solid #555; border-radius: 4px; padding: 7px 12px; cursor: pointer; text-decoration: none;
         }
         .pd-player-bar button:hover, .pd-player-bar a:hover { background: rgba(255,255,255,.22); }
-        .project-detail-modal.is-playing .nf-modal { width: min(1180px, 100%); }
-        .project-detail-modal.is-playing .nf-modal-hero { aspect-ratio: 16 / 9; height: auto; }
-        .project-detail-modal.is-playing .nf-modal-hero-content, .project-detail-modal.is-playing .modal-close { z-index: 5; }
-        .project-detail-modal.is-playing .nf-modal-hero-content { display: none; }
-        .pd-player:fullscreen .pd-player-bar { position: absolute; left: 0; right: 0; bottom: 0; opacity: .25; transition: opacity .2s; }
-        .pd-player:fullscreen .pd-player-bar:hover { opacity: 1; }
-        @media (max-width: 600px) { .project-detail-modal.is-playing .nf-modal-hero { aspect-ratio: 4 / 5; } .pd-player-hint { display: none; } }
+        .project-detail-modal:not(.is-playing) #projectDetailStop { display: none; }
+        .project-detail-modal.has-play .nf-modal { width: min(1100px, 100%); }
+        /* 기획서 모음: 포스터 그리드 */
+        .pd-docs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+        .pd-docs-grid .doc-poster { width: auto; margin: 0; }
+        @media (max-width: 600px) {
+            .pd-tabs { padding: 0 12px; }
+            .pd-tab { padding: 14px 10px 12px; font-size: 13px; }
+            .pd-stage { aspect-ratio: 4 / 5; }
+            .pd-player-hint { flex-basis: 100%; white-space: normal; }
+            .pd-docs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+        }
         .ph-steam-note { margin: 14px 0 0; font-size: 12px; color: var(--nf-muted); }
         .ph-steam-note a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
 
@@ -1791,10 +1808,6 @@
                             <div class="card-media"><img src="슬기로운재배생활.png" alt="슬기로운 재배생활"><span class="card-top-badge">S</span><span class="card-new">팀장</span></div>
                             <div class="nf-card-info"><div class="nf-card-kicker">DVELOCKET · TEAM LEAD</div><h3>슬기로운 재배생활</h3><p>PC 타이쿤 게임의 전체 시스템 기획, 유니티 바이브 코딩, 테이블 작업과 밸런스 패치.</p><div class="card-tags"><span>타이쿤</span><span>경제 설계</span><span>테이블</span></div></div>
                         </article>
-                        <article class="nf-card nf-landscape" onclick="openProjectDetail('film')">
-                            <div class="card-media"><img src="film_banner.png" alt="영화 제작활동" onerror="this.onerror=function(){this.onerror=null;this.src='film-reel.svg'};this.src='https://drive.google.com/thumbnail?id=1_eC8ucOiwlN1_MdvGf5F_klVlIWwlQ4l&amp;sz=w1280'"><span class="card-top-badge">S</span></div>
-                            <div class="nf-card-info"><div class="nf-card-kicker">FILM PRODUCTION</div><h3>영화 제작활동</h3><p>2026 동국영화제 운영팀장을 비롯해 홍보·음향·미술·제작·PD 등 영화 현장 활동 모음.</p><div class="card-tags"><span>운영팀장</span><span>PD</span><span>음향</span></div></div>
-                        </article>
                         <article class="nf-card nf-landscape" onclick="openProjectDetail('nkk')">
                             <div class="card-media"><img src="assets/projects/nkk.jpg" alt="찍!찍!!찍!!!" loading="lazy"><span class="card-top-badge">S</span><span class="card-new">부팀장</span></div>
                             <div class="nf-card-info"><div class="nf-card-kicker">NKK STUDIO · 부팀장</div><h3>찍!찍!!찍!!!</h3><p>실험실 탈출 쥐 파괴·번식 게임. 튜토리얼·보스 기획과 웹 프로토타입.</p><div class="card-tags"><span>튜토리얼</span><span>보스</span><span>팀 프로젝트</span></div></div>
@@ -1868,16 +1881,6 @@
                             <div class="nf-card-info"><h3>학력 &amp; 역량</h3><p>동국대학교 영화영상학과 — 서사 설계와 대규모 협업 역량.</p></div>
                         </article>
                     </div>
-                    <button class="row-arrow right" onclick="scrollRow(this,1)" aria-label="다음">›</button>
-                </div>
-            </div>
-
-            <!-- 지금 뜨는 기획서 (서버 문서 목록에서 자동 생성) -->
-            <div class="nf-row">
-                <h2 class="row-title">지금 뜨는 기획서 <span class="row-more" onclick="switchPage('portfolio', document.getElementById('nav-btn-portfolio'))">문서함 전체 보기 ›</span></h2>
-                <div class="row-viewport" data-mirror>
-                    <button class="row-arrow left" onclick="scrollRow(this,-1)" aria-label="이전">‹</button>
-                    <div class="row-track" id="homeDocsRow"></div>
                     <button class="row-arrow right" onclick="scrollRow(this,1)" aria-label="다음">›</button>
                 </div>
             </div>
@@ -2314,10 +2317,6 @@
                             <div class="card-media"><img src="assets/art/smartfarm.png" alt="슬기로운 재배생활"><span class="card-top-badge">S</span></div>
                             <div class="nf-card-info"><div class="nf-card-kicker">DVELOCKET · TEAM LEAD · 2026.06–11</div><h3>슬기로운 재배생활</h3><p>PC 타이쿤 게임의 전체 시스템 기획, 유니티 바이브 코딩, 테이블 작업과 밸런스 패치.</p></div>
                         </article>
-                        <article class="nf-card nf-landscape" onclick="openProjectDetail('film')">
-                            <div class="card-media"><img src="assets/art/film.png" alt="영화 제작활동"><span class="card-top-badge">S</span></div>
-                            <div class="nf-card-info"><div class="nf-card-kicker">FILM PRODUCTION</div><h3>영화 제작활동</h3><p>2026 동국영화제 운영팀장을 비롯해 홍보·음향·미술·제작·PD 등 영화 현장 활동 모음.</p></div>
-                        </article>
                         <article class="nf-card nf-landscape" onclick="openProjectDetail('nkk')">
                             <div class="card-media"><img src="assets/projects/nkk.jpg" alt="찍!찍!!찍!!!" loading="lazy"><span class="card-top-badge">S</span><span class="card-new">부팀장</span></div>
                             <div class="nf-card-info"><div class="nf-card-kicker">NKK STUDIO · 부팀장</div><h3>찍!찍!!찍!!!</h3><p>실험실 탈출 쥐 파괴·번식 게임. 튜토리얼·보스 기획과 웹 프로토타입.</p></div>
@@ -2479,31 +2478,51 @@
             <button class="modal-close" onclick="closeProjectDetail()" aria-label="닫기">✕</button>
             <div class="nf-modal-hero">
                 <img id="projectDetailImage" src="film-reel.svg" alt="프로젝트 대표 이미지">
-                <div class="pd-player" id="projectDetailPlayer" hidden>
-                    <iframe id="projectDetailFrame" title="웹 빌드 플레이" allow="fullscreen; autoplay; gamepad" allowfullscreen></iframe>
-                    <div class="pd-player-bar">
-                        <span class="pd-player-hint" id="projectDetailHint"></span>
-                        <button type="button" onclick="toggleProjectPlayerFullscreen()">전체 화면</button>
-                        <a id="projectDetailNewTab" href="#" target="_blank" rel="noopener">새 탭 ↗</a>
-                        <button type="button" onclick="stopProjectPlay()">닫기 ✕</button>
-                    </div>
-                </div>
                 <div class="nf-modal-hero-content">
                     <div class="series-mark" style="margin-bottom:8px;"><b>S</b><span id="projectDetailKicker">PROJECT DETAIL</span></div>
                     <h3 class="nf-modal-title" id="projectDetailTitle">프로젝트</h3>
                     <div class="nf-modal-actions">
-                        <button class="btn-play" id="projectDetailPlay" onclick="scrollToRelated()"><span class="ico"><svg class="ic"><use href="#i-play"/></svg></span>기획서 열람</button>
+                        <button class="btn-play" id="projectDetailPlay" onclick="showProjectTab('play', true)"><span class="ico"><svg class="ic"><use href="#i-play"/></svg></span>플레이</button>
+                        <button class="btn-info" id="projectDetailDocsBtn" onclick="showProjectTab('docs')"><span class="ico"><svg class="ic"><use href="#i-folder"/></svg></span>기획서 모음</button>
                     </div>
                 </div>
             </div>
+            <!-- 프로젝트 = 플레이 / 기획서 모음 / 작품 소개 탭으로 분리 -->
+            <div class="pd-tabs" role="tablist">
+                <button type="button" class="pd-tab" id="projectDetailTabPlay" data-tab="play" onclick="showProjectTab('play')">▶ 플레이</button>
+                <button type="button" class="pd-tab" id="projectDetailTabDocs" data-tab="docs" onclick="showProjectTab('docs')">기획서 모음</button>
+                <button type="button" class="pd-tab" id="projectDetailTabAbout" data-tab="about" onclick="showProjectTab('about')">작품 소개</button>
+            </div>
             <div class="nf-modal-body">
-                <div class="project-detail-grid">
-                    <div class="project-detail-block"><h4>목표</h4><p id="projectDetailGoal"></p></div>
-                    <div class="project-detail-block"><h4>문제 해결 방법</h4><p id="projectDetailSolution"></p></div>
-                    <div class="project-detail-block"><h4>개선점 / 배운점</h4><p id="projectDetailLesson"></p></div>
-                </div>
-                <h4 class="nf-modal-section-title" id="projectDetailRelatedTitle">관련 기획 문서</h4>
-                <div class="related-list" id="projectDetailDocs"></div>
+                <section class="pd-panel" id="projectDetailPanelPlay" data-panel="play">
+                    <div class="pd-stage" id="projectDetailStage">
+                        <button type="button" class="pd-start" id="projectDetailStart" onclick="startProjectPlay()">
+                            <img id="projectDetailStartImg" src="" alt="">
+                            <span class="pd-start-btn"><svg class="ic"><use href="#i-play"/></svg></span>
+                            <span class="pd-start-label" id="projectDetailStartLabel">웹빌드 플레이</span>
+                        </button>
+                        <div class="pd-player" id="projectDetailPlayer" hidden>
+                            <iframe id="projectDetailFrame" title="웹 빌드 플레이" allow="fullscreen; autoplay; gamepad" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="pd-player-bar">
+                        <span class="pd-player-hint" id="projectDetailHint"></span>
+                        <button type="button" onclick="toggleProjectPlayerFullscreen()">전체 화면</button>
+                        <a id="projectDetailNewTab" href="#" target="_blank" rel="noopener">새 탭 ↗</a>
+                        <button type="button" id="projectDetailStop" onclick="stopProjectPlay()">정지 ■</button>
+                    </div>
+                </section>
+                <section class="pd-panel" id="projectDetailPanelDocs" data-panel="docs">
+                    <h4 class="nf-modal-section-title" id="projectDetailRelatedTitle">기획서 모음</h4>
+                    <div class="pd-docs-grid" id="projectDetailDocs"></div>
+                </section>
+                <section class="pd-panel" id="projectDetailPanelAbout" data-panel="about">
+                    <div class="project-detail-grid">
+                        <div class="project-detail-block"><h4>목표</h4><p id="projectDetailGoal"></p></div>
+                        <div class="project-detail-block"><h4>문제 해결 방법</h4><p id="projectDetailSolution"></p></div>
+                        <div class="project-detail-block"><h4>개선점 / 배운점</h4><p id="projectDetailLesson"></p></div>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
@@ -2798,7 +2817,9 @@
         ];
 
         let currentProjectId = null;
-        function openProjectDetail(projectId, autoPlay) {
+        // 프로젝트 상세 = [플레이] (웹빌드가 있을 때) / [기획서 모음] / [작품 소개] 탭
+        //  tab: 'play' | 'docs' | 'about' / true = 플레이 탭을 열고 바로 실행
+        function openProjectDetail(projectId, tab) {
             const base = PROJECT_DETAILS[projectId];
             if (!base) return;
             stopProjectPlay();
@@ -2816,12 +2837,20 @@
             document.getElementById('projectDetailSolution').textContent = project.solution;
             document.getElementById('projectDetailLesson').textContent = project.lesson;
             renderProjectRelated(projectId);
+
+            const play = projectPlay(projectId);
             const overlay = document.getElementById('projectDetailModal');
+            overlay.classList.toggle('has-play', !!play);
+            document.getElementById('projectDetailStartImg').src = project.image;
+            document.getElementById('projectDetailStartLabel').textContent = play ? play.label : '';
+            document.getElementById('projectDetailHint').textContent = play ? (play.hint || '') : '';
+            document.getElementById('projectDetailNewTab').href = play ? play.url : '#';
+
             overlay.classList.add('active');
             overlay.scrollTop = 0;
             document.body.classList.add('no-scroll');
             EditMode.refresh();
-            if (autoPlay) startProjectPlay(projectId);
+            showProjectTab(tab === true ? 'play' : (tab || (play ? 'play' : 'docs')), tab === true);
         }
         function closeProjectDetail(e) {
             if (e && e.target !== e.currentTarget) return;
@@ -2829,21 +2858,26 @@
             document.getElementById('projectDetailModal').classList.remove('active');
             syncScrollLock();
         }
-        // 웹빌드 맛보기: 상세 모달 상단 이미지 자리에서 게임을 바로 실행 (각 게임 레포의 GitHub Pages)
+        function showProjectTab(tab, autoStart) {
+            const overlay = document.getElementById('projectDetailModal');
+            if (tab === 'play' && !overlay.classList.contains('has-play')) tab = 'docs';
+            if (tab !== 'play') stopProjectPlay();
+            overlay.querySelectorAll('.pd-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+            overlay.querySelectorAll('.pd-panel').forEach(p => { p.hidden = p.dataset.panel !== tab; });
+            if (autoStart) startProjectPlay();
+        }
+        // 웹빌드 맛보기: [플레이] 탭에서 각 게임 레포의 GitHub Pages 를 바로 실행
         function projectPlay(projectId) {
             const p = PORTFOLIO_PROJECTS.find(x => x.id === projectId);
             return p && p.play && p.play.url ? p.play : null;
         }
-        function startProjectPlay(projectId) {
-            const play = projectPlay(projectId || currentProjectId);
+        function startProjectPlay() {
+            const play = projectPlay(currentProjectId);
             if (!play) return;
-            const box = document.getElementById('projectDetailPlayer');
             document.getElementById('projectDetailFrame').src = play.url;
-            document.getElementById('projectDetailHint').textContent = play.hint || '';
-            document.getElementById('projectDetailNewTab').href = play.url;
-            box.hidden = false;
+            document.getElementById('projectDetailPlayer').hidden = false;
+            document.getElementById('projectDetailStart').hidden = true;
             document.getElementById('projectDetailModal').classList.add('is-playing');
-            document.getElementById('projectDetailModal').scrollTop = 0;
             setTimeout(() => document.getElementById('projectDetailFrame').focus(), 300);
         }
         function stopProjectPlay() {
@@ -2852,45 +2886,39 @@
             if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
             document.getElementById('projectDetailFrame').src = 'about:blank';
             box.hidden = true;
+            document.getElementById('projectDetailStart').hidden = false;
             document.getElementById('projectDetailModal').classList.remove('is-playing');
         }
         function toggleProjectPlayerFullscreen() {
-            const box = document.getElementById('projectDetailPlayer');
+            if (!document.getElementById('projectDetailModal').classList.contains('is-playing')) startProjectPlay();
+            const stage = document.getElementById('projectDetailStage');
             if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
-            else if (box.requestFullscreen) box.requestFullscreen().catch(() => {});
+            else if (stage.requestFullscreen) stage.requestFullscreen().catch(() => {});
         }
         function renderProjectRelated(projectId) {
             const box = document.getElementById('projectDetailDocs');
             const title = document.getElementById('projectDetailRelatedTitle');
-            const playBtn = document.getElementById('projectDetailPlay');
+            const docsTab = document.getElementById('projectDetailTabDocs');
+            const docsBtn = document.getElementById('projectDetailDocsBtn');
             if (projectId === 'film') {
                 title.textContent = `필모그래피 (${FILM_CREDITS.length})`;
+                docsTab.textContent = '필모그래피';
+                docsBtn.lastChild.textContent = '필모그래피';
+                box.className = 'related-list';
                 box.innerHTML = FILM_CREDITS.map((f, i) => {
                     const [role, name, type, desc, url, thumb, src, period, slug] = f;
                     const media = `<span class="ri-thumb" style="background:linear-gradient(135deg,#3a0b10,#0e0e0e)"><img src="posters/${slug}.${['artist', 'silence', 'shoerack'].includes(slug) ? 'png' : 'jpg'}" ${thumb ? `data-fallback="${thumb}"` : ''} alt="" loading="lazy" referrerpolicy="no-referrer" onerror="posterFallback(this)"></span>`;
                     const body = `<span class="ri-no">${i + 1}</span>${media}<div><h5>${escapeHtml(name)}</h5><p>${period ? period + ' · ' : ''}${escapeHtml(desc)}</p></div><span class="ri-type">${role}${url ? ' · ' + src + ' ↗' : ''}</span>`;
                     return url ? `<a class="related-item film" href="${url}" target="_blank" rel="noopener">${body}</a>` : `<div class="related-item film">${body}</div>`;
                 }).join('');
-                playBtn.innerHTML = '<span class="ico"><svg class="ic"><use href="#i-play"/></svg></span>참여 영화 에피소드';
-                playBtn.onclick = () => { closeProjectDetail(); playSeries(4); };
                 return;
             }
             const docs = PORTFOLIO_DOCS.filter(d => d.projectId === projectId);
-            title.textContent = `프로젝트 폴더 (${docs.length})`;
-            box.innerHTML = docs.length ? docs.map((d, i) => {
-                return `<a class="related-item film" href="${docUrl(d)}" target="_blank" rel="noopener" ${docOpensInline(d) ? '' : 'download'}><span class="ri-no">${i + 1}</span><span class="ri-thumb doc"><img src="${docThumb(d)}" alt="" loading="lazy" onerror="this.remove()"></span><div><h5>${escapeHtml(d.title)}</h5><p>${escapeHtml(d.desc || '')}</p></div><span class="ri-type">${DOC_KIND_LABEL[d.kind] || ''} · ${d.type || ''}${d.sizeFormatted ? ' · ' + d.sizeFormatted : ''}</span></a>`;
-            }).join('') : '<div class="row-empty" style="padding:12px 0">관련 문서가 아직 없습니다.</div>';
-            if (projectPlay(projectId)) {
-                playBtn.innerHTML = '<span class="ico"><svg class="ic"><use href="#i-play"/></svg></span>플레이 해보기';
-                playBtn.onclick = () => startProjectPlay(projectId);
-                return;
-            }
-            playBtn.innerHTML = '<span class="ico"><svg class="ic"><use href="#i-play"/></svg></span>기획서 열람';
-            playBtn.onclick = scrollToRelated;
-        }
-        function scrollToRelated() {
-            const t = document.getElementById('projectDetailRelatedTitle');
-            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            title.textContent = `기획서 모음 (${docs.length})`;
+            docsTab.textContent = `기획서 모음 ${docs.length}`;
+            docsBtn.lastChild.textContent = '기획서 모음';
+            box.className = 'pd-docs-grid';
+            box.innerHTML = docs.length ? docs.map(docPosterHtml).join('') : '<div class="row-empty" style="padding:12px 0">관련 문서가 아직 없습니다.</div>';
         }
         function openAbout() {
             document.getElementById('aboutModal').classList.add('active');
@@ -2964,7 +2992,7 @@
                 .map(k => [k, p.docs.filter(d => d.kind === k).length]).filter(([, n]) => n)
                 .map(([k, n]) => `<span class="pf-folder-count k-${k}">${DOC_KIND_LABEL[k]} ${n}</span>`).join('')
                 + (p.play ? '<span class="pf-folder-count k-game">▶ 웹빌드 플레이</span>' : '');
-            const info = PROJECT_DETAILS[p.id] ? `<button class="pf-folder-info" onclick="openProjectDetail('${p.id}')">작품 정보 ›</button>` : '';
+            const info = PROJECT_DETAILS[p.id] ? `<button class="pf-folder-info" onclick="openProjectDetail('${p.id}', 'about')">작품 정보 ›</button>` : '';
             const playCard = p.play ? `<button type="button" class="nf-card nf-poster doc-poster is-game proj-${escapeHtml(p.id)}" onclick="openProjectDetail('${p.id}', true)">
                 <img class="doc-thumb" src="${escapeHtml(p.cover)}" alt="" loading="lazy" onerror="this.remove()">
                 <span class="doc-type">▶ PLAY</span><span class="doc-icon"><svg class="ic"><use href="#i-gamepad"/></svg></span>
@@ -3019,15 +3047,6 @@
                 container.innerHTML = `<div class="pf-folder-tabs">${tabs}</div>` + projects.map(folderBlockHtml).join('');
                 setPortfolioFilter(portfolioFilter);
                 EditMode.registerDynamic(container, online ? 'docs' : 'docs-offline');
-            }
-            const home = document.getElementById('homeDocsRow');
-            if (home) {
-                // 프로젝트마다 번갈아 뽑아서 한 프로젝트가 줄을 다 차지하지 않게
-                const pools = PORTFOLIO_PROJECTS.filter(p => p.id !== 'career')
-                    .map(p => PORTFOLIO_DOCS.filter(d => d.projectId === p.id && d.kind !== 'career'));
-                const featured = [];
-                for (let i = 0; featured.length < 14 && pools.some(q => q[i]); i++) pools.forEach(q => { if (q[i] && featured.length < 14) featured.push(q[i]); });
-                home.innerHTML = featured.map(docPosterHtml).join('') || '<div class="row-empty">등록된 기획서가 없습니다.</div>';
             }
             if (currentProjectId && document.getElementById('projectDetailModal').classList.contains('active')) {
                 renderProjectRelated(currentProjectId);
@@ -3785,11 +3804,32 @@
                 desc: '재배·제조·판매를 연결한 PC 타이쿤 게임입니다. 시스템 설계와 밸런스 테이블, UI 흐름을 총괄했습니다.'
             },
             {
-                project: 'film',
-                image: 'assets/art/film.png',
-                title: '영화 제작활동',
-                meta: '<span class="match">FILM PRODUCTION</span><span>2019–2026</span><span class="age">ALL</span><span>PD · 음향 · 제작 운영</span><span class="hd">HD</span>',
-                desc: '영화제 운영과 학생영화 현장에서 기획, 촬영 지원, 음향, 제작 운영을 맡으며 만든 실무 기록입니다.'
+                project: 'nkk',
+                image: 'assets/projects/nkk.jpg',
+                title: '찍!찍!!찍!!!',
+                meta: '<span class="match">웹빌드 플레이</span><span>2026</span><span class="age">ALL</span><span>부팀장 · 튜토리얼 · 보스 기획</span><span class="hd">HD</span>',
+                desc: '실험실을 탈출하는 쥐들의 파괴 · 번식 게임. 튜토리얼과 보스 시스템을 기획했고, 웹 프로토타입을 바로 플레이할 수 있습니다.'
+            },
+            {
+                project: 'ratknight',
+                image: 'assets/projects/ratknight.jpg',
+                title: '기사쥐의 모험',
+                meta: '<span class="match">웹빌드 플레이</span><span>2026</span><span class="age">12</span><span>2D 액션 메트로베니아</span><span class="hd">HD</span>',
+                desc: '도시의 쓰레기로 기사 장비를 만든 꼬마쥐가 전설의 명검을 찾아가는 픽셀 팝아트 액션 메트로베니아입니다.'
+            },
+            {
+                project: 'ratpirate',
+                image: 'assets/projects/ratpirate.jpg',
+                title: '쥐적선',
+                meta: '<span class="match">웹빌드 플레이</span><span>2026</span><span class="age">ALL</span><span>탑뷰 해전 액션</span><span class="hd">HD</span>',
+                desc: '뱃전을 돌려 일제 사격하는 탑뷰 해전 액션. 갤리선에서 현대 함정까지 배를 진화시키며 일곱 바다를 정복합니다.'
+            },
+            {
+                project: 'ratwar',
+                image: 'assets/projects/ratwar.jpg',
+                title: '쥐스컴 (쥐들의 전쟁)',
+                meta: '<span class="match">웹빌드 플레이</span><span>2026</span><span class="age">15</span><span>턴제 분대 전술 · Unity</span><span class="hd">HD</span>',
+                desc: '고양이 총통에 맞서는 쥐 분대의 턴제 전술과 로스터 관리. 엑스컴과 다키스트 던전을 결합했습니다.'
             }
         ];
 
