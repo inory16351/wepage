@@ -225,7 +225,7 @@
            3. 홈: 빌보드 + 가로 스크롤 줄(Row)
         ============================================================= */
         .billboard { position: relative; min-height: 680px; overflow: hidden; }
-        .billboard-bg { position: absolute; inset: 0; background: url('assets/art/home.png') center / cover no-repeat; transform: scale(1.04); animation: kenburns 24s ease-in-out infinite alternate; }
+        .billboard-bg { position: absolute; inset: 0; background: url('assets/art/home_named.jpg') center / cover no-repeat; transform: scale(1.04); animation: kenburns 24s ease-in-out infinite alternate; }
         @keyframes kenburns { from { transform: scale(1.04) translate(0,0); } to { transform: scale(1.12) translate(-1.5%, -1%); } }
         .billboard-vignette {
             position: absolute;
@@ -254,6 +254,23 @@
         }
         .billboard-desc { max-width: 590px; font-size: clamp(14px, 1.2vw, 17px); line-height: 1.75; color: #dedede; margin-bottom: 28px; text-shadow: 0 2px 8px rgba(0,0,0,.7); }
         .billboard-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        /* 빌보드 인적사항: 활동 수치 + 연락처 */
+        .bb-profile { margin: 4px 0 28px; }
+        .bb-stats { display: flex; gap: 28px; margin-bottom: 18px; }
+        .bb-stat { display: flex; flex-direction: column; gap: 4px; }
+        .bb-stat b { font: 400 clamp(38px, 3.6vw, 54px)/0.9 var(--font-marquee); color: #fff; letter-spacing: .01em; text-shadow: 0 3px 18px rgba(0,0,0,.6); }
+        .bb-stat span { font-size: 12.5px; font-weight: 700; color: #cfcfcf; letter-spacing: .02em; }
+        .bb-stat + .bb-stat { padding-left: 28px; border-left: 1px solid rgba(255,255,255,.22); }
+        .bb-contact { list-style: none; display: grid; gap: 7px; font-size: 14.5px; color: #e6e6e6; text-shadow: 0 2px 8px rgba(0,0,0,.7); }
+        .bb-contact li { display: flex; align-items: baseline; gap: 12px; }
+        .bb-contact .bb-k { flex: none; width: 52px; font: 700 10.5px var(--font-mono); letter-spacing: .14em; color: var(--nf-red); }
+        .bb-contact a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.3); }
+        .bb-contact a:hover { border-bottom-color: #fff; }
+        @media (max-width: 600px) {
+            .bb-stats { gap: 16px; }
+            .bb-stat + .bb-stat { padding-left: 16px; }
+            .bb-contact { font-size: 13px; }
+        }
         .billboard-rating {
             position: absolute;
             right: 0;
@@ -437,6 +454,9 @@
 
         .game-poster { background: #111; }
         .game-poster img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .game-poster .gp-title { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; }
+        .game-poster .gp-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .game-poster .gp-hours { flex: none; font: 700 11px var(--font-mono); color: #fff; background: var(--nf-red); padding: 1px 5px; border-radius: 2px; }
         .game-poster .gp-title { position: absolute; left: 0; right: 0; bottom: 3px; padding: 26px 10px 10px; font-size: 13px; font-weight: 700; background: linear-gradient(180deg, transparent, rgba(0,0,0,.92)); }
         .game-poster .gp-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: #4d4d4d; }
         .game-poster .gp-bar span { display: block; height: 100%; background: var(--nf-red); }
@@ -1783,8 +1803,19 @@
                 <div class="series-mark"><b>S</b>PORTFOLIO SERIES</div>
                 <div class="billboard-sub">Game System &amp; Economy Designer</div>
                 <h1 class="billboard-title">탄탄한 논리로 상상하고,<br>수치와 시스템으로 증명하는 크리에이터</h1>
-                <div class="title-meta"><span class="match">기획 적합도 98%</span><span>2026</span><span class="age">ALL</span><span>시즌 1 · 에피소드 5개</span><span class="hd">HD</span></div>
-                <p class="billboard-desc">영화적 서사 구조와 게임 엔진(Unity) 기술, 정밀한 엑셀 수치 밸런싱 역량을 결합하여 유저가 몰입할 수밖에 없는 유기적인 게임 메카닉을 설계합니다.</p>
+                <!-- 인적사항: 연락처 + 활동 수치 -->
+                <div class="bb-profile">
+                    <div class="bb-stats">
+                        <div class="bb-stat"><b id="bbStatGames">6</b><span>게임 프로젝트</span></div>
+                        <div class="bb-stat"><b>9</b><span>참여 영화</span></div>
+                        <div class="bb-stat"><b>2</b><span>영화제 운영</span></div>
+                    </div>
+                    <ul class="bb-contact">
+                        <li><span class="bb-k">PHONE</span><a href="tel:01098227714">010-9822-7714</a></li>
+                        <li><span class="bb-k">EMAIL</span><a href="mailto:caddman771144@gmail.com">caddman771144@gmail.com</a></li>
+                        <li><span class="bb-k">EDU</span>동국대학교 영화영상학과</li>
+                    </ul>
+                </div>
                 <div class="billboard-actions">
                     <button class="btn-play" onclick="playSeries(1)"><span class="ico"><svg class="ic"><use href="#i-play"/></svg></span>재생</button>
                     <button class="btn-info" onclick="openAbout()"><span class="ico"><svg class="ic"><use href="#i-info"/></svg></span>상세 정보</button>
@@ -1836,50 +1867,14 @@
                     <button class="row-arrow left" onclick="scrollRow(this,-1)" aria-label="이전">‹</button>
                     <div class="row-track">
                         <div class="top-card"><span class="top-num">1</span>
-                            <div class="top-poster" style="--poster-bg:linear-gradient(160deg,#7a030c,#1a0204);--poster-img:url('top_system.png')"><span class="top-icon"><span class="icon-slot"><svg class="ic"><use href="#i-sliders"/></svg><img src="web/icon_skill_system.png" alt="" onload="this.previousElementSibling&&(this.previousElementSibling.style.display='none');this.parentElement.classList.add('has-img')" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=this.getAttribute('src').replace('web/','')}else{this.remove()}"></span></span><span class="top-label">TOP 1</span><div class="top-title">시스템 &amp; 밸런싱 설계</div><p>재화 순환 수식, 레벨 디자인, 타일 경제 및 FSM 상태 머신 기반의 정밀하고 안정적인 코어 루프 설계.</p></div>
+                            <div class="top-poster" style="--poster-bg:linear-gradient(160deg,#7a030c,#1a0204);--poster-img:url('assets/art/skill_system.jpg')"><span class="top-icon"><span class="icon-slot"><svg class="ic"><use href="#i-sliders"/></svg><img src="web/icon_skill_system.png" alt="" onload="this.previousElementSibling&&(this.previousElementSibling.style.display='none');this.parentElement.classList.add('has-img')" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=this.getAttribute('src').replace('web/','')}else{this.remove()}"></span></span><span class="top-label">TOP 1</span><div class="top-title">시스템 &amp; 밸런싱 설계</div><p>재화 순환 수식, 레벨 디자인, 타일 경제 및 FSM 상태 머신 기반의 정밀하고 안정적인 코어 루프 설계.</p></div>
                         </div>
                         <div class="top-card"><span class="top-num">2</span>
-                            <div class="top-poster" style="--poster-bg:linear-gradient(160deg,#243b55,#0b0f18);--poster-img:url('top_engine.png')"><span class="top-icon"><span class="icon-slot"><svg class="ic"><use href="#i-cube"/></svg><img src="web/icon_skill_engine.png" alt="" onload="this.previousElementSibling&&(this.previousElementSibling.style.display='none');this.parentElement.classList.add('has-img')" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=this.getAttribute('src').replace('web/','')}else{this.remove()}"></span></span><span class="top-label">TOP 2</span><div class="top-title">엔진 프로토타이핑</div><p>Unity C# 기반 자체 메카닉 구현, 개발팀과의 오차 없는 기획 파이프라인 조율 및 기술적 커뮤니케이션.</p></div>
+                            <div class="top-poster" style="--poster-bg:linear-gradient(160deg,#243b55,#0b0f18);--poster-img:url('assets/art/skill_engine.jpg')"><span class="top-icon"><span class="icon-slot"><svg class="ic"><use href="#i-cube"/></svg><img src="web/icon_skill_engine.png" alt="" onload="this.previousElementSibling&&(this.previousElementSibling.style.display='none');this.parentElement.classList.add('has-img')" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=this.getAttribute('src').replace('web/','')}else{this.remove()}"></span></span><span class="top-label">TOP 2</span><div class="top-title">엔진 프로토타이핑</div><p>Unity C# 기반 자체 메카닉 구현, 개발팀과의 오차 없는 기획 파이프라인 조율 및 기술적 커뮤니케이션.</p></div>
                         </div>
                         <div class="top-card"><span class="top-num">3</span>
-                            <div class="top-poster" style="--poster-bg:linear-gradient(160deg,#5b4a1a,#140f04);--poster-img:url('top_story.png')"><span class="top-icon"><span class="icon-slot"><svg class="ic"><use href="#i-clapper"/></svg><img src="web/icon_skill_story.png" alt="" onload="this.previousElementSibling&&(this.previousElementSibling.style.display='none');this.parentElement.classList.add('has-img')" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=this.getAttribute('src').replace('web/','')}else{this.remove()}"></span></span><span class="top-label">TOP 3</span><div class="top-title">영화적 연출 &amp; 서사 구조</div><p>동국대 영화영상학과 기반의 스토리텔링 문법과 퀘스트 플로우를 결합한 깊이 있는 세계관 구축.</p></div>
+                            <div class="top-poster" style="--poster-bg:linear-gradient(160deg,#5b4a1a,#140f04);--poster-img:url('assets/art/skill_story.jpg')"><span class="top-icon"><span class="icon-slot"><svg class="ic"><use href="#i-clapper"/></svg><img src="web/icon_skill_story.png" alt="" onload="this.previousElementSibling&&(this.previousElementSibling.style.display='none');this.parentElement.classList.add('has-img')" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=this.getAttribute('src').replace('web/','')}else{this.remove()}"></span></span><span class="top-label">TOP 3</span><div class="top-title">영화적 연출 &amp; 서사 구조</div><p>동국대 영화영상학과 기반의 스토리텔링 문법과 퀘스트 플로우를 결합한 깊이 있는 세계관 구축.</p></div>
                         </div>
-                    </div>
-                    <button class="row-arrow right" onclick="scrollRow(this,1)" aria-label="다음">›</button>
-                </div>
-            </div>
-
-            <!-- 시리즈 에피소드 -->
-            <div class="nf-row">
-                <h2 class="row-title">시리즈 〈정승운〉 에피소드 <span class="row-sub">클릭하면 해당 에피소드부터 재생</span></h2>
-                <div class="row-viewport">
-                    <button class="row-arrow left" onclick="scrollRow(this,-1)" aria-label="이전">‹</button>
-                    <div class="row-track">
-                        <article class="nf-card nf-episode" onclick="playSeries(1)">
-                            <div class="ep-thumb cover ep1"><img src="assets/art/home.png" alt="정승운"><span class="ep-no">01</span><span class="ep-play"><svg class="ic"><use href="#i-play"/></svg></span></div>
-                            <div class="ep-bar"><span style="width:100%"></span></div>
-                            <div class="nf-card-info"><h3>인적사항</h3><p>영상 제작 실무자이자 게임 시스템 기획자, 정승운의 프로필.</p></div>
-                        </article>
-                        <article class="nf-card nf-episode" onclick="playSeries(2)">
-                            <div class="ep-thumb cover ep2"><img src="assets/art/systems.png" alt="시스템 설계"><span class="ep-no">02</span><span class="ep-play"><svg class="ic"><use href="#i-play"/></svg></span></div>
-                            <div class="ep-bar"><span style="width:80%"></span></div>
-                            <div class="nf-card-info"><h3>보유 스킬</h3><p>Unity, Adobe, Office — 기획을 플레이 가능한 형태로 만드는 도구들.</p></div>
-                        </article>
-                        <article class="nf-card nf-episode" onclick="playSeries(3)">
-                            <div class="ep-thumb cover"><img src="lastsanctuary.png" alt="경력"><span class="ep-no">03</span><span class="ep-play"><svg class="ic"><use href="#i-play"/></svg></span></div>
-                            <div class="ep-bar"><span style="width:60%"></span></div>
-                            <div class="nf-card-info"><h3>경력 &amp; 프로젝트</h3><p>LAST SANCTUARY, 슬기로운 재배생활, 데블다이스, 제임스텍.</p></div>
-                        </article>
-                        <article class="nf-card nf-episode" onclick="playSeries(4)">
-                            <div class="ep-thumb cover"><img src="assets/art/film.png" alt="참여 영화"><span class="ep-no">04</span><span class="ep-play"><svg class="ic"><use href="#i-play"/></svg></span></div>
-                            <div class="ep-bar"><span style="width:40%"></span></div>
-                            <div class="nf-card-info"><h3>참여 영화</h3><p>홍보부터 PD까지, 영화 현장에서 쌓은 연출과 운영 경험.</p></div>
-                        </article>
-                        <article class="nf-card nf-episode" onclick="playSeries(5)">
-                            <div class="ep-thumb cover ep5"><img src="assets/art/imagination.png" alt="영화와 게임 서사"><span class="ep-no">05</span><span class="ep-play"><svg class="ic"><use href="#i-play"/></svg></span></div>
-                            <div class="ep-bar"><span style="width:20%"></span></div>
-                            <div class="nf-card-info"><h3>학력 &amp; 역량</h3><p>동국대학교 영화영상학과 — 서사 설계와 대규모 협업 역량.</p></div>
-                        </article>
                     </div>
                     <button class="row-arrow right" onclick="scrollRow(this,1)" aria-label="다음">›</button>
                 </div>
@@ -3038,6 +3033,8 @@
             PORTFOLIO_DOCS = PORTFOLIO_PROJECTS.flatMap(p => p.docs.map(d => ({ ...d, projectId: p.id, cover: p.cover })));
             document.querySelectorAll('.doc-total-count').forEach(el => { el.textContent = PORTFOLIO_DOCS.filter(d => d.kind !== 'game').length; });
             document.querySelectorAll('.game-total-count').forEach(el => { el.textContent = PORTFOLIO_DOCS.filter(d => d.kind === 'game').length; });
+            const statGames = document.getElementById('bbStatGames');
+            if (statGames) statGames.textContent = PORTFOLIO_PROJECTS.filter(p => p.id !== 'career').length;
 
             const container = document.getElementById('docsContainer');
             if (container) {
@@ -3065,9 +3062,12 @@
                 const t = c.querySelector('.play-card-title');
                 const bar = c.querySelector('.play-progress span');
                 const src = img ? (img.getAttribute('src') || '') : '';
+                // 카드 메타("장르 / 3,097.6h")에서 플레이 시간만 뽑아 제목 옆에 표시
+                const hm = /([\d,.]+)\s*h(\+?)/.exec(c.querySelector('.play-card-meta')?.textContent || '');
+                const hours = hm ? Math.round(parseFloat(hm[1].replace(/,/g, ''))).toLocaleString() + 'h' + hm[2] : '';
                 return `<article class="nf-card nf-poster game-poster" onclick="switchPage('playhistory')">
                     <img src="${escapeHtml(src)}" alt="" onerror="this.style.visibility='hidden'">
-                    <div class="gp-title">${escapeHtml(t ? t.textContent.trim() : '')}</div>
+                    <div class="gp-title"><span class="gp-name">${escapeHtml(t ? t.textContent.trim() : '')}</span>${hours ? `<span class="gp-hours">${hours}</span>` : ''}</div>
                     <div class="gp-bar"><span style="width:${bar ? bar.style.width : '6%'}"></span></div>
                 </article>`;
             }).join('') || '<div class="row-empty">플레이 히스토리에 게임을 추가해 보세요.</div>';
