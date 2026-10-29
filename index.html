@@ -381,6 +381,10 @@
         .nf-landscape .card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .card-media .card-top-badge { position: absolute; left: 8px; top: 8px; font-family: var(--font-marquee); font-size: 22px; color: var(--nf-red); text-shadow: 0 1px 6px rgba(0,0,0,.8); line-height: 1; }
         .card-media .card-new { position: absolute; left: 0; bottom: 10px; background: var(--nf-red); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 0 3px 3px 0; }
+        /* 프로젝트 카드 호버: PV · 플레이 영상 미리보기 (영화 카드와 같은 방식) */
+        .card-media .proj-preview { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+        .card-media.previewing .proj-preview { opacity: 1; }
+        .card-media .card-top-badge, .card-media .card-new { z-index: 2; }
         .nf-card-info { padding: 15px 16px 16px; }
         .nf-card-kicker { font: 600 10px var(--font-display); color: var(--nf-green); margin-bottom: 7px; letter-spacing: .055em; }
         .nf-card-info h3 { font-size: 15px; line-height: 1.4; font-weight: 750; margin-bottom: 5px; }
@@ -3788,6 +3792,34 @@
             });
         }
 
+        // 프로젝트 카드 호버 미리보기: PV 가 있으면 PV, 없으면 웹빌드 플레이 녹화 · 아트 모션 영상
+        const PROJECT_PREVIEWS = {
+            nkk: 'assets/previews/nkk.mp4',
+            ratwar: 'assets/previews/ratwar.mp4',
+            ratknight: 'assets/previews/ratknight.mp4',
+            ratpirate: 'assets/previews/ratpirate.mp4',
+            lastsanctuary: 'assets/previews/lastsanctuary.mp4',
+            smartfarm: 'assets/previews/smartfarm.mp4'
+        };
+        function initProjectPreviews() {
+            document.querySelectorAll('article.nf-landscape[onclick^="openProjectDetail"]').forEach(card => {
+                const id = (/openProjectDetail\('(\w+)'/.exec(card.getAttribute('onclick')) || [])[1];
+                const media = card.querySelector('.card-media');
+                if (!PROJECT_PREVIEWS[id] || !media) return;
+                const video = document.createElement('video');
+                video.className = 'proj-preview';
+                video.muted = true; video.loop = true; video.playsInline = true; video.preload = 'metadata';
+                video.src = PROJECT_PREVIEWS[id];
+                media.append(video);
+                const start = () => { media.classList.add('previewing'); video.currentTime = 0; video.play().catch(() => media.classList.remove('previewing')); };
+                const stop = () => { video.pause(); media.classList.remove('previewing'); };
+                card.addEventListener('mouseenter', start);
+                card.addEventListener('mouseleave', stop);
+                card.addEventListener('focusin', start);
+                card.addEventListener('focusout', stop);
+            });
+        }
+
         const PORTFOLIO_HERO_SLIDES = [
             {
                 project: 'nkk',
@@ -3880,6 +3912,7 @@
             renderHomeGames();
             loadPortfolioDocuments();
             initFilmPreviews();
+            initProjectPreviews();
             initPortfolioHeroCarousel();
             updateEditModeUI();
             apiReady.then(() => renderIgdbStatus());
